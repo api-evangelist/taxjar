@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "name": "TaxJar Dev Blog",
+    "url": "https://developers.taxjar.com/blog/",
+    "feed": "https://developers.taxjar.com/blog/feed.xml",
+    "fetched": "2026-06-12"
+  },
+  "posts": [
+    {
+      "title": "Airtable + Vue.js for Static Websites",
+      "url": "https://developers.taxjar.com/blog/airtable-and-vue-js-for-static-websites/",
+      "published": "2017-12-22T12:00:00+00:00",
+      "summary": "Guide demonstrating how to integrate Airtable's collaborative spreadsheet with Vue.js and Axios to display JSON data in Bootstrap tables on static websites."
+    },
+    {
+      "title": "Stripe Sigma: Deleted code has no bugs.",
+      "url": "https://developers.taxjar.com/blog/stripe-sigma-deleted-code-has-no-bugs/",
+      "published": "2017-08-21T12:00:00+00:00",
+      "summary": "Case study on replacing custom ETL processes and Amazon Redshift infrastructure with Stripe Sigma for SQL-based analytics and reporting."
+    },
+    {
+      "title": "Handling Sales Tax with Laravel Cashier",
+      "url": "https://developers.taxjar.com/blog/handling-sales-tax-with-laravel-cashier/",
+      "published": "2017-05-18T12:00:00+00:00",
+      "summary": "Technical tutorial for integrating TaxJar's sales tax API with Laravel Cashier to automatically calculate and apply tax rates to subscriptions and charges."
+    },
+    {
+      "title": "Address Validation APIs and Plugins",
+      "url": "https://developers.taxjar.com/blog/address-validation-apis-and-plugins/",
+      "published": "2017-01-23T12:00:00+00:00",
+      "summary": "Comprehensive comparison of address validation services including Shippo, Lob, UPS, and SmartyStreets, plus eCommerce plugins for popular platforms."
+    },
+    {
+      "title": "Hello, Open Source!",
+      "url": "https://developers.taxjar.com/blog/hello-open-source-persisted-cache/",
+      "published": "2016-10-14T12:00:00+00:00",
+      "summary": "Overview of the persisted_cache Ruby gem that enables reliable cached data by storing query results in a database to prevent timeout failures."
+    },
+    {
+      "title": "Nexus Regions",
+      "url": "https://developers.taxjar.com/blog/nexus-regions/",
+      "published": "2016-04-29T00:11:00+00:00",
+      "summary": "Introduction to TaxJar's nexus regions API endpoint that allows developers to dynamically retrieve their configured sales tax nexus states."
+    }
+  ]
+}

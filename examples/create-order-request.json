@@ -1,0 +1,29 @@
+{
+  "transaction_id": "123",
+  "transaction_date": "2015/05/14",
+  "provider": "api",
+  "from_country": "US",
+  "from_zip": "94025",
+  "from_state": "CA",
+  "from_city": "Menlo Park",
+  "from_street": "1600 Amphitheatre Parkway",
+  "to_country": "US",
+  "to_zip": "90002",
+  "to_state": "CA",
+  "to_city": "Los Angeles",
+  "to_street": "1335 E 103rd St",
+  "amount": 16.5,
+  "shipping": 1.5,
+  "sales_tax": 0.95,
+  "line_items": [
+    {
+      "id": "1",
+      "quantity": 1,
+      "product_identifier": "12-34243-9",
+      "description": "Fuzzy Widget",
+      "unit_price": 15.0,
+      "discount": 0.0,
+      "sales_tax": 0.95
+    }
+  ]
+}

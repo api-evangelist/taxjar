@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/taxjar/main/json-schema/taxjar-tax-calculation-schema.json",
+  "title": "TaxJar Tax Calculation Response",
+  "description": "Schema for the TaxJar sales tax calculation response from POST /v2/taxes.",
+  "type": "object",
+  "properties": {
+    "tax": {
+      "type": "object",
+      "description": "Tax calculation result",
+      "properties": {
+        "order_total_amount": {
+          "type": "number",
+          "description": "Total order amount including shipping",
+          "example": 16.5
+        },
+        "shipping": {
+          "type": "number",
+          "description": "Shipping amount",
+          "example": 1.5
+        },
+        "taxable_amount": {
+          "type": "number",
+          "description": "Amount subject to sales tax",
+          "example": 15.0
+        },
+        "amount_to_collect": {
+          "type": "number",
+          "description": "Total tax amount to collect",
+          "example": 1.35
+        },
+        "rate": {
+          "type": "number",
+          "description": "Overall effective tax rate",
+          "example": 0.09
+        },
+        "has_nexus": {
+          "type": "boolean",
+          "description": "Whether the seller has nexus in the destination jurisdiction",
+          "example": true
+        },
+        "freight_taxable": {
+          "type": "boolean",
+          "description": "Whether shipping is taxable in the destination",
+          "example": false
+        },
+        "tax_source": {
+          "type": "string",
+          "description": "Tax sourcing rule applied",
+          "enum": ["origin", "destination"],
+          "example": "destination"
+        },
+        "exemption_type": {
+          "type": "string",
+          "description": "Exemption type applied to this calculation"
+        },
+        "jurisdictions": {
+          "type": "object",
+          "description": "Jurisdictions that apply to this calculation",
+          "properties": {
+            "country": {
+              "type": "string",
+              "example": "US"
+            },
+            "state": {
+              "type": "string",
+              "example": "CA"
+            },
+            "county": {
+              "type": "string",
+              "example": "LOS ANGELES"
+            },
+            "city": {
+              "type": "string",
+              "example": "LOS ANGELES"
+            }
+          }
+        },
+        "breakdown": {
+          "type": "object",
+          "description": "Detailed tax breakdown by jurisdiction",
+          "properties": {
+            "taxable_amount": { "type": "number" },
+            "tax_collectable": { "type": "number" },
+            "combined_tax_rate": { "type": "number" },
+            "state_taxable_amount": { "type": "number" },
+            "state_tax_rate": { "type": "number" },
+            "state_tax_collectable": { "type": "number" },
+            "county_taxable_amount": { "type": "number" },
+            "county_tax_rate": { "type": "number" },
+            "county_tax_collectable": { "type": "number" },
+            "city_taxable_amount": { "type": "number" },
+            "city_tax_rate": { "type": "number" },
+            "city_tax_collectable": { "type": "number" },
+            "special_district_taxable_amount": { "type": "number" },
+            "special_tax_rate": { "type": "number" },
+            "special_district_tax_collectable": { "type": "number" },
+            "line_items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "taxable_amount": { "type": "number" },
+                  "tax_collectable": { "type": "number" },
+                  "combined_tax_rate": { "type": "number" },
+                  "state_taxable_amount": { "type": "number" },
+                  "state_sales_tax_rate": { "type": "number" },
+                  "state_amount": { "type": "number" },
+                  "county_taxable_amount": { "type": "number" },
+                  "county_tax_rate": { "type": "number" },
+                  "county_amount": { "type": "number" },
+                  "city_taxable_amount": { "type": "number" },
+                  "city_tax_rate": { "type": "number" },
+                  "city_amount": { "type": "number" },
+                  "special_district_taxable_amount": { "type": "number" },
+                  "special_tax_rate": { "type": "number" },
+                  "special_district_amount": { "type": "number" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

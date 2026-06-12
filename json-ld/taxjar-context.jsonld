@@ -1,0 +1,231 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "taxjar": "https://developers.taxjar.com/api/reference/#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "TaxCalculation": "taxjar:taxes",
+    "Order": "taxjar:transactions-orders",
+    "Refund": "taxjar:transactions-refunds",
+    "Customer": "taxjar:customers",
+    "Rate": "taxjar:rates",
+    "Category": "taxjar:categories",
+    "NexusRegion": "taxjar:nexus",
+    "Address": "taxjar:validations",
+    "SummaryRate": "taxjar:summarized-rates",
+
+    "transaction_id": {
+      "@id": "taxjar:transaction_id",
+      "@type": "xsd:string"
+    },
+    "transaction_date": {
+      "@id": "taxjar:transaction_date",
+      "@type": "xsd:string"
+    },
+    "transaction_reference_id": {
+      "@id": "taxjar:transaction_reference_id",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "shipping": {
+      "@id": "taxjar:shipping",
+      "@type": "xsd:decimal"
+    },
+    "sales_tax": {
+      "@id": "taxjar:sales_tax",
+      "@type": "xsd:decimal"
+    },
+    "amount_to_collect": {
+      "@id": "taxjar:amount_to_collect",
+      "@type": "xsd:decimal"
+    },
+    "taxable_amount": {
+      "@id": "taxjar:taxable_amount",
+      "@type": "xsd:decimal"
+    },
+    "rate": {
+      "@id": "taxjar:rate",
+      "@type": "xsd:decimal"
+    },
+    "has_nexus": {
+      "@id": "taxjar:has_nexus",
+      "@type": "xsd:boolean"
+    },
+    "freight_taxable": {
+      "@id": "taxjar:freight_taxable",
+      "@type": "xsd:boolean"
+    },
+    "tax_source": {
+      "@id": "taxjar:tax_source",
+      "@type": "xsd:string"
+    },
+    "exemption_type": {
+      "@id": "taxjar:exemption_type",
+      "@type": "xsd:string"
+    },
+    "provider": {
+      "@id": "taxjar:provider",
+      "@type": "xsd:string"
+    },
+    "customer_id": {
+      "@id": "taxjar:customer_id",
+      "@type": "xsd:string"
+    },
+    "from_country": {
+      "@id": "taxjar:from_country",
+      "@type": "xsd:string"
+    },
+    "from_zip": {
+      "@id": "taxjar:from_zip",
+      "@type": "xsd:string"
+    },
+    "from_state": {
+      "@id": "taxjar:from_state",
+      "@type": "xsd:string"
+    },
+    "from_city": {
+      "@id": "taxjar:from_city",
+      "@type": "xsd:string"
+    },
+    "from_street": {
+      "@id": "taxjar:from_street",
+      "@type": "xsd:string"
+    },
+    "to_country": {
+      "@id": "taxjar:to_country",
+      "@type": "xsd:string"
+    },
+    "to_zip": {
+      "@id": "taxjar:to_zip",
+      "@type": "xsd:string"
+    },
+    "to_state": {
+      "@id": "taxjar:to_state",
+      "@type": "xsd:string"
+    },
+    "to_city": {
+      "@id": "taxjar:to_city",
+      "@type": "xsd:string"
+    },
+    "to_street": {
+      "@id": "taxjar:to_street",
+      "@type": "xsd:string"
+    },
+    "zip": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "street": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "product_tax_code": {
+      "@id": "taxjar:product_tax_code",
+      "@type": "xsd:string"
+    },
+    "product_identifier": {
+      "@id": "taxjar:product_identifier",
+      "@type": "xsd:string"
+    },
+    "unit_price": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "quantity": {
+      "@id": "schema:amount",
+      "@type": "xsd:integer"
+    },
+    "discount": {
+      "@id": "taxjar:discount",
+      "@type": "xsd:decimal"
+    },
+    "state_rate": {
+      "@id": "taxjar:state_rate",
+      "@type": "xsd:decimal"
+    },
+    "county_rate": {
+      "@id": "taxjar:county_rate",
+      "@type": "xsd:decimal"
+    },
+    "city_rate": {
+      "@id": "taxjar:city_rate",
+      "@type": "xsd:decimal"
+    },
+    "combined_rate": {
+      "@id": "taxjar:combined_rate",
+      "@type": "xsd:decimal"
+    },
+    "combined_district_rate": {
+      "@id": "taxjar:combined_district_rate",
+      "@type": "xsd:decimal"
+    },
+    "county": {
+      "@id": "taxjar:county",
+      "@type": "xsd:string"
+    },
+    "country_code": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "region_code": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "taxjar:region",
+      "@type": "xsd:string"
+    },
+    "valid": {
+      "@id": "taxjar:valid",
+      "@type": "xsd:boolean"
+    },
+    "exists": {
+      "@id": "taxjar:exists",
+      "@type": "xsd:boolean"
+    },
+    "vat_number": {
+      "@id": "taxjar:vat_number",
+      "@type": "xsd:string"
+    },
+    "line_items": {
+      "@id": "taxjar:line_items",
+      "@container": "@list"
+    },
+    "exempt_regions": {
+      "@id": "taxjar:exempt_regions",
+      "@container": "@list"
+    },
+    "jurisdictions": {
+      "@id": "taxjar:jurisdictions",
+      "@type": "@id"
+    },
+    "breakdown": {
+      "@id": "taxjar:breakdown",
+      "@type": "@id"
+    }
+  }
+}

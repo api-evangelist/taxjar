@@ -1,0 +1,1693 @@
+openapi: 3.0.3
+info:
+  title: TaxJar Sales Tax API
+  description: >-
+    REST API for real-time sales tax calculation, rooftop-level rate lookups,
+    tax category listing, transaction management (orders and refunds), customer
+    exemption management, nexus region tracking, address validation, and VAT
+    validation. Supports token-based authentication via Authorization header.
+    TaxJar is a Stripe company providing sub-20ms response times and 99.999%
+    historical uptime.
+  version: '2.0'
+  contact:
+    name: TaxJar Developer Support
+    url: https://support.taxjar.com/category/233-taxjar-api
+  termsOfService: https://www.taxjar.com/terms/
+  x-api-id: taxjar-sales-tax
+servers:
+  - url: https://api.taxjar.com/v2
+    description: Production
+  - url: https://api.sandbox.taxjar.com/v2
+    description: Sandbox
+security:
+  - bearerAuth: []
+tags:
+  - name: Categories
+    description: Product tax categories
+  - name: Taxes
+    description: Sales tax calculation
+  - name: Rates
+    description: Sales tax rate lookups
+  - name: Transactions - Orders
+    description: Order transaction management
+  - name: Transactions - Refunds
+    description: Refund transaction management
+  - name: Customers
+    description: Customer exemption management
+  - name: Nexus
+    description: Nexus region tracking
+  - name: Validations
+    description: Address and VAT validation
+  - name: Summary Rates
+    description: Summarized sales tax rates by region
+paths:
+  /categories:
+    get:
+      operationId: listCategories
+      summary: List tax categories
+      description: >-
+        Returns all available product tax categories with associated product tax
+        codes that can be used to identify products subject to special tax rates.
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: List of tax categories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /taxes:
+    post:
+      operationId: calculateTaxForOrder
+      summary: Calculate sales tax for an order
+      description: >-
+        Calculates the sales tax for a given order based on origin and
+        destination addresses, line items, and other order attributes.
+        Returns the amount of sales tax to collect along with a breakdown
+        by jurisdiction.
+      tags:
+        - Taxes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxRequest'
+      responses:
+        '200':
+          description: Tax calculation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tax:
+                    $ref: '#/components/schemas/Tax'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /rates/{zip}:
+    get:
+      operationId: getRatesForLocation
+      summary: Show tax rates for a location
+      description: >-
+        Returns the sales tax rates for a given location by postal code.
+        Supports US and international locations. For US lookups, returns
+        state, county, city, and special district rates.
+      tags:
+        - Rates
+      parameters:
+        - name: zip
+          in: path
+          required: true
+          description: Postal code for the location
+          schema:
+            type: string
+          example: '90002'
+        - name: country
+          in: query
+          description: Two-letter ISO country code
+          schema:
+            type: string
+          example: US
+        - name: state
+          in: query
+          description: Two-letter state/province code
+          schema:
+            type: string
+        - name: city
+          in: query
+          description: City name
+          schema:
+            type: string
+        - name: street
+          in: query
+          description: Street address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tax rates for the location
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rate:
+                    $ref: '#/components/schemas/Rate'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /transactions/orders:
+    get:
+      operationId: listOrders
+      summary: List order transactions
+      description: >-
+        Returns a list of order transaction IDs for the authenticated account.
+        Supports filtering by date range and provider.
+      tags:
+        - Transactions - Orders
+      parameters:
+        - name: transaction_date
+          in: query
+          description: Filter orders by exact transaction date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: from_transaction_date
+          in: query
+          description: Start date filter (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: to_transaction_date
+          in: query
+          description: End date filter (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: provider
+          in: query
+          description: Filter by provider (e.g. api, shopify, woocommerce)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of order transaction IDs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createOrder
+      summary: Create an order transaction
+      description: >-
+        Creates a new order transaction for sales tax reporting and AutoFile
+        purposes. Use this to record completed sales.
+      tags:
+        - Transactions - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '201':
+          description: Order transaction created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /transactions/orders/{transaction_id}:
+    get:
+      operationId: showOrder
+      summary: Show an order transaction
+      description: Returns a single order transaction by transaction ID.
+      tags:
+        - Transactions - Orders
+      parameters:
+        - name: transaction_id
+          in: path
+          required: true
+          description: Unique identifier for the order transaction
+          schema:
+            type: string
+        - name: provider
+          in: query
+          description: Provider for the transaction (e.g. api, shopify)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order transaction details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateOrder
+      summary: Update an order transaction
+      description: Updates an existing order transaction by transaction ID.
+      tags:
+        - Transactions - Orders
+      parameters:
+        - name: transaction_id
+          in: path
+          required: true
+          description: Unique identifier for the order transaction
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Updated order transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteOrder
+      summary: Delete an order transaction
+      description: Deletes an existing order transaction by transaction ID.
+      tags:
+        - Transactions - Orders
+      parameters:
+        - name: transaction_id
+          in: path
+          required: true
+          description: Unique identifier for the order transaction
+          schema:
+            type: string
+        - name: provider
+          in: query
+          description: Provider for the transaction
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted order transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /transactions/refunds:
+    get:
+      operationId: listRefunds
+      summary: List refund transactions
+      description: >-
+        Returns a list of refund transaction IDs for the authenticated account.
+        Supports filtering by date range and provider.
+      tags:
+        - Transactions - Refunds
+      parameters:
+        - name: transaction_date
+          in: query
+          description: Filter refunds by exact transaction date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: from_transaction_date
+          in: query
+          description: Start date filter (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: to_transaction_date
+          in: query
+          description: End date filter (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: provider
+          in: query
+          description: Filter by provider
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of refund transaction IDs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refunds:
+                    type: array
+                    items:
+                      type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRefund
+      summary: Create a refund transaction
+      description: Creates a new refund transaction linked to an order transaction.
+      tags:
+        - Transactions - Refunds
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundRequest'
+      responses:
+        '201':
+          description: Refund transaction created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refund:
+                    $ref: '#/components/schemas/Refund'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /transactions/refunds/{transaction_id}:
+    get:
+      operationId: showRefund
+      summary: Show a refund transaction
+      description: Returns a single refund transaction by transaction ID.
+      tags:
+        - Transactions - Refunds
+      parameters:
+        - name: transaction_id
+          in: path
+          required: true
+          description: Unique identifier for the refund transaction
+          schema:
+            type: string
+        - name: provider
+          in: query
+          description: Provider for the transaction
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Refund transaction details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refund:
+                    $ref: '#/components/schemas/Refund'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateRefund
+      summary: Update a refund transaction
+      description: Updates an existing refund transaction by transaction ID.
+      tags:
+        - Transactions - Refunds
+      parameters:
+        - name: transaction_id
+          in: path
+          required: true
+          description: Unique identifier for the refund transaction
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundRequest'
+      responses:
+        '200':
+          description: Updated refund transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refund:
+                    $ref: '#/components/schemas/Refund'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRefund
+      summary: Delete a refund transaction
+      description: Deletes an existing refund transaction by transaction ID.
+      tags:
+        - Transactions - Refunds
+      parameters:
+        - name: transaction_id
+          in: path
+          required: true
+          description: Unique identifier for the refund transaction
+          schema:
+            type: string
+        - name: provider
+          in: query
+          description: Provider for the transaction
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted refund transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refund:
+                    $ref: '#/components/schemas/Refund'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /customers:
+    get:
+      operationId: listCustomers
+      summary: List customers
+      description: >-
+        Returns a list of customer IDs for exempt customers associated with the
+        authenticated account.
+      tags:
+        - Customers
+      responses:
+        '200':
+          description: List of customer IDs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items:
+                      type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCustomer
+      summary: Create a customer
+      description: >-
+        Creates a new exempt customer record for sales tax exemption management.
+      tags:
+        - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      responses:
+        '201':
+          description: Customer created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /customers/{customer_id}:
+    get:
+      operationId: showCustomer
+      summary: Show a customer
+      description: Returns a single exempt customer by customer ID.
+      tags:
+        - Customers
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          description: Unique identifier for the customer
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCustomer
+      summary: Update a customer
+      description: Updates an existing exempt customer record.
+      tags:
+        - Customers
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          description: Unique identifier for the customer
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      responses:
+        '200':
+          description: Updated customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCustomer
+      summary: Delete a customer
+      description: Deletes an existing exempt customer record.
+      tags:
+        - Customers
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          description: Unique identifier for the customer
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /nexus/regions:
+    get:
+      operationId: listNexusRegions
+      summary: List nexus regions
+      description: >-
+        Returns a list of nexus regions (states/countries where you have tax
+        nexus) for the authenticated account.
+      tags:
+        - Nexus
+      responses:
+        '200':
+          description: List of nexus regions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  regions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NexusRegion'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /addresses/validate:
+    post:
+      operationId: validateAddress
+      summary: Validate an address
+      description: >-
+        Validates a US address and returns standardized address components.
+        Returns up to 4 suggestions for an incomplete address.
+      tags:
+        - Validations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressRequest'
+      responses:
+        '200':
+          description: Validated address suggestions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  addresses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Address'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /validation:
+    get:
+      operationId: validateVAT
+      summary: Validate a VAT number
+      description: >-
+        Validates a VAT identification number using the VIES service and
+        returns validity status along with registered business information.
+      tags:
+        - Validations
+      parameters:
+        - name: vat
+          in: query
+          required: true
+          description: VAT number to validate (e.g. FR40303265045)
+          schema:
+            type: string
+          example: FR40303265045
+      responses:
+        '200':
+          description: VAT validation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validation:
+                    $ref: '#/components/schemas/Validation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /summary_rates:
+    get:
+      operationId: listSummaryRates
+      summary: Summarize tax rates for all regions
+      description: >-
+        Returns a summarized list of expected sales tax rates for a given
+        region. This is useful for showing customers an estimated tax rate
+        before checkout.
+      tags:
+        - Summary Rates
+      responses:
+        '200':
+          description: Summary rates by region
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  summary_rates:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SummaryRate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Use your TaxJar API token. Format: "Bearer [token]" or
+        "Token token=[token]"
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Unprocessable entity - validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
+    Category:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the tax category
+          example: Clothing
+        product_tax_code:
+          type: string
+          description: Product tax code for use in tax calculations
+          example: 20010
+        description:
+          type: string
+          description: Description of the tax category
+          example: All clothing products
+    Rate:
+      type: object
+      properties:
+        zip:
+          type: string
+          description: Postal code
+          example: '90002'
+        state:
+          type: string
+          description: Two-letter state code
+          example: CA
+        state_rate:
+          type: number
+          format: float
+          description: State sales tax rate
+          example: 0.065
+        county:
+          type: string
+          description: County name
+          example: LOS ANGELES
+        county_rate:
+          type: number
+          format: float
+          description: County sales tax rate
+          example: 0.01
+        city:
+          type: string
+          description: City name
+          example: WATTS
+        city_rate:
+          type: number
+          format: float
+          description: City sales tax rate
+          example: 0.0
+        combined_district_rate:
+          type: number
+          format: float
+          description: Combined special district rate
+          example: 0.025
+        combined_rate:
+          type: number
+          format: float
+          description: Total combined sales tax rate
+          example: 0.1
+        freight_taxable:
+          type: boolean
+          description: Whether shipping is taxable in this location
+          example: false
+        country:
+          type: string
+          description: Two-letter country code (international)
+        name:
+          type: string
+          description: Region name (international)
+        country_rate:
+          type: number
+          format: float
+          description: Country tax rate (Australia and SST states)
+        standard_rate:
+          type: number
+          format: float
+          description: Standard VAT rate (EU)
+        reduced_rate:
+          type: number
+          format: float
+          description: Reduced VAT rate (EU)
+        super_reduced_rate:
+          type: number
+          format: float
+          description: Super-reduced VAT rate (EU)
+        parking_rate:
+          type: number
+          format: float
+          description: Parking VAT rate (EU)
+        distance_sale_threshold:
+          type: number
+          format: float
+          description: Distance sale threshold (EU)
+    TaxRequest:
+      type: object
+      required:
+        - to_country
+        - to_zip
+        - to_state
+        - amount
+        - shipping
+      properties:
+        from_country:
+          type: string
+          description: Two-letter ISO country code of origin
+          example: US
+        from_zip:
+          type: string
+          description: Postal code of origin
+          example: '94025'
+        from_state:
+          type: string
+          description: Two-letter state code of origin
+          example: CA
+        from_city:
+          type: string
+          description: City of origin
+          example: Menlo Park
+        from_street:
+          type: string
+          description: Street address of origin
+        to_country:
+          type: string
+          description: Two-letter ISO country code of destination
+          example: US
+        to_zip:
+          type: string
+          description: Postal code of destination
+          example: '90002'
+        to_state:
+          type: string
+          description: Two-letter state code of destination
+          example: CA
+        to_city:
+          type: string
+          description: City of destination
+          example: Los Angeles
+        to_street:
+          type: string
+          description: Street address of destination
+        amount:
+          type: number
+          format: float
+          description: Total amount of the order (excluding shipping)
+          example: 15.0
+        shipping:
+          type: number
+          format: float
+          description: Total shipping cost
+          example: 1.5
+        customer_id:
+          type: string
+          description: Unique identifier of the customer for exemption lookup
+        exemption_type:
+          type: string
+          description: Type of exemption (wholesale, government, other, non_exempt)
+          enum:
+            - wholesale
+            - government
+            - other
+            - non_exempt
+        line_items:
+          type: array
+          description: List of line items in the order
+          items:
+            $ref: '#/components/schemas/LineItemRequest'
+    Tax:
+      type: object
+      properties:
+        order_total_amount:
+          type: number
+          format: float
+          description: Total order amount
+          example: 16.5
+        shipping:
+          type: number
+          format: float
+          description: Shipping amount
+          example: 1.5
+        taxable_amount:
+          type: number
+          format: float
+          description: Amount subject to tax
+          example: 15.0
+        amount_to_collect:
+          type: number
+          format: float
+          description: Total tax amount to collect
+          example: 1.35
+        rate:
+          type: number
+          format: float
+          description: Overall tax rate
+          example: 0.09
+        has_nexus:
+          type: boolean
+          description: Whether seller has nexus in the destination
+          example: true
+        freight_taxable:
+          type: boolean
+          description: Whether shipping is taxable
+          example: false
+        tax_source:
+          type: string
+          description: Tax sourcing rule applied (origin or destination)
+          example: destination
+        exemption_type:
+          type: string
+          description: Exemption type applied
+        jurisdictions:
+          $ref: '#/components/schemas/Jurisdictions'
+        breakdown:
+          $ref: '#/components/schemas/Breakdown'
+    Jurisdictions:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Country code
+          example: US
+        state:
+          type: string
+          description: State code
+          example: CA
+        county:
+          type: string
+          description: County name
+          example: LOS ANGELES
+        city:
+          type: string
+          description: City name
+          example: LOS ANGELES
+    Breakdown:
+      type: object
+      properties:
+        taxable_amount:
+          type: number
+          format: float
+        tax_collectable:
+          type: number
+          format: float
+        combined_tax_rate:
+          type: number
+          format: float
+        state_taxable_amount:
+          type: number
+          format: float
+        state_tax_rate:
+          type: number
+          format: float
+        state_tax_collectable:
+          type: number
+          format: float
+        county_taxable_amount:
+          type: number
+          format: float
+        county_tax_rate:
+          type: number
+          format: float
+        county_tax_collectable:
+          type: number
+          format: float
+        city_taxable_amount:
+          type: number
+          format: float
+        city_tax_rate:
+          type: number
+          format: float
+        city_tax_collectable:
+          type: number
+          format: float
+        special_district_taxable_amount:
+          type: number
+          format: float
+        special_tax_rate:
+          type: number
+          format: float
+        special_district_tax_collectable:
+          type: number
+          format: float
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BreakdownLineItem'
+    BreakdownLineItem:
+      type: object
+      properties:
+        id:
+          type: string
+        taxable_amount:
+          type: number
+          format: float
+        tax_collectable:
+          type: number
+          format: float
+        combined_tax_rate:
+          type: number
+          format: float
+        state_taxable_amount:
+          type: number
+          format: float
+        state_sales_tax_rate:
+          type: number
+          format: float
+        state_amount:
+          type: number
+          format: float
+        county_taxable_amount:
+          type: number
+          format: float
+        county_tax_rate:
+          type: number
+          format: float
+        county_amount:
+          type: number
+          format: float
+        city_taxable_amount:
+          type: number
+          format: float
+        city_tax_rate:
+          type: number
+          format: float
+        city_amount:
+          type: number
+          format: float
+        special_district_taxable_amount:
+          type: number
+          format: float
+        special_tax_rate:
+          type: number
+          format: float
+        special_district_amount:
+          type: number
+          format: float
+    LineItemRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item
+        quantity:
+          type: integer
+          description: Quantity of the item
+          example: 1
+        product_identifier:
+          type: string
+          description: Product SKU or identifier
+        description:
+          type: string
+          description: Description of the product
+        product_tax_code:
+          type: string
+          description: Product tax code for category-specific rates
+        unit_price:
+          type: number
+          format: float
+          description: Unit price of the item
+          example: 15.0
+        discount:
+          type: number
+          format: float
+          description: Discount amount for this line item
+        sales_tax:
+          type: number
+          format: float
+          description: Sales tax collected for this line item
+    OrderRequest:
+      type: object
+      required:
+        - transaction_id
+        - transaction_date
+        - to_country
+        - to_zip
+        - to_state
+        - amount
+        - shipping
+        - sales_tax
+      properties:
+        transaction_id:
+          type: string
+          description: Unique identifier for this order transaction
+          example: '123'
+        transaction_date:
+          type: string
+          description: Date of the transaction (YYYY-MM-DD or ISO 8601)
+          example: '2015/05/14'
+        provider:
+          type: string
+          description: Source of the transaction (api, shopify, woocommerce, etc.)
+          example: shopify
+        exemption_type:
+          type: string
+          description: Exemption type for this order
+          enum:
+            - wholesale
+            - government
+            - other
+            - non_exempt
+        from_country:
+          type: string
+          description: Two-letter ISO country code of origin
+          example: US
+        from_zip:
+          type: string
+          description: Postal code of origin
+        from_state:
+          type: string
+          description: Two-letter state code of origin
+        from_city:
+          type: string
+          description: City of origin
+        from_street:
+          type: string
+          description: Street address of origin
+        to_country:
+          type: string
+          description: Two-letter ISO country code of destination
+          example: US
+        to_zip:
+          type: string
+          description: Postal code of destination
+          example: '90002'
+        to_state:
+          type: string
+          description: Two-letter state code of destination
+          example: CA
+        to_city:
+          type: string
+          description: City of destination
+        to_street:
+          type: string
+          description: Street address of destination
+        amount:
+          type: number
+          format: float
+          description: Total amount of order (excluding shipping)
+          example: 16.5
+        shipping:
+          type: number
+          format: float
+          description: Total shipping cost
+          example: 1.5
+        sales_tax:
+          type: number
+          format: float
+          description: Total sales tax collected
+          example: 0.95
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemRequest'
+        customer_id:
+          type: string
+          description: Unique identifier of the customer
+    Order:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          description: Unique identifier for the order transaction
+          example: '123'
+        user_id:
+          type: integer
+          description: TaxJar user ID
+        transaction_date:
+          type: string
+          description: Date of the transaction
+          example: '2015-05-14T00:00:00Z'
+        provider:
+          type: string
+          description: Source of the transaction
+          example: api
+        exemption_type:
+          type: string
+          description: Exemption type applied
+        from_country:
+          type: string
+          example: US
+        from_zip:
+          type: string
+          example: '94025'
+        from_state:
+          type: string
+          example: CA
+        from_city:
+          type: string
+        from_street:
+          type: string
+        to_country:
+          type: string
+          example: US
+        to_zip:
+          type: string
+          example: '90002'
+        to_state:
+          type: string
+          example: CA
+        to_city:
+          type: string
+        to_street:
+          type: string
+        amount:
+          type: number
+          format: float
+          example: 16.5
+        shipping:
+          type: number
+          format: float
+          example: 1.5
+        sales_tax:
+          type: number
+          format: float
+          example: 0.95
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+    RefundRequest:
+      type: object
+      required:
+        - transaction_id
+        - transaction_date
+        - transaction_reference_id
+        - to_country
+        - to_zip
+        - to_state
+        - amount
+        - shipping
+        - sales_tax
+      properties:
+        transaction_id:
+          type: string
+          description: Unique identifier for this refund transaction
+          example: '321'
+        transaction_date:
+          type: string
+          description: Date of the refund (YYYY-MM-DD or ISO 8601)
+          example: '2015/05/14'
+        transaction_reference_id:
+          type: string
+          description: Transaction ID of the original order being refunded
+          example: '123'
+        provider:
+          type: string
+          description: Source of the transaction
+          example: api
+        exemption_type:
+          type: string
+          description: Exemption type
+          enum:
+            - wholesale
+            - government
+            - other
+            - non_exempt
+        from_country:
+          type: string
+          example: US
+        from_zip:
+          type: string
+        from_state:
+          type: string
+        from_city:
+          type: string
+        from_street:
+          type: string
+        to_country:
+          type: string
+          example: US
+        to_zip:
+          type: string
+          example: '90002'
+        to_state:
+          type: string
+          example: CA
+        to_city:
+          type: string
+        to_street:
+          type: string
+        amount:
+          type: number
+          format: float
+          example: 16.5
+        shipping:
+          type: number
+          format: float
+          example: 1.5
+        sales_tax:
+          type: number
+          format: float
+          example: 0.95
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemRequest'
+    Refund:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          example: '321'
+        user_id:
+          type: integer
+        transaction_date:
+          type: string
+          example: '2015-05-14T00:00:00Z'
+        transaction_reference_id:
+          type: string
+          example: '123'
+        provider:
+          type: string
+          example: api
+        exemption_type:
+          type: string
+        from_country:
+          type: string
+        from_zip:
+          type: string
+        from_state:
+          type: string
+        from_city:
+          type: string
+        from_street:
+          type: string
+        to_country:
+          type: string
+        to_zip:
+          type: string
+        to_state:
+          type: string
+        to_city:
+          type: string
+        to_street:
+          type: string
+        amount:
+          type: number
+          format: float
+        shipping:
+          type: number
+          format: float
+        sales_tax:
+          type: number
+          format: float
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+    CustomerRequest:
+      type: object
+      required:
+        - customer_id
+        - exemption_type
+        - name
+      properties:
+        customer_id:
+          type: string
+          description: Unique identifier for the customer
+          example: '123'
+        exemption_type:
+          type: string
+          description: Type of exemption
+          enum:
+            - wholesale
+            - government
+            - other
+            - non_exempt
+          example: wholesale
+        name:
+          type: string
+          description: Name of the customer
+          example: Initech
+        country:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        state:
+          type: string
+          description: Two-letter state code
+          example: TX
+        zip:
+          type: string
+          description: Postal code
+          example: '78744'
+        city:
+          type: string
+          description: City name
+          example: Austin
+        street:
+          type: string
+          description: Street address
+          example: 4120 Freidrich Ln
+        exempt_regions:
+          type: array
+          description: Regions where the customer is exempt
+          items:
+            $ref: '#/components/schemas/ExemptRegion'
+    Customer:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          example: '123'
+        exemption_type:
+          type: string
+          example: wholesale
+        name:
+          type: string
+          example: Initech
+        country:
+          type: string
+          example: US
+        state:
+          type: string
+          example: TX
+        zip:
+          type: string
+          example: '78744'
+        city:
+          type: string
+          example: Austin
+        street:
+          type: string
+          example: 4120 Freidrich Ln
+        exempt_regions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExemptRegion'
+    ExemptRegion:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        state:
+          type: string
+          description: Two-letter state code
+          example: TX
+    NexusRegion:
+      type: object
+      properties:
+        country_code:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        country:
+          type: string
+          description: Country name
+          example: United States
+        region_code:
+          type: string
+          description: Two-letter state/region code
+          example: CA
+        region:
+          type: string
+          description: State/region name
+          example: California
+    AddressRequest:
+      type: object
+      required:
+        - country
+        - zip
+      properties:
+        country:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        state:
+          type: string
+          description: Two-letter state code
+          example: CA
+        zip:
+          type: string
+          description: Postal code
+          example: '92093'
+        city:
+          type: string
+          description: City name
+          example: San Diego
+        street:
+          type: string
+          description: Street address
+          example: 9500 Gilman Drive
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+          example: US
+        state:
+          type: string
+          example: CA
+        zip:
+          type: string
+          example: '92093-0002'
+        city:
+          type: string
+          example: La Jolla
+        street:
+          type: string
+          example: 9500 Gilman Dr
+    Validation:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the VAT number is valid
+          example: true
+        exists:
+          type: boolean
+          description: Whether the VAT number exists in the VIES database
+          example: true
+        vies_available:
+          type: boolean
+          description: Whether the VIES service is available
+          example: true
+        vies_response:
+          type: object
+          properties:
+            vat_number:
+              type: string
+              example: FR40303265045
+            request_date:
+              type: string
+              example: '2016-02-10'
+            valid:
+              type: boolean
+              example: true
+            name:
+              type: string
+              example: SA SODIMAS
+            address:
+              type: string
+              example: "11 RUE AMPERE\n26600 PONT DE L ISERE"
+    LineItem:
+      type: object
+      properties:
+        id:
+          type: string
+        quantity:
+          type: integer
+        product_identifier:
+          type: string
+        description:
+          type: string
+        product_tax_code:
+          type: string
+        unit_price:
+          type: number
+          format: float
+        discount:
+          type: number
+          format: float
+        sales_tax:
+          type: number
+          format: float
+    SummaryRate:
+      type: object
+      properties:
+        country_code:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        country:
+          type: string
+          description: Country name
+          example: United States
+        region_code:
+          type: string
+          description: Two-letter state/region code
+          example: CA
+        region:
+          type: string
+          description: State/region name
+          example: California
+        minimum_rate:
+          type: object
+          properties:
+            label:
+              type: string
+              example: State Tax
+            rate:
+              type: number
+              format: float
+              example: 0.065
+        average_rate:
+          type: object
+          properties:
+            label:
+              type: string
+              example: Tax
+            rate:
+              type: number
+              format: float
+              example: 0.0827

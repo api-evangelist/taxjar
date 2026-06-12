@@ -49,7 +49,11 @@ apis:
       - type: Sandbox
         url: https://api.sandbox.taxjar.com/v2/
       - type: OpenAPI
-        url: https://developers.taxjar.com/api/reference/
+        url: openapi/taxjar-sales-tax-openapi.yml
+      - type: JSONSchema
+        url: json-schema/taxjar-order-schema.json
+      - type: JSONSchema
+        url: json-schema/taxjar-tax-calculation-schema.json
 common:
   - type: Website
     url: https://www.taxjar.com
@@ -79,6 +83,12 @@ common:
     url: rate-limits/taxjar-rate-limits.yml
   - type: FinOps
     url: finops/taxjar-finops.yml
+  - type: Vocabulary
+    url: vocabulary/taxjar-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/taxjar-context.jsonld
+  - type: BlogFeed
+    url: blogs/blogs.json
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

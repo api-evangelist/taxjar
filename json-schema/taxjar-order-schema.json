@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/taxjar/main/json-schema/taxjar-order-schema.json",
+  "title": "TaxJar Order Transaction",
+  "description": "Schema for a TaxJar order transaction used for sales tax reporting and AutoFile.",
+  "type": "object",
+  "required": ["transaction_id", "transaction_date", "to_country", "to_zip", "to_state", "amount", "shipping", "sales_tax"],
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "description": "Unique identifier for this order transaction",
+      "example": "123"
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "TaxJar user ID"
+    },
+    "transaction_date": {
+      "type": "string",
+      "description": "Date of the transaction (YYYY-MM-DD or ISO 8601)",
+      "example": "2015-05-14T00:00:00Z"
+    },
+    "provider": {
+      "type": "string",
+      "description": "Source of the transaction",
+      "enum": ["api", "shopify", "woocommerce", "magento", "bigcommerce", "amazon"],
+      "example": "api"
+    },
+    "exemption_type": {
+      "type": "string",
+      "description": "Tax exemption type for this order",
+      "enum": ["wholesale", "government", "other", "non_exempt"]
+    },
+    "from_country": {
+      "type": "string",
+      "description": "Two-letter ISO country code of shipment origin",
+      "example": "US"
+    },
+    "from_zip": {
+      "type": "string",
+      "description": "Postal code of shipment origin",
+      "example": "94025"
+    },
+    "from_state": {
+      "type": "string",
+      "description": "Two-letter state code of shipment origin",
+      "example": "CA"
+    },
+    "from_city": {
+      "type": "string",
+      "description": "City of shipment origin",
+      "example": "Menlo Park"
+    },
+    "from_street": {
+      "type": "string",
+      "description": "Street address of shipment origin"
+    },
+    "to_country": {
+      "type": "string",
+      "description": "Two-letter ISO country code of shipment destination",
+      "example": "US"
+    },
+    "to_zip": {
+      "type": "string",
+      "description": "Postal code of shipment destination",
+      "example": "90002"
+    },
+    "to_state": {
+      "type": "string",
+      "description": "Two-letter state code of shipment destination",
+      "example": "CA"
+    },
+    "to_city": {
+      "type": "string",
+      "description": "City of shipment destination",
+      "example": "Los Angeles"
+    },
+    "to_street": {
+      "type": "string",
+      "description": "Street address of shipment destination"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Total amount of order excluding shipping",
+      "example": 16.5
+    },
+    "shipping": {
+      "type": "number",
+      "description": "Total shipping cost",
+      "example": 1.5
+    },
+    "sales_tax": {
+      "type": "number",
+      "description": "Total sales tax collected",
+      "example": 0.95
+    },
+    "customer_id": {
+      "type": "string",
+      "description": "Unique identifier of the customer for exemption lookup"
+    },
+    "line_items": {
+      "type": "array",
+      "description": "Line items in the order",
+      "items": {
+        "$ref": "#/definitions/LineItem"
+      }
+    }
+  },
+  "definitions": {
+    "LineItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the line item"
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "Quantity of the item",
+          "example": 1
+        },
+        "product_identifier": {
+          "type": "string",
+          "description": "Product SKU or identifier"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the product"
+        },
+        "product_tax_code": {
+          "type": "string",
+          "description": "TaxJar product tax code for category-specific rates",
+          "example": "20010"
+        },
+        "unit_price": {
+          "type": "number",
+          "description": "Unit price of the item",
+          "example": 15.0
+        },
+        "discount": {
+          "type": "number",
+          "description": "Discount amount applied to this line item",
+          "example": 0.0
+        },
+        "sales_tax": {
+          "type": "number",
+          "description": "Sales tax collected for this line item",
+          "example": 0.95
+        }
+      }
+    }
+  }
+}

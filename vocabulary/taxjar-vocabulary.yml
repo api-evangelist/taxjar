@@ -1,0 +1,132 @@
+vocabulary:
+  - term: sales_tax
+    label: Sales Tax
+    definition: >-
+      A consumption tax imposed by a government on the sale of goods and
+      services. In the US, sales tax is collected by sellers at point of sale
+      and remitted to state and local tax authorities.
+
+  - term: nexus
+    label: Nexus
+    definition: >-
+      A sufficient presence in a state or jurisdiction that requires a
+      business to collect and remit sales tax. Nexus can be established
+      through physical presence (office, warehouse, employees) or economic
+      activity (exceeding revenue or transaction thresholds — economic nexus).
+
+  - term: transaction_id
+    label: Transaction ID
+    definition: >-
+      A unique identifier assigned to an order or refund transaction. Used
+      to reference the transaction for updates, deletes, and reporting.
+
+  - term: product_tax_code
+    label: Product Tax Code
+    definition: >-
+      A standardized code used by TaxJar to identify products subject to
+      special tax rates or exemptions. For example, 20010 for clothing items
+      that may be exempt in certain states.
+
+  - term: exemption_type
+    label: Exemption Type
+    definition: >-
+      A classification indicating the basis for a sales tax exemption.
+      Valid values are: wholesale (resale), government (government entity),
+      other (any other exempt reason), non_exempt (fully taxable).
+
+  - term: rooftop_accuracy
+    label: Rooftop Accuracy
+    definition: >-
+      Tax rate lookup precision at the exact address level, as opposed to
+      zip-code-level accuracy. TaxJar uses rooftop-level accuracy to ensure
+      correct rates are applied for addresses near jurisdiction boundaries.
+
+  - term: autofile
+    label: AutoFile
+    definition: >-
+      TaxJar's automated sales tax filing service that automatically prepares
+      and submits sales tax returns to state tax authorities on behalf of
+      the merchant.
+
+  - term: economic_nexus
+    label: Economic Nexus
+    definition: >-
+      A sales tax nexus established based on economic activity alone
+      (sales revenue or transaction count) in a state, without requiring
+      physical presence. Established following the 2018 South Dakota v.
+      Wayfair Supreme Court decision.
+
+  - term: from_country
+    label: From Country
+    definition: >-
+      The two-letter ISO 3166-1 alpha-2 country code for the shipment or
+      service origin address. Used to determine origin-based vs
+      destination-based sourcing rules.
+
+  - term: to_country
+    label: To Country
+    definition: >-
+      The two-letter ISO 3166-1 alpha-2 country code for the shipment or
+      service destination address. Used to determine the applicable tax
+      jurisdiction.
+
+  - term: tax_source
+    label: Tax Source
+    definition: >-
+      The sourcing rule applied to a transaction. "Origin" means tax is
+      calculated based on the seller's location; "destination" means tax
+      is calculated based on the buyer's location. Most US states use
+      destination sourcing.
+
+  - term: combined_rate
+    label: Combined Rate
+    definition: >-
+      The total sales tax rate for a location, combining state, county,
+      city, and special district rates.
+
+  - term: freight_taxable
+    label: Freight Taxable
+    definition: >-
+      A boolean indicating whether shipping charges are subject to sales
+      tax in the given jurisdiction. Varies by state.
+
+  - term: vat
+    label: VAT
+    definition: >-
+      Value Added Tax — a consumption tax levied on goods and services
+      at each stage of production and distribution, primarily used in
+      European Union member states and other countries.
+
+  - term: vies
+    label: VIES
+    definition: >-
+      VAT Information Exchange System — an online service provided by
+      the European Commission to validate VAT identification numbers
+      issued by EU member states.
+
+  - term: provider
+    label: Provider
+    definition: >-
+      The e-commerce platform or integration source for a transaction.
+      Examples include: api (direct API), shopify, woocommerce, magento,
+      bigcommerce, amazon.
+
+  - term: summary_rate
+    label: Summary Rate
+    definition: >-
+      A summarized estimated sales tax rate for a given region. Useful
+      for displaying estimated tax to customers before a precise
+      address is known.
+
+  - term: exempt_region
+    label: Exempt Region
+    definition: >-
+      A specific state or country where a customer has an active tax
+      exemption certificate on file, making their purchases tax-exempt
+      in that jurisdiction.
+
+  - term: transaction_reference_id
+    label: Transaction Reference ID
+    definition: >-
+      The transaction ID of the original order that a refund is
+      associated with. Required when creating a refund transaction.
