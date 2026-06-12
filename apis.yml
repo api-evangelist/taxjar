@@ -1,0 +1,84 @@
+aid: taxjar
+name: TaxJar
+description: >-
+  TaxJar is a sales tax automation platform, now a Stripe company, providing
+  APIs for real-time sales tax calculations, rooftop-level rate lookups,
+  transaction recording, and automated filing across US states and international
+  jurisdictions. The platform supports e-commerce businesses of all sizes with
+  sub-20ms response times, 99.999% historical uptime, and AI-powered product
+  tax classification. TaxJar handles nexus tracking, exemption certificate
+  management, and AutoFile returns so merchants can stay compliant without
+  manual effort. Official client libraries are available for Ruby, Python, PHP,
+  Node.js, C#/.NET, Java, and Go.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Sales Tax
+  - Tax Compliance
+  - E-Commerce
+  - Tax Calculation
+  - Tax Automation
+  - Stripe
+  - FinTech
+url: https://raw.githubusercontent.com/api-evangelist/taxjar/refs/heads/main/apis.yml
+created: '2026-06-12'
+modified: '2026-06-12'
+specificationVersion: '0.19'
+apis:
+  - name: TaxJar Sales Tax API
+    description: >-
+      REST API for real-time sales tax calculation, rate lookups, tax category
+      listing, transaction management (create, update, delete, list), customer
+      exemption management, nexus region tracking, and address validation.
+      Supports token-based authentication via Authorization header.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developers.taxjar.com/api/reference/
+    baseURL: https://api.taxjar.com/v2/
+    tags:
+      - Sales Tax
+      - Tax Calculation
+      - Tax Rates
+      - Transactions
+      - Exemptions
+      - Nexus
+    properties:
+      - type: Documentation
+        url: https://developers.taxjar.com/api/reference/
+      - type: Guides
+        url: https://developers.taxjar.com/api/guides/
+      - type: Sandbox
+        url: https://api.sandbox.taxjar.com/v2/
+      - type: OpenAPI
+        url: https://developers.taxjar.com/api/reference/
+common:
+  - type: Website
+    url: https://www.taxjar.com
+  - type: Documentation
+    url: https://developers.taxjar.com/
+  - type: APIReference
+    url: https://developers.taxjar.com/api/reference/
+  - type: GitHubOrganization
+    url: https://github.com/taxjar
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/taxjar
+  - type: Blog
+    url: https://developers.taxjar.com/blog/
+  - type: Pricing
+    url: https://www.taxjar.com/pricing/
+  - type: StatusPage
+    url: https://status.taxjar.com
+  - type: X
+    url: https://x.com/taxjardev
+  - type: Support
+    url: https://support.taxjar.com/category/233-taxjar-api
+  - type: Signup
+    url: https://app.taxjar.com/api_sign_up/
+  - type: Plans
+    url: plans/taxjar-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/taxjar-rate-limits.yml
+  - type: FinOps
+    url: finops/taxjar-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

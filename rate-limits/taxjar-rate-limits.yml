@@ -1,0 +1,64 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: TaxJar
+providerId: taxjar
+created: '2026-06-12'
+modified: '2026-06-12'
+url: https://support.taxjar.com/article/639-what-is-my-rate-limit-for-the-taxjar-api
+retryAfter:
+  header: Retry-After
+  description: >-
+    TaxJar support documentation does not explicitly document a Retry-After
+    header but recommends contacting support for higher limits. Standard HTTP
+    429 response indicates rate limit exceeded; clients should implement
+    exponential backoff.
+throttled:
+  httpStatus: 429
+  description: >-
+    HTTP 429 Too Many Requests is returned when the API call rate limit is
+    exceeded. Clients should back off and retry after a short delay.
+limits:
+  - scope: account
+    plan: Professional
+    metric: api_calls
+    limit: 10000
+    timeFrame: minute
+    description: >-
+      Professional plan subscribers are allowed up to 10,000 API calls per
+      minute. This limit applies account-wide across all API endpoints.
+    contactForHigher: true
+    contactEmail: support@taxjar.com
+strategies:
+  - name: Restrict by Nexus
+    description: >-
+      Restrict tax calculations to jurisdictions where you have established
+      sales tax obligations (nexus) rather than calculating for all orders.
+  - name: Cache Responses
+    description: >-
+      Cache previous API responses for identical orders to reduce redundant
+      calls. Reuse cached calculations when order details have not changed.
+  - name: Summarized Rates Fallback
+    description: >-
+      Use the summarized rates endpoint as a backup method for non-real-time
+      scenarios where exact rooftop accuracy is not required.
+endpoints:
+  - name: Calculate Sales Tax
+    path: /v2/taxes
+    method: POST
+    description: Real-time sales tax calculation for an order
+  - name: List Tax Rates
+    path: /v2/rates/{location}
+    method: GET
+    description: Tax rate lookup by location (address, zip code)
+  - name: List Tax Categories
+    path: /v2/categories
+    method: GET
+    description: List all product tax categories
+  - name: Create Transaction (Order)
+    path: /v2/transactions/orders
+    method: POST
+    description: Record a completed order transaction
+  - name: Summarized Tax Rates
+    path: /v2/summary_rates
+    method: GET
+    description: Summarized tax rates by region (useful for caching)

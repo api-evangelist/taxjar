@@ -1,0 +1,99 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+provider: TaxJar
+providerId: taxjar
+created: '2026-06-12'
+modified: '2026-06-12'
+url: https://www.taxjar.com/pricing/
+billingModel:
+  type: subscription_with_usage
+  description: >-
+    TaxJar uses a tiered subscription model based on monthly order volume.
+    The Professional plan bills a flat monthly fee determined by an order tier
+    (200, 500, 1,000, 10,000 orders, etc.). API tax calculations and rate
+    lookups count as 1/10th of an order toward the monthly limit, making API
+    usage far less expensive than imported transactions. Overage (Flex fees)
+    allows temporary tier upgrades without a permanent plan change. Annual
+    subscriptions receive 10% or more discount versus monthly billing.
+  currency: USD
+  billingCycles:
+    - monthly
+    - annual
+focusColumns:
+  - column: ServiceName
+    value: TaxJar Sales Tax API
+  - column: ServiceCategory
+    value: Tax Compliance / FinTech
+  - column: ChargeType
+    values:
+      - Usage
+      - Recurring
+      - Overage
+  - column: BillingCurrency
+    value: USD
+  - column: Provider
+    value: TaxJar (Stripe)
+meters:
+  - name: orders
+    unit: order
+    description: >-
+      An imported transaction (order synced from a platform or pushed via the
+      Transaction Push API) counts as 1 order toward the monthly tier limit.
+    billedAs: subscription_tier
+    overageEnabled: true
+    overageModel: flex_fee
+  - name: api_tax_calculations
+    unit: api_call
+    description: >-
+      Each API tax calculation or rate lookup call counts as 1/10th (0.1) of an
+      order toward the monthly tier limit. 5,000 API calls consume 500 order
+      units from the plan.
+    conversionFactor: 0.1
+    conversionUnit: orders
+    billedAs: fractional_order_consumption
+  - name: autofile_returns
+    unit: return
+    description: >-
+      AutoFile credits for automated state filing. Starter plan includes 2
+      credits/year at $50 each additional; Professional includes 4 credits/year
+      at $55 each additional.
+    includedUnits:
+      starter: 2
+      professional: 4
+    overagePrice:
+      starter: 50.00
+      professional: 55.00
+    billedAs: metered_overage
+  - name: state_registrations
+    unit: registration
+    description: >-
+      One-time fee of $299 per state for TaxJar-managed sales tax registration
+      on behalf of the merchant.
+    price: 299.00
+    billedAs: one_time
+principles:
+  - name: Visibility
+    description: >-
+      TaxJar provides tier-based pricing with clear order counts on the pricing
+      page, enabling teams to forecast monthly spend based on transaction volume.
+      API calls are tracked as fractional order units (1/10th), making API
+      cost modeling straightforward. The Flex fee model surfaces overage costs
+      incrementally rather than through surprise invoices.
+    actions:
+      - Monitor monthly order consumption versus tier limit in TaxJar dashboard
+      - Track API call volume separately from transaction imports to understand
+        blended order usage
+      - Use annual billing to lock in 10%+ discount and improve budget
+        predictability
+  - name: Optimization
+    description: >-
+      API costs can be reduced by restricting calculations to nexus jurisdictions,
+      caching responses for identical orders, and using the summarized rates
+      endpoint for non-real-time scenarios. Choosing the correct order tier
+      avoids unnecessary flex fees while maintaining compliance coverage.
+    actions:
+      - Implement response caching for repeated identical order calculations
+      - Configure nexus-only calculation logic to reduce unnecessary API calls
+      - Evaluate actual monthly order volumes against tier boundaries quarterly
+        to right-size the subscription tier
+      - Consider annual billing commitment to reduce effective per-month cost
