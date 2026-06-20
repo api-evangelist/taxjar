@@ -11,7 +11,7 @@ description: >-
   manual effort. Official client libraries are available for Ruby, Python, PHP,
   Node.js, C#/.NET, Java, and Go.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Sales Tax
   - Tax Compliance
@@ -31,7 +31,7 @@ apis:
       listing, transaction management (create, update, delete, list), customer
       exemption management, nexus region tracking, and address validation.
       Supports token-based authentication via Authorization header.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developers.taxjar.com/api/reference/
     baseURL: https://api.taxjar.com/v2/
     tags:
