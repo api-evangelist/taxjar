@@ -3,7 +3,7 @@
     "name": "TaxJar Dev Blog",
     "url": "https://developers.taxjar.com/blog/",
     "feed": "https://developers.taxjar.com/blog/feed.xml",
-    "fetched": "2026-06-12"
+    "fetched": "2026-06-21T17:00:00Z"
   },
   "posts": [
     {
@@ -46,10 +46,20 @@
   "repo": "taxjar",
   "feeds": [
     {
+      "source": "https://developers.taxjar.com/blog/feed.xml",
+      "feed_url": "https://developers.taxjar.com/blog/feed.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://www.linkedin.com/company/taxjar",
-      "error": "HTTPError"
+      "feed_url": "https://www.linkedin.com/company/taxjar",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:03:07Z"
 }
