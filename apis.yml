@@ -55,6 +55,12 @@ apis:
       - type: JSONSchema
         url: json-schema/taxjar-tax-calculation-schema.json
 common:
+  - type: TrustCenter
+    url: security/taxjar-trust-center.yml
+  - type: DomainSecurity
+    url: security/taxjar-domain-security.yml
+  - type: Authentication
+    url: authentication/taxjar-authentication.yml
   - type: Website
     url: https://www.taxjar.com
   - type: Documentation
