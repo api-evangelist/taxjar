@@ -55,6 +55,8 @@ apis:
       - type: JSONSchema
         url: json-schema/taxjar-tax-calculation-schema.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/taxjar-agentic-access.yml
   - type: TrustCenter
     url: security/taxjar-trust-center.yml
   - type: DomainSecurity
