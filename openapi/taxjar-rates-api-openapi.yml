@@ -1,0 +1,181 @@
+openapi: 3.0.3
+info:
+  title: TaxJar Sales Tax Categories Rates API
+  description: REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.
+  version: '2.0'
+  contact:
+    name: TaxJar Developer Support
+    url: https://support.taxjar.com/category/233-taxjar-api
+  termsOfService: https://www.taxjar.com/terms/
+  x-api-id: taxjar-sales-tax
+servers:
+- url: https://api.taxjar.com/v2
+  description: Production
+- url: https://api.sandbox.taxjar.com/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Rates
+  description: Sales tax rate lookups
+paths:
+  /rates/{zip}:
+    get:
+      operationId: getRatesForLocation
+      summary: Show tax rates for a location
+      description: Returns the sales tax rates for a given location by postal code. Supports US and international locations. For US lookups, returns state, county, city, and special district rates.
+      tags:
+      - Rates
+      parameters:
+      - name: zip
+        in: path
+        required: true
+        description: Postal code for the location
+        schema:
+          type: string
+        example: '90002'
+      - name: country
+        in: query
+        description: Two-letter ISO country code
+        schema:
+          type: string
+        example: US
+      - name: state
+        in: query
+        description: Two-letter state/province code
+        schema:
+          type: string
+      - name: city
+        in: query
+        description: City name
+        schema:
+          type: string
+      - name: street
+        in: query
+        description: Street address
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tax rates for the location
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rate:
+                    $ref: '#/components/schemas/Rate'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Rate:
+      type: object
+      properties:
+        zip:
+          type: string
+          description: Postal code
+          example: '90002'
+        state:
+          type: string
+          description: Two-letter state code
+          example: CA
+        state_rate:
+          type: number
+          format: float
+          description: State sales tax rate
+          example: 0.065
+        county:
+          type: string
+          description: County name
+          example: LOS ANGELES
+        county_rate:
+          type: number
+          format: float
+          description: County sales tax rate
+          example: 0.01
+        city:
+          type: string
+          description: City name
+          example: WATTS
+        city_rate:
+          type: number
+          format: float
+          description: City sales tax rate
+          example: 0.0
+        combined_district_rate:
+          type: number
+          format: float
+          description: Combined special district rate
+          example: 0.025
+        combined_rate:
+          type: number
+          format: float
+          description: Total combined sales tax rate
+          example: 0.1
+        freight_taxable:
+          type: boolean
+          description: Whether shipping is taxable in this location
+          example: false
+        country:
+          type: string
+          description: Two-letter country code (international)
+        name:
+          type: string
+          description: Region name (international)
+        country_rate:
+          type: number
+          format: float
+          description: Country tax rate (Australia and SST states)
+        standard_rate:
+          type: number
+          format: float
+          description: Standard VAT rate (EU)
+        reduced_rate:
+          type: number
+          format: float
+          description: Reduced VAT rate (EU)
+        super_reduced_rate:
+          type: number
+          format: float
+          description: Super-reduced VAT rate (EU)
+        parking_rate:
+          type: number
+          format: float
+          description: Parking VAT rate (EU)
+        distance_sale_threshold:
+          type: number
+          format: float
+          description: Distance sale threshold (EU)
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Use your TaxJar API token. Format: "Bearer [token]" or "Token token=[token]"'

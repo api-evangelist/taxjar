@@ -1,0 +1,295 @@
+openapi: 3.0.3
+info:
+  title: TaxJar Sales Tax Categories Customers API
+  description: REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.
+  version: '2.0'
+  contact:
+    name: TaxJar Developer Support
+    url: https://support.taxjar.com/category/233-taxjar-api
+  termsOfService: https://www.taxjar.com/terms/
+  x-api-id: taxjar-sales-tax
+servers:
+- url: https://api.taxjar.com/v2
+  description: Production
+- url: https://api.sandbox.taxjar.com/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Customers
+  description: Customer exemption management
+paths:
+  /customers:
+    get:
+      operationId: listCustomers
+      summary: List customers
+      description: Returns a list of customer IDs for exempt customers associated with the authenticated account.
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: List of customer IDs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items:
+                      type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCustomer
+      summary: Create a customer
+      description: Creates a new exempt customer record for sales tax exemption management.
+      tags:
+      - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      responses:
+        '201':
+          description: Customer created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /customers/{customer_id}:
+    get:
+      operationId: showCustomer
+      summary: Show a customer
+      description: Returns a single exempt customer by customer ID.
+      tags:
+      - Customers
+      parameters:
+      - name: customer_id
+        in: path
+        required: true
+        description: Unique identifier for the customer
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCustomer
+      summary: Update a customer
+      description: Updates an existing exempt customer record.
+      tags:
+      - Customers
+      parameters:
+      - name: customer_id
+        in: path
+        required: true
+        description: Unique identifier for the customer
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      responses:
+        '200':
+          description: Updated customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCustomer
+      summary: Delete a customer
+      description: Deletes an existing exempt customer record.
+      tags:
+      - Customers
+      parameters:
+      - name: customer_id
+        in: path
+        required: true
+        description: Unique identifier for the customer
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deleted customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Unprocessable entity - validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Customer:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          example: '123'
+        exemption_type:
+          type: string
+          example: wholesale
+        name:
+          type: string
+          example: Initech
+        country:
+          type: string
+          example: US
+        state:
+          type: string
+          example: TX
+        zip:
+          type: string
+          example: '78744'
+        city:
+          type: string
+          example: Austin
+        street:
+          type: string
+          example: 4120 Freidrich Ln
+        exempt_regions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExemptRegion'
+    CustomerRequest:
+      type: object
+      required:
+      - customer_id
+      - exemption_type
+      - name
+      properties:
+        customer_id:
+          type: string
+          description: Unique identifier for the customer
+          example: '123'
+        exemption_type:
+          type: string
+          description: Type of exemption
+          enum:
+          - wholesale
+          - government
+          - other
+          - non_exempt
+          example: wholesale
+        name:
+          type: string
+          description: Name of the customer
+          example: Initech
+        country:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        state:
+          type: string
+          description: Two-letter state code
+          example: TX
+        zip:
+          type: string
+          description: Postal code
+          example: '78744'
+        city:
+          type: string
+          description: City name
+          example: Austin
+        street:
+          type: string
+          description: Street address
+          example: 4120 Freidrich Ln
+        exempt_regions:
+          type: array
+          description: Regions where the customer is exempt
+          items:
+            $ref: '#/components/schemas/ExemptRegion'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
+    ExemptRegion:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        state:
+          type: string
+          description: Two-letter state code
+          example: TX
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Use your TaxJar API token. Format: "Bearer [token]" or "Token token=[token]"'

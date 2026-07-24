@@ -1,0 +1,190 @@
+openapi: 3.0.3
+info:
+  title: TaxJar Sales Tax Categories Validations API
+  description: REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.
+  version: '2.0'
+  contact:
+    name: TaxJar Developer Support
+    url: https://support.taxjar.com/category/233-taxjar-api
+  termsOfService: https://www.taxjar.com/terms/
+  x-api-id: taxjar-sales-tax
+servers:
+- url: https://api.taxjar.com/v2
+  description: Production
+- url: https://api.sandbox.taxjar.com/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Validations
+  description: Address and VAT validation
+paths:
+  /addresses/validate:
+    post:
+      operationId: validateAddress
+      summary: Validate an address
+      description: Validates a US address and returns standardized address components. Returns up to 4 suggestions for an incomplete address.
+      tags:
+      - Validations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressRequest'
+      responses:
+        '200':
+          description: Validated address suggestions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  addresses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Address'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /validation:
+    get:
+      operationId: validateVAT
+      summary: Validate a VAT number
+      description: Validates a VAT identification number using the VIES service and returns validity status along with registered business information.
+      tags:
+      - Validations
+      parameters:
+      - name: vat
+        in: query
+        required: true
+        description: VAT number to validate (e.g. FR40303265045)
+        schema:
+          type: string
+        example: FR40303265045
+      responses:
+        '200':
+          description: VAT validation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validation:
+                    $ref: '#/components/schemas/Validation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+          example: US
+        state:
+          type: string
+          example: CA
+        zip:
+          type: string
+          example: 92093-0002
+        city:
+          type: string
+          example: La Jolla
+        street:
+          type: string
+          example: 9500 Gilman Dr
+    AddressRequest:
+      type: object
+      required:
+      - country
+      - zip
+      properties:
+        country:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        state:
+          type: string
+          description: Two-letter state code
+          example: CA
+        zip:
+          type: string
+          description: Postal code
+          example: '92093'
+        city:
+          type: string
+          description: City name
+          example: San Diego
+        street:
+          type: string
+          description: Street address
+          example: 9500 Gilman Drive
+    Validation:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the VAT number is valid
+          example: true
+        exists:
+          type: boolean
+          description: Whether the VAT number exists in the VIES database
+          example: true
+        vies_available:
+          type: boolean
+          description: Whether the VIES service is available
+          example: true
+        vies_response:
+          type: object
+          properties:
+            vat_number:
+              type: string
+              example: FR40303265045
+            request_date:
+              type: string
+              example: '2016-02-10'
+            valid:
+              type: boolean
+              example: true
+            name:
+              type: string
+              example: SA SODIMAS
+            address:
+              type: string
+              example: '11 RUE AMPERE
+
+                26600 PONT DE L ISERE'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Use your TaxJar API token. Format: "Bearer [token]" or "Token token=[token]"'

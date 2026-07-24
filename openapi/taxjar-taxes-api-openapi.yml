@@ -1,0 +1,353 @@
+openapi: 3.0.3
+info:
+  title: TaxJar Sales Tax Categories Taxes API
+  description: REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.
+  version: '2.0'
+  contact:
+    name: TaxJar Developer Support
+    url: https://support.taxjar.com/category/233-taxjar-api
+  termsOfService: https://www.taxjar.com/terms/
+  x-api-id: taxjar-sales-tax
+servers:
+- url: https://api.taxjar.com/v2
+  description: Production
+- url: https://api.sandbox.taxjar.com/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Taxes
+  description: Sales tax calculation
+paths:
+  /taxes:
+    post:
+      operationId: calculateTaxForOrder
+      summary: Calculate sales tax for an order
+      description: Calculates the sales tax for a given order based on origin and destination addresses, line items, and other order attributes. Returns the amount of sales tax to collect along with a breakdown by jurisdiction.
+      tags:
+      - Taxes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxRequest'
+      responses:
+        '200':
+          description: Tax calculation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tax:
+                    $ref: '#/components/schemas/Tax'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Jurisdictions:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Country code
+          example: US
+        state:
+          type: string
+          description: State code
+          example: CA
+        county:
+          type: string
+          description: County name
+          example: LOS ANGELES
+        city:
+          type: string
+          description: City name
+          example: LOS ANGELES
+    Tax:
+      type: object
+      properties:
+        order_total_amount:
+          type: number
+          format: float
+          description: Total order amount
+          example: 16.5
+        shipping:
+          type: number
+          format: float
+          description: Shipping amount
+          example: 1.5
+        taxable_amount:
+          type: number
+          format: float
+          description: Amount subject to tax
+          example: 15.0
+        amount_to_collect:
+          type: number
+          format: float
+          description: Total tax amount to collect
+          example: 1.35
+        rate:
+          type: number
+          format: float
+          description: Overall tax rate
+          example: 0.09
+        has_nexus:
+          type: boolean
+          description: Whether seller has nexus in the destination
+          example: true
+        freight_taxable:
+          type: boolean
+          description: Whether shipping is taxable
+          example: false
+        tax_source:
+          type: string
+          description: Tax sourcing rule applied (origin or destination)
+          example: destination
+        exemption_type:
+          type: string
+          description: Exemption type applied
+        jurisdictions:
+          $ref: '#/components/schemas/Jurisdictions'
+        breakdown:
+          $ref: '#/components/schemas/Breakdown'
+    LineItemRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item
+        quantity:
+          type: integer
+          description: Quantity of the item
+          example: 1
+        product_identifier:
+          type: string
+          description: Product SKU or identifier
+        description:
+          type: string
+          description: Description of the product
+        product_tax_code:
+          type: string
+          description: Product tax code for category-specific rates
+        unit_price:
+          type: number
+          format: float
+          description: Unit price of the item
+          example: 15.0
+        discount:
+          type: number
+          format: float
+          description: Discount amount for this line item
+        sales_tax:
+          type: number
+          format: float
+          description: Sales tax collected for this line item
+    Breakdown:
+      type: object
+      properties:
+        taxable_amount:
+          type: number
+          format: float
+        tax_collectable:
+          type: number
+          format: float
+        combined_tax_rate:
+          type: number
+          format: float
+        state_taxable_amount:
+          type: number
+          format: float
+        state_tax_rate:
+          type: number
+          format: float
+        state_tax_collectable:
+          type: number
+          format: float
+        county_taxable_amount:
+          type: number
+          format: float
+        county_tax_rate:
+          type: number
+          format: float
+        county_tax_collectable:
+          type: number
+          format: float
+        city_taxable_amount:
+          type: number
+          format: float
+        city_tax_rate:
+          type: number
+          format: float
+        city_tax_collectable:
+          type: number
+          format: float
+        special_district_taxable_amount:
+          type: number
+          format: float
+        special_tax_rate:
+          type: number
+          format: float
+        special_district_tax_collectable:
+          type: number
+          format: float
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BreakdownLineItem'
+    BreakdownLineItem:
+      type: object
+      properties:
+        id:
+          type: string
+        taxable_amount:
+          type: number
+          format: float
+        tax_collectable:
+          type: number
+          format: float
+        combined_tax_rate:
+          type: number
+          format: float
+        state_taxable_amount:
+          type: number
+          format: float
+        state_sales_tax_rate:
+          type: number
+          format: float
+        state_amount:
+          type: number
+          format: float
+        county_taxable_amount:
+          type: number
+          format: float
+        county_tax_rate:
+          type: number
+          format: float
+        county_amount:
+          type: number
+          format: float
+        city_taxable_amount:
+          type: number
+          format: float
+        city_tax_rate:
+          type: number
+          format: float
+        city_amount:
+          type: number
+          format: float
+        special_district_taxable_amount:
+          type: number
+          format: float
+        special_tax_rate:
+          type: number
+          format: float
+        special_district_amount:
+          type: number
+          format: float
+    TaxRequest:
+      type: object
+      required:
+      - to_country
+      - to_zip
+      - to_state
+      - amount
+      - shipping
+      properties:
+        from_country:
+          type: string
+          description: Two-letter ISO country code of origin
+          example: US
+        from_zip:
+          type: string
+          description: Postal code of origin
+          example: '94025'
+        from_state:
+          type: string
+          description: Two-letter state code of origin
+          example: CA
+        from_city:
+          type: string
+          description: City of origin
+          example: Menlo Park
+        from_street:
+          type: string
+          description: Street address of origin
+        to_country:
+          type: string
+          description: Two-letter ISO country code of destination
+          example: US
+        to_zip:
+          type: string
+          description: Postal code of destination
+          example: '90002'
+        to_state:
+          type: string
+          description: Two-letter state code of destination
+          example: CA
+        to_city:
+          type: string
+          description: City of destination
+          example: Los Angeles
+        to_street:
+          type: string
+          description: Street address of destination
+        amount:
+          type: number
+          format: float
+          description: Total amount of the order (excluding shipping)
+          example: 15.0
+        shipping:
+          type: number
+          format: float
+          description: Total shipping cost
+          example: 1.5
+        customer_id:
+          type: string
+          description: Unique identifier of the customer for exemption lookup
+        exemption_type:
+          type: string
+          description: Type of exemption (wholesale, government, other, non_exempt)
+          enum:
+          - wholesale
+          - government
+          - other
+          - non_exempt
+        line_items:
+          type: array
+          description: List of line items in the order
+          items:
+            $ref: '#/components/schemas/LineItemRequest'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Use your TaxJar API token. Format: "Bearer [token]" or "Token token=[token]"'

@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: TaxJar Sales Tax Categories Nexus API
+  description: REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.
+  version: '2.0'
+  contact:
+    name: TaxJar Developer Support
+    url: https://support.taxjar.com/category/233-taxjar-api
+  termsOfService: https://www.taxjar.com/terms/
+  x-api-id: taxjar-sales-tax
+servers:
+- url: https://api.taxjar.com/v2
+  description: Production
+- url: https://api.sandbox.taxjar.com/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Nexus
+  description: Nexus region tracking
+paths:
+  /nexus/regions:
+    get:
+      operationId: listNexusRegions
+      summary: List nexus regions
+      description: Returns a list of nexus regions (states/countries where you have tax nexus) for the authenticated account.
+      tags:
+      - Nexus
+      responses:
+        '200':
+          description: List of nexus regions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  regions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NexusRegion'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    NexusRegion:
+      type: object
+      properties:
+        country_code:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        country:
+          type: string
+          description: Country name
+          example: United States
+        region_code:
+          type: string
+          description: Two-letter state/region code
+          example: CA
+        region:
+          type: string
+          description: State/region name
+          example: California
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Use your TaxJar API token. Format: "Bearer [token]" or "Token token=[token]"'
