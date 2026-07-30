@@ -11,7 +11,20 @@ description: >-
   manual effort. Official client libraries are available for Ruby, Python, PHP,
   Node.js, C#/.NET, Java, and Go.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/taxjar.png
 tags:
   - Sales Tax
   - Tax Compliance
@@ -25,36 +38,189 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.19'
 apis:
-  - name: TaxJar Sales Tax API
-    description: >-
-      REST API for real-time sales tax calculation, rate lookups, tax category
-      listing, transaction management (create, update, delete, list), customer
-      exemption management, nexus region tracking, and address validation.
-      Supports token-based authentication via Authorization header.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developers.taxjar.com/api/reference/
-    baseURL: https://api.taxjar.com/v2/
-    tags:
-      - Sales Tax
-      - Tax Calculation
-      - Tax Rates
-      - Transactions
-      - Exemptions
-      - Nexus
-    properties:
-      - type: Documentation
-        url: https://developers.taxjar.com/api/reference/
-      - type: Guides
-        url: https://developers.taxjar.com/api/guides/
-      - type: Sandbox
-        url: https://api.sandbox.taxjar.com/v2/
-      - type: OpenAPI
-        url: openapi/taxjar-sales-tax-openapi.yml
-      - type: JSONSchema
-        url: json-schema/taxjar-order-schema.json
-      - type: JSONSchema
-        url: json-schema/taxjar-tax-calculation-schema.json
+- aid: taxjar:taxjar-categories-api
+  name: TaxJar Categories API
+  description: Product tax categories
+  humanURL: https://developers.taxjar.com/api/reference/
+  baseURL: https://api.taxjar.com/v2/
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/taxjar-categories-api-openapi.yml
+  - type: Documentation
+    url: https://developers.taxjar.com/api/reference/
+  - type: Guides
+    url: https://developers.taxjar.com/api/guides/
+  - type: Sandbox
+    url: https://api.sandbox.taxjar.com/v2/
+  - type: JSONSchema
+    url: json-schema/taxjar-order-schema.json
+  - type: JSONSchema
+    url: json-schema/taxjar-tax-calculation-schema.json
+- aid: taxjar:taxjar-customers-api
+  name: TaxJar Customers API
+  description: Customer exemption management
+  humanURL: https://developers.taxjar.com/api/reference/
+  baseURL: https://api.taxjar.com/v2/
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/taxjar-customers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.taxjar.com/api/reference/
+  - type: Guides
+    url: https://developers.taxjar.com/api/guides/
+  - type: Sandbox
+    url: https://api.sandbox.taxjar.com/v2/
+  - type: JSONSchema
+    url: json-schema/taxjar-order-schema.json
+  - type: JSONSchema
+    url: json-schema/taxjar-tax-calculation-schema.json
+- aid: taxjar:taxjar-nexus-api
+  name: TaxJar Nexus API
+  description: Nexus region tracking
+  humanURL: https://developers.taxjar.com/api/reference/
+  baseURL: https://api.taxjar.com/v2/
+  tags:
+  - Nexus
+  properties:
+  - type: OpenAPI
+    url: openapi/taxjar-nexus-api-openapi.yml
+  - type: Documentation
+    url: https://developers.taxjar.com/api/reference/
+  - type: Guides
+    url: https://developers.taxjar.com/api/guides/
+  - type: Sandbox
+    url: https://api.sandbox.taxjar.com/v2/
+  - type: JSONSchema
+    url: json-schema/taxjar-order-schema.json
+  - type: JSONSchema
+    url: json-schema/taxjar-tax-calculation-schema.json
+- aid: taxjar:taxjar-rates-api
+  name: TaxJar Rates API
+  description: Sales tax rate lookups
+  humanURL: https://developers.taxjar.com/api/reference/
+  baseURL: https://api.taxjar.com/v2/
+  tags:
+  - Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/taxjar-rates-api-openapi.yml
+  - type: Documentation
+    url: https://developers.taxjar.com/api/reference/
+  - type: Guides
+    url: https://developers.taxjar.com/api/guides/
+  - type: Sandbox
+    url: https://api.sandbox.taxjar.com/v2/
+  - type: JSONSchema
+    url: json-schema/taxjar-order-schema.json
+  - type: JSONSchema
+    url: json-schema/taxjar-tax-calculation-schema.json
+- aid: taxjar:taxjar-summary-rates-api
+  name: TaxJar Summary Rates API
+  description: Summarized sales tax rates by region
+  humanURL: https://developers.taxjar.com/api/reference/
+  baseURL: https://api.taxjar.com/v2/
+  tags:
+  - Summary Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/taxjar-summary-rates-api-openapi.yml
+  - type: Documentation
+    url: https://developers.taxjar.com/api/reference/
+  - type: Guides
+    url: https://developers.taxjar.com/api/guides/
+  - type: Sandbox
+    url: https://api.sandbox.taxjar.com/v2/
+  - type: JSONSchema
+    url: json-schema/taxjar-order-schema.json
+  - type: JSONSchema
+    url: json-schema/taxjar-tax-calculation-schema.json
+- aid: taxjar:taxjar-taxes-api
+  name: TaxJar Taxes API
+  description: Sales tax calculation
+  humanURL: https://developers.taxjar.com/api/reference/
+  baseURL: https://api.taxjar.com/v2/
+  tags:
+  - Taxes
+  properties:
+  - type: OpenAPI
+    url: openapi/taxjar-taxes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.taxjar.com/api/reference/
+  - type: Guides
+    url: https://developers.taxjar.com/api/guides/
+  - type: Sandbox
+    url: https://api.sandbox.taxjar.com/v2/
+  - type: JSONSchema
+    url: json-schema/taxjar-order-schema.json
+  - type: JSONSchema
+    url: json-schema/taxjar-tax-calculation-schema.json
+- aid: taxjar:taxjar-transactions-orders-api
+  name: TaxJar Transactions - Orders API
+  description: Order transaction management
+  humanURL: https://developers.taxjar.com/api/reference/
+  baseURL: https://api.taxjar.com/v2/
+  tags:
+  - Transactions - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/taxjar-transactions-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.taxjar.com/api/reference/
+  - type: Guides
+    url: https://developers.taxjar.com/api/guides/
+  - type: Sandbox
+    url: https://api.sandbox.taxjar.com/v2/
+  - type: JSONSchema
+    url: json-schema/taxjar-order-schema.json
+  - type: JSONSchema
+    url: json-schema/taxjar-tax-calculation-schema.json
+- aid: taxjar:taxjar-transactions-refunds-api
+  name: TaxJar Transactions - Refunds API
+  description: Refund transaction management
+  humanURL: https://developers.taxjar.com/api/reference/
+  baseURL: https://api.taxjar.com/v2/
+  tags:
+  - Transactions - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/taxjar-transactions-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://developers.taxjar.com/api/reference/
+  - type: Guides
+    url: https://developers.taxjar.com/api/guides/
+  - type: Sandbox
+    url: https://api.sandbox.taxjar.com/v2/
+  - type: JSONSchema
+    url: json-schema/taxjar-order-schema.json
+  - type: JSONSchema
+    url: json-schema/taxjar-tax-calculation-schema.json
+- aid: taxjar:taxjar-validations-api
+  name: TaxJar Validations API
+  description: Address and VAT validation
+  humanURL: https://developers.taxjar.com/api/reference/
+  baseURL: https://api.taxjar.com/v2/
+  tags:
+  - Validations
+  properties:
+  - type: OpenAPI
+    url: openapi/taxjar-validations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.taxjar.com/api/reference/
+  - type: Guides
+    url: https://developers.taxjar.com/api/guides/
+  - type: Sandbox
+    url: https://api.sandbox.taxjar.com/v2/
+  - type: JSONSchema
+    url: json-schema/taxjar-order-schema.json
+  - type: JSONSchema
+    url: json-schema/taxjar-tax-calculation-schema.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/taxjar/overview
   - type: AgenticAccess
     url: agentic-access/taxjar-agentic-access.yml
   - type: TrustCenter
