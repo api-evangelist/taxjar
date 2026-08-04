@@ -1,0 +1,252 @@
+{
+  "info": {
+    "_postman_id": "5a3ae47a-be6e-46fe-abb4-4520cdbe8dbd",
+    "name": "TaxJar Sales Tax Categories Taxes API",
+    "description": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:09.000Z",
+    "updatedAt": "2026-07-28T03:08:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5a3ae47a-be6e-46fe-abb4-4520cdbe8dbd"
+  },
+  "item": [
+    {
+      "name": "taxes",
+      "item": [
+        {
+          "name": "Calculate sales tax for an order",
+          "id": "62bb6c12-9dc4-427b-ae08-b244bb5d6c63",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/taxes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "taxes"
+              ]
+            },
+            "description": "Calculates the sales tax for a given order based on origin and destination addresses, line items, and other order attributes. Returns the amount of sales tax to collect along with a breakdown by jurisdiction."
+          },
+          "response": [
+            {
+              "id": "3273798c-1695-4c7a-8cb7-d74a97bbbff8",
+              "name": "Tax calculation result",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/taxes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "taxes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"tax\": {\n    \"order_total_amount\": \"<float>\",\n    \"shipping\": \"<float>\",\n    \"taxable_amount\": \"<float>\",\n    \"amount_to_collect\": \"<float>\",\n    \"rate\": \"<float>\",\n    \"has_nexus\": \"<boolean>\",\n    \"freight_taxable\": \"<boolean>\",\n    \"tax_source\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"jurisdictions\": {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\",\n      \"county\": \"<string>\",\n      \"city\": \"<string>\"\n    },\n    \"breakdown\": {\n      \"taxable_amount\": \"<float>\",\n      \"tax_collectable\": \"<float>\",\n      \"combined_tax_rate\": \"<float>\",\n      \"state_taxable_amount\": \"<float>\",\n      \"state_tax_rate\": \"<float>\",\n      \"state_tax_collectable\": \"<float>\",\n      \"county_taxable_amount\": \"<float>\",\n      \"county_tax_rate\": \"<float>\",\n      \"county_tax_collectable\": \"<float>\",\n      \"city_taxable_amount\": \"<float>\",\n      \"city_tax_rate\": \"<float>\",\n      \"city_tax_collectable\": \"<float>\",\n      \"special_district_taxable_amount\": \"<float>\",\n      \"special_tax_rate\": \"<float>\",\n      \"special_district_tax_collectable\": \"<float>\",\n      \"line_items\": [\n        {\n          \"id\": \"<string>\",\n          \"taxable_amount\": \"<float>\",\n          \"tax_collectable\": \"<float>\",\n          \"combined_tax_rate\": \"<float>\",\n          \"state_taxable_amount\": \"<float>\",\n          \"state_sales_tax_rate\": \"<float>\",\n          \"state_amount\": \"<float>\",\n          \"county_taxable_amount\": \"<float>\",\n          \"county_tax_rate\": \"<float>\",\n          \"county_amount\": \"<float>\",\n          \"city_taxable_amount\": \"<float>\",\n          \"city_tax_rate\": \"<float>\",\n          \"city_amount\": \"<float>\",\n          \"special_district_taxable_amount\": \"<float>\",\n          \"special_tax_rate\": \"<float>\",\n          \"special_district_amount\": \"<float>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"taxable_amount\": \"<float>\",\n          \"tax_collectable\": \"<float>\",\n          \"combined_tax_rate\": \"<float>\",\n          \"state_taxable_amount\": \"<float>\",\n          \"state_sales_tax_rate\": \"<float>\",\n          \"state_amount\": \"<float>\",\n          \"county_taxable_amount\": \"<float>\",\n          \"county_tax_rate\": \"<float>\",\n          \"county_amount\": \"<float>\",\n          \"city_taxable_amount\": \"<float>\",\n          \"city_tax_rate\": \"<float>\",\n          \"city_amount\": \"<float>\",\n          \"special_district_taxable_amount\": \"<float>\",\n          \"special_tax_rate\": \"<float>\",\n          \"special_district_amount\": \"<float>\"\n        }\n      ]\n    }\n  }\n}",
+              "createdAt": "2026-07-28T03:08:10.000Z",
+              "updatedAt": "2026-07-28T03:08:10.000Z",
+              "uid": "35240-3273798c-1695-4c7a-8cb7-d74a97bbbff8"
+            },
+            {
+              "id": "aaf52948-b5c5-4425-a324-27fa34574ee8",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/taxes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "taxes"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:08:10.000Z",
+              "updatedAt": "2026-07-28T03:08:10.000Z",
+              "uid": "35240-aaf52948-b5c5-4425-a324-27fa34574ee8"
+            },
+            {
+              "id": "d238f8cc-d9d8-4616-98e4-980cbb88e21f",
+              "name": "Unauthorized - invalid or missing API token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/taxes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "taxes"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:08:10.000Z",
+              "updatedAt": "2026-07-28T03:08:10.000Z",
+              "uid": "35240-d238f8cc-d9d8-4616-98e4-980cbb88e21f"
+            }
+          ],
+          "createdAt": "2026-07-28T03:08:10.000Z",
+          "updatedAt": "2026-07-28T03:08:10.000Z",
+          "uid": "35240-62bb6c12-9dc4-427b-ae08-b244bb5d6c63"
+        }
+      ],
+      "id": "27012815-c3ee-4398-aff0-201129c0debf",
+      "createdAt": "2026-07-28T03:08:10.000Z",
+      "updatedAt": "2026-07-28T03:08:10.000Z",
+      "uid": "35240-27012815-c3ee-4398-aff0-201129c0debf"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.taxjar.com/v2"
+    }
+  ]
+}

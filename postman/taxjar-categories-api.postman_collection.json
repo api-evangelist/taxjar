@@ -1,0 +1,154 @@
+{
+  "info": {
+    "_postman_id": "2a73fe7c-318e-4b93-a816-47998ab93df1",
+    "name": "TaxJar Sales Tax Categories API",
+    "description": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:58.000Z",
+    "updatedAt": "2026-07-28T03:07:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2a73fe7c-318e-4b93-a816-47998ab93df1"
+  },
+  "item": [
+    {
+      "name": "categories",
+      "item": [
+        {
+          "name": "List tax categories",
+          "id": "a53539c1-2a9c-4ba3-ad3d-dac7b9ce84c5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "Returns all available product tax categories with associated product tax codes that can be used to identify products subject to special tax rates."
+          },
+          "response": [
+            {
+              "id": "470d6385-7efe-45e1-9bb4-d2565854859e",
+              "name": "List of tax categories",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"categories\": [\n    {\n      \"name\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:07:59.000Z",
+              "updatedAt": "2026-07-28T03:07:59.000Z",
+              "uid": "35240-470d6385-7efe-45e1-9bb4-d2565854859e"
+            },
+            {
+              "id": "a789c45c-4f06-454d-9cea-faccc9d44432",
+              "name": "Unauthorized - invalid or missing API token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:07:59.000Z",
+              "updatedAt": "2026-07-28T03:07:59.000Z",
+              "uid": "35240-a789c45c-4f06-454d-9cea-faccc9d44432"
+            }
+          ],
+          "createdAt": "2026-07-28T03:07:59.000Z",
+          "updatedAt": "2026-07-28T03:07:59.000Z",
+          "uid": "35240-a53539c1-2a9c-4ba3-ad3d-dac7b9ce84c5"
+        }
+      ],
+      "id": "faf3c400-3e5c-47a0-ba6d-88c49ec56bd2",
+      "createdAt": "2026-07-28T03:07:59.000Z",
+      "updatedAt": "2026-07-28T03:07:59.000Z",
+      "uid": "35240-faf3c400-3e5c-47a0-ba6d-88c49ec56bd2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.taxjar.com/v2"
+    }
+  ]
+}

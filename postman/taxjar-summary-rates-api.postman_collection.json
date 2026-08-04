@@ -1,0 +1,154 @@
+{
+  "info": {
+    "_postman_id": "e753221e-883c-41e8-aa1b-82229b462d57",
+    "name": "TaxJar Sales Tax Categories Summary Rates API",
+    "description": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:09.000Z",
+    "updatedAt": "2026-07-28T03:08:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e753221e-883c-41e8-aa1b-82229b462d57"
+  },
+  "item": [
+    {
+      "name": "summary_rates",
+      "item": [
+        {
+          "name": "Summarize tax rates for all regions",
+          "id": "0161040a-36f2-4129-8300-b6f30db34b95",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/summary_rates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "summary_rates"
+              ]
+            },
+            "description": "Returns a summarized list of expected sales tax rates for a given region. This is useful for showing customers an estimated tax rate before checkout."
+          },
+          "response": [
+            {
+              "id": "bc89bf3c-026f-4572-9f73-54a69073cf2d",
+              "name": "Summary rates by region",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/summary_rates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "summary_rates"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"summary_rates\": [\n    {\n      \"country_code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"minimum_rate\": {\n        \"label\": \"<string>\",\n        \"rate\": \"<float>\"\n      },\n      \"average_rate\": {\n        \"label\": \"<string>\",\n        \"rate\": \"<float>\"\n      }\n    },\n    {\n      \"country_code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"minimum_rate\": {\n        \"label\": \"<string>\",\n        \"rate\": \"<float>\"\n      },\n      \"average_rate\": {\n        \"label\": \"<string>\",\n        \"rate\": \"<float>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:08:09.000Z",
+              "updatedAt": "2026-07-28T03:08:09.000Z",
+              "uid": "35240-bc89bf3c-026f-4572-9f73-54a69073cf2d"
+            },
+            {
+              "id": "e7b000eb-e62f-4b10-8aea-57178b6d42df",
+              "name": "Unauthorized - invalid or missing API token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/summary_rates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "summary_rates"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:08:09.000Z",
+              "updatedAt": "2026-07-28T03:08:09.000Z",
+              "uid": "35240-e7b000eb-e62f-4b10-8aea-57178b6d42df"
+            }
+          ],
+          "createdAt": "2026-07-28T03:08:09.000Z",
+          "updatedAt": "2026-07-28T03:08:09.000Z",
+          "uid": "35240-0161040a-36f2-4129-8300-b6f30db34b95"
+        }
+      ],
+      "id": "8fc5191f-59be-45a0-854d-dff797df6db7",
+      "createdAt": "2026-07-28T03:08:09.000Z",
+      "updatedAt": "2026-07-28T03:08:09.000Z",
+      "uid": "35240-8fc5191f-59be-45a0-854d-dff797df6db7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.taxjar.com/v2"
+    }
+  ]
+}

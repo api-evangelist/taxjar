@@ -1,0 +1,30 @@
+{
+  "provider": "taxjar",
+  "sources": [
+    "taxjar-categories-api-openapi.yml",
+    "taxjar-customers-api-openapi.yml",
+    "taxjar-nexus-api-openapi.yml",
+    "taxjar-rates-api-openapi.yml",
+    "taxjar-summary-rates-api-openapi.yml",
+    "taxjar-taxes-api-openapi.yml",
+    "taxjar-transactions-orders-api-openapi.yml",
+    "taxjar-transactions-refunds-api-openapi.yml",
+    "taxjar-validations-api-openapi.yml"
+  ],
+  "outputs": [
+    "taxjar-categories-api-openapi.yml",
+    "taxjar-customers-api-openapi.yml",
+    "taxjar-nexus-api-openapi.yml",
+    "taxjar-rates-api-openapi.yml",
+    "taxjar-summary-rates-api-openapi.yml",
+    "taxjar-taxes-api-openapi.yml",
+    "taxjar-transactions-orders-api-openapi.yml",
+    "taxjar-transactions-refunds-api-openapi.yml",
+    "taxjar-validations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,1102 @@
+{
+  "info": {
+    "_postman_id": "5b10ac8c-559c-43f8-afef-025469067670",
+    "name": "TaxJar Sales Tax Categories Customers API",
+    "description": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:59.000Z",
+    "updatedAt": "2026-07-28T03:08:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5b10ac8c-559c-43f8-afef-025469067670"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{customer_id}",
+          "item": [
+            {
+              "name": "Show a customer",
+              "id": "27cd90ec-44db-42bd-ab19-5f5fac0c7a37",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customer_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customer_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9a05ecb9-b2bb-40ad-83a2-2a4f21e1dad5",
+                      "key": "customer_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the customer"
+                    }
+                  ]
+                },
+                "description": "Returns a single exempt customer by customer ID."
+              },
+              "response": [
+                {
+                  "id": "11f47df8-aaac-49e0-9a66-555ae3fa278e",
+                  "name": "Customer details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"customer\": {\n    \"customer_id\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"street\": \"<string>\",\n    \"exempt_regions\": [\n      {\n        \"country\": \"<string>\",\n        \"state\": \"<string>\"\n      },\n      {\n        \"country\": \"<string>\",\n        \"state\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-11f47df8-aaac-49e0-9a66-555ae3fa278e"
+                },
+                {
+                  "id": "4a76861d-1e16-48b1-830c-f7258fa9eb23",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-4a76861d-1e16-48b1-830c-f7258fa9eb23"
+                },
+                {
+                  "id": "8154f652-9ea0-44f9-8305-10b65f813725",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-8154f652-9ea0-44f9-8305-10b65f813725"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:00.000Z",
+              "updatedAt": "2026-07-28T03:08:00.000Z",
+              "uid": "35240-27cd90ec-44db-42bd-ab19-5f5fac0c7a37"
+            },
+            {
+              "name": "Update a customer",
+              "id": "b927084a-3d27-47db-958f-11b03dd17094",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customer_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customer_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5d426b6f-71ef-41e1-96b8-1ae00e3a25ec",
+                      "key": "customer_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the customer"
+                    }
+                  ]
+                },
+                "description": "Updates an existing exempt customer record."
+              },
+              "response": [
+                {
+                  "id": "6a58c3cf-1a98-4773-a062-235105f9470c",
+                  "name": "Updated customer",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"customer\": {\n    \"customer_id\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"street\": \"<string>\",\n    \"exempt_regions\": [\n      {\n        \"country\": \"<string>\",\n        \"state\": \"<string>\"\n      },\n      {\n        \"country\": \"<string>\",\n        \"state\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-6a58c3cf-1a98-4773-a062-235105f9470c"
+                },
+                {
+                  "id": "9ad90a03-5d7c-455d-8285-3f9e545f4270",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-9ad90a03-5d7c-455d-8285-3f9e545f4270"
+                },
+                {
+                  "id": "a8042fb2-98a8-4c95-b88a-d0ea2b0ca649",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-a8042fb2-98a8-4c95-b88a-d0ea2b0ca649"
+                },
+                {
+                  "id": "6191c9db-f13d-4d86-8e0c-2362ecacd927",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-6191c9db-f13d-4d86-8e0c-2362ecacd927"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:00.000Z",
+              "updatedAt": "2026-07-28T03:08:00.000Z",
+              "uid": "35240-b927084a-3d27-47db-958f-11b03dd17094"
+            },
+            {
+              "name": "Delete a customer",
+              "id": "50665c9b-f509-4726-8d39-3e82cf473bc2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customer_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customer_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7908e334-b03d-48e1-9ebc-069f0b56645c",
+                      "key": "customer_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the customer"
+                    }
+                  ]
+                },
+                "description": "Deletes an existing exempt customer record."
+              },
+              "response": [
+                {
+                  "id": "cf53500e-a374-43a7-8cfe-af01d8251c9a",
+                  "name": "Deleted customer",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"customer\": {\n    \"customer_id\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"street\": \"<string>\",\n    \"exempt_regions\": [\n      {\n        \"country\": \"<string>\",\n        \"state\": \"<string>\"\n      },\n      {\n        \"country\": \"<string>\",\n        \"state\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-cf53500e-a374-43a7-8cfe-af01d8251c9a"
+                },
+                {
+                  "id": "e8146a29-4ac3-4210-bfea-1da3ff865d2e",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-e8146a29-4ac3-4210-bfea-1da3ff865d2e"
+                },
+                {
+                  "id": "d62a5f6d-d405-4aa8-9ddc-7045eb38ef03",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customer_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:00.000Z",
+                  "updatedAt": "2026-07-28T03:08:00.000Z",
+                  "uid": "35240-d62a5f6d-d405-4aa8-9ddc-7045eb38ef03"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:00.000Z",
+              "updatedAt": "2026-07-28T03:08:00.000Z",
+              "uid": "35240-50665c9b-f509-4726-8d39-3e82cf473bc2"
+            }
+          ],
+          "id": "6b4dbb20-9662-4b0c-b295-84405bed812d",
+          "createdAt": "2026-07-28T03:08:00.000Z",
+          "updatedAt": "2026-07-28T03:08:00.000Z",
+          "uid": "35240-6b4dbb20-9662-4b0c-b295-84405bed812d"
+        },
+        {
+          "name": "List customers",
+          "id": "bcfd8975-f911-465d-99b1-f0ad9cc705ce",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ]
+            },
+            "description": "Returns a list of customer IDs for exempt customers associated with the authenticated account."
+          },
+          "response": [
+            {
+              "id": "c0c9f150-b446-434c-972e-056db176a11e",
+              "name": "List of customer IDs",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"customers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T03:08:00.000Z",
+              "updatedAt": "2026-07-28T03:08:00.000Z",
+              "uid": "35240-c0c9f150-b446-434c-972e-056db176a11e"
+            },
+            {
+              "id": "9b30101c-ae87-4159-8a7e-0a6a459fc9e1",
+              "name": "Unauthorized - invalid or missing API token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:08:00.000Z",
+              "updatedAt": "2026-07-28T03:08:00.000Z",
+              "uid": "35240-9b30101c-ae87-4159-8a7e-0a6a459fc9e1"
+            }
+          ],
+          "createdAt": "2026-07-28T03:08:00.000Z",
+          "updatedAt": "2026-07-28T03:08:00.000Z",
+          "uid": "35240-bcfd8975-f911-465d-99b1-f0ad9cc705ce"
+        },
+        {
+          "name": "Create a customer",
+          "id": "d978bc27-3e1e-4d98-ad33-3716edef5600",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ]
+            },
+            "description": "Creates a new exempt customer record for sales tax exemption management."
+          },
+          "response": [
+            {
+              "id": "1e8a4a38-7d0a-4bbe-ab34-a5d0c0c3e523",
+              "name": "Customer created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"customer\": {\n    \"customer_id\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"street\": \"<string>\",\n    \"exempt_regions\": [\n      {\n        \"country\": \"<string>\",\n        \"state\": \"<string>\"\n      },\n      {\n        \"country\": \"<string>\",\n        \"state\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T03:08:00.000Z",
+              "updatedAt": "2026-07-28T03:08:00.000Z",
+              "uid": "35240-1e8a4a38-7d0a-4bbe-ab34-a5d0c0c3e523"
+            },
+            {
+              "id": "13a2c00d-56f7-4fc9-b7f1-bbc43f7a14b0",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:08:00.000Z",
+              "updatedAt": "2026-07-28T03:08:00.000Z",
+              "uid": "35240-13a2c00d-56f7-4fc9-b7f1-bbc43f7a14b0"
+            },
+            {
+              "id": "1353b58d-7d59-47cd-b2a0-4af3cd1c1da3",
+              "name": "Unauthorized - invalid or missing API token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:08:00.000Z",
+              "updatedAt": "2026-07-28T03:08:00.000Z",
+              "uid": "35240-1353b58d-7d59-47cd-b2a0-4af3cd1c1da3"
+            },
+            {
+              "id": "175c4461-8360-4bc3-908c-32e74a0a1abf",
+              "name": "Unprocessable entity - validation error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_id\": \"<string>\",\n  \"exemption_type\": \"non_exempt\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\",\n  \"exempt_regions\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:08:00.000Z",
+              "updatedAt": "2026-07-28T03:08:00.000Z",
+              "uid": "35240-175c4461-8360-4bc3-908c-32e74a0a1abf"
+            }
+          ],
+          "createdAt": "2026-07-28T03:08:00.000Z",
+          "updatedAt": "2026-07-28T03:08:00.000Z",
+          "uid": "35240-d978bc27-3e1e-4d98-ad33-3716edef5600"
+        }
+      ],
+      "id": "e19337a0-29ad-430b-8206-6b5c2aa1d67b",
+      "createdAt": "2026-07-28T03:08:00.000Z",
+      "updatedAt": "2026-07-28T03:08:00.000Z",
+      "uid": "35240-e19337a0-29ad-430b-8206-6b5c2aa1d67b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.taxjar.com/v2"
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "info": {
+    "_postman_id": "a3e57b36-f72c-404a-860d-3699521e8369",
+    "name": "TaxJar Sales Tax Categories Nexus API",
+    "description": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:07.000Z",
+    "updatedAt": "2026-07-28T03:08:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a3e57b36-f72c-404a-860d-3699521e8369"
+  },
+  "item": [
+    {
+      "name": "nexus",
+      "item": [
+        {
+          "name": "regions",
+          "item": [
+            {
+              "name": "List nexus regions",
+              "id": "9d49771a-15a4-47b5-8f86-2fb9480ad1f2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/nexus/regions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nexus",
+                    "regions"
+                  ]
+                },
+                "description": "Returns a list of nexus regions (states/countries where you have tax nexus) for the authenticated account."
+              },
+              "response": [
+                {
+                  "id": "984ec330-f8b3-46fc-8a69-40288d0b7706",
+                  "name": "List of nexus regions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/nexus/regions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nexus",
+                        "regions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"regions\": [\n    {\n      \"country_code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"region\": \"<string>\"\n    },\n    {\n      \"country_code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"region\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:08:07.000Z",
+                  "updatedAt": "2026-07-28T03:08:07.000Z",
+                  "uid": "35240-984ec330-f8b3-46fc-8a69-40288d0b7706"
+                },
+                {
+                  "id": "c03451a2-6b4c-4464-9882-5e3e90a6254c",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/nexus/regions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nexus",
+                        "regions"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:07.000Z",
+                  "updatedAt": "2026-07-28T03:08:07.000Z",
+                  "uid": "35240-c03451a2-6b4c-4464-9882-5e3e90a6254c"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:07.000Z",
+              "updatedAt": "2026-07-28T03:08:07.000Z",
+              "uid": "35240-9d49771a-15a4-47b5-8f86-2fb9480ad1f2"
+            }
+          ],
+          "id": "ea7925b2-f864-43f7-982d-f47b9d32d364",
+          "createdAt": "2026-07-28T03:08:07.000Z",
+          "updatedAt": "2026-07-28T03:08:07.000Z",
+          "uid": "35240-ea7925b2-f864-43f7-982d-f47b9d32d364"
+        }
+      ],
+      "id": "8478b5b9-9237-4c4b-8a64-5e4162063a1e",
+      "createdAt": "2026-07-28T03:08:07.000Z",
+      "updatedAt": "2026-07-28T03:08:07.000Z",
+      "uid": "35240-8478b5b9-9237-4c4b-8a64-5e4162063a1e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.taxjar.com/v2"
+    }
+  ]
+}

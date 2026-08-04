@@ -1,0 +1,1254 @@
+{
+  "info": {
+    "_postman_id": "1a82bdc5-8aa8-4d66-a089-fa6f5c73e03c",
+    "name": "TaxJar Sales Tax Categories Transactions - Orders API",
+    "description": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:10.000Z",
+    "updatedAt": "2026-07-28T03:08:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1a82bdc5-8aa8-4d66-a089-fa6f5c73e03c"
+  },
+  "item": [
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "orders",
+          "item": [
+            {
+              "name": "{transaction_id}",
+              "item": [
+                {
+                  "name": "Show an order transaction",
+                  "id": "e947eb40-9524-4731-ae86-393e0fa2dc2d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/orders/:transaction_id?provider=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "orders",
+                        ":transaction_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Provider for the transaction (e.g. api, shopify)",
+                          "key": "provider",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "2ed1cc24-6086-477e-955a-303bcbb55837",
+                          "key": "transaction_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the order transaction"
+                        }
+                      ]
+                    },
+                    "description": "Returns a single order transaction by transaction ID."
+                  },
+                  "response": [
+                    {
+                      "id": "b67e7382-f092-40f8-bde5-eed7435ce326",
+                      "name": "Order transaction details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction (e.g. api, shopify)",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"order\": {\n    \"transaction_id\": \"<string>\",\n    \"user_id\": \"<integer>\",\n    \"transaction_date\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_zip\": \"<string>\",\n    \"from_state\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_street\": \"<string>\",\n    \"to_country\": \"<string>\",\n    \"to_zip\": \"<string>\",\n    \"to_state\": \"<string>\",\n    \"to_city\": \"<string>\",\n    \"to_street\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"shipping\": \"<float>\",\n    \"sales_tax\": \"<float>\",\n    \"line_items\": [\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-b67e7382-f092-40f8-bde5-eed7435ce326"
+                    },
+                    {
+                      "id": "ef0627d7-ba2e-4b02-a12a-24ef333cfe2e",
+                      "name": "Unauthorized - invalid or missing API token",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction (e.g. api, shopify)",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-ef0627d7-ba2e-4b02-a12a-24ef333cfe2e"
+                    },
+                    {
+                      "id": "2e2a6109-b632-47b1-a973-a1af7991c4f1",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction (e.g. api, shopify)",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-2e2a6109-b632-47b1-a973-a1af7991c4f1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:11.000Z",
+                  "updatedAt": "2026-07-28T03:08:11.000Z",
+                  "uid": "35240-e947eb40-9524-4731-ae86-393e0fa2dc2d"
+                },
+                {
+                  "name": "Update an order transaction",
+                  "id": "561d5698-6547-4095-aa7e-dc95972eae56",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/orders/:transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "orders",
+                        ":transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8739abf9-7fa4-4625-8899-81b59130ade6",
+                          "key": "transaction_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the order transaction"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing order transaction by transaction ID."
+                  },
+                  "response": [
+                    {
+                      "id": "a4647c9d-1c0d-47a9-b7a4-31cf07b279dd",
+                      "name": "Updated order transaction",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"order\": {\n    \"transaction_id\": \"<string>\",\n    \"user_id\": \"<integer>\",\n    \"transaction_date\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_zip\": \"<string>\",\n    \"from_state\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_street\": \"<string>\",\n    \"to_country\": \"<string>\",\n    \"to_zip\": \"<string>\",\n    \"to_state\": \"<string>\",\n    \"to_city\": \"<string>\",\n    \"to_street\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"shipping\": \"<float>\",\n    \"sales_tax\": \"<float>\",\n    \"line_items\": [\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-a4647c9d-1c0d-47a9-b7a4-31cf07b279dd"
+                    },
+                    {
+                      "id": "ad0b23ea-2401-4633-8732-acf582bdaaa2",
+                      "name": "Bad request - invalid parameters",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-ad0b23ea-2401-4633-8732-acf582bdaaa2"
+                    },
+                    {
+                      "id": "c058572e-4cb7-4d0b-9938-0cab3c33c085",
+                      "name": "Unauthorized - invalid or missing API token",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-c058572e-4cb7-4d0b-9938-0cab3c33c085"
+                    },
+                    {
+                      "id": "591b6e65-a0db-4626-bb87-17f06ba3cd1e",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-591b6e65-a0db-4626-bb87-17f06ba3cd1e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:11.000Z",
+                  "updatedAt": "2026-07-28T03:08:11.000Z",
+                  "uid": "35240-561d5698-6547-4095-aa7e-dc95972eae56"
+                },
+                {
+                  "name": "Delete an order transaction",
+                  "id": "607f7685-38d0-418a-8e9c-e71decc83b7a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/orders/:transaction_id?provider=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "orders",
+                        ":transaction_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Provider for the transaction",
+                          "key": "provider",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "44cf4c9f-e4a8-4131-b4db-9a6308d99f42",
+                          "key": "transaction_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the order transaction"
+                        }
+                      ]
+                    },
+                    "description": "Deletes an existing order transaction by transaction ID."
+                  },
+                  "response": [
+                    {
+                      "id": "cb723ce2-ea12-401f-bc02-c29e024ebfb6",
+                      "name": "Deleted order transaction",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"order\": {\n    \"transaction_id\": \"<string>\",\n    \"user_id\": \"<integer>\",\n    \"transaction_date\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_zip\": \"<string>\",\n    \"from_state\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_street\": \"<string>\",\n    \"to_country\": \"<string>\",\n    \"to_zip\": \"<string>\",\n    \"to_state\": \"<string>\",\n    \"to_city\": \"<string>\",\n    \"to_street\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"shipping\": \"<float>\",\n    \"sales_tax\": \"<float>\",\n    \"line_items\": [\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-cb723ce2-ea12-401f-bc02-c29e024ebfb6"
+                    },
+                    {
+                      "id": "0279d687-1859-413e-bb48-67f8a203ce18",
+                      "name": "Unauthorized - invalid or missing API token",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-0279d687-1859-413e-bb48-67f8a203ce18"
+                    },
+                    {
+                      "id": "5eaf895c-6ee3-4aa9-95dd-7eadc3a7cb3d",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/orders/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "orders",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:11.000Z",
+                      "updatedAt": "2026-07-28T03:08:11.000Z",
+                      "uid": "35240-5eaf895c-6ee3-4aa9-95dd-7eadc3a7cb3d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:11.000Z",
+                  "updatedAt": "2026-07-28T03:08:11.000Z",
+                  "uid": "35240-607f7685-38d0-418a-8e9c-e71decc83b7a"
+                }
+              ],
+              "id": "78b51d5e-5633-4057-a907-b14f98c5d873",
+              "createdAt": "2026-07-28T03:08:11.000Z",
+              "updatedAt": "2026-07-28T03:08:11.000Z",
+              "uid": "35240-78b51d5e-5633-4057-a907-b14f98c5d873"
+            },
+            {
+              "name": "List order transactions",
+              "id": "53971aa9-30a4-425d-b4e6-07033c788cd3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/orders?transaction_date=<date>&from_transaction_date=<date>&to_transaction_date=<date>&provider=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    "orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter orders by exact transaction date (YYYY-MM-DD)",
+                      "key": "transaction_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Start date filter (YYYY-MM-DD)",
+                      "key": "from_transaction_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "End date filter (YYYY-MM-DD)",
+                      "key": "to_transaction_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filter by provider (e.g. api, shopify, woocommerce)",
+                      "key": "provider",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of order transaction IDs for the authenticated account. Supports filtering by date range and provider."
+              },
+              "response": [
+                {
+                  "id": "6021de8c-56b8-47e4-ab50-c470b13caeb5",
+                  "name": "List of order transaction IDs",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/orders?transaction_date=<date>&from_transaction_date=<date>&to_transaction_date=<date>&provider=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "orders"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter orders by exact transaction date (YYYY-MM-DD)",
+                          "key": "transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Start date filter (YYYY-MM-DD)",
+                          "key": "from_transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "End date filter (YYYY-MM-DD)",
+                          "key": "to_transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter by provider (e.g. api, shopify, woocommerce)",
+                          "key": "provider",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"orders\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T03:08:11.000Z",
+                  "updatedAt": "2026-07-28T03:08:11.000Z",
+                  "uid": "35240-6021de8c-56b8-47e4-ab50-c470b13caeb5"
+                },
+                {
+                  "id": "3629897a-d942-4294-a8ce-799b068e7682",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/orders?transaction_date=<date>&from_transaction_date=<date>&to_transaction_date=<date>&provider=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "orders"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter orders by exact transaction date (YYYY-MM-DD)",
+                          "key": "transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Start date filter (YYYY-MM-DD)",
+                          "key": "from_transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "End date filter (YYYY-MM-DD)",
+                          "key": "to_transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter by provider (e.g. api, shopify, woocommerce)",
+                          "key": "provider",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:11.000Z",
+                  "updatedAt": "2026-07-28T03:08:11.000Z",
+                  "uid": "35240-3629897a-d942-4294-a8ce-799b068e7682"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:11.000Z",
+              "updatedAt": "2026-07-28T03:08:11.000Z",
+              "uid": "35240-53971aa9-30a4-425d-b4e6-07033c788cd3"
+            },
+            {
+              "name": "Create an order transaction",
+              "id": "e1ea3089-8629-41cb-a6d9-098b9308d3b3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    "orders"
+                  ]
+                },
+                "description": "Creates a new order transaction for sales tax reporting and AutoFile purposes. Use this to record completed sales."
+              },
+              "response": [
+                {
+                  "id": "66cb9aca-e2eb-46f4-9b55-e8021d858f47",
+                  "name": "Order transaction created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "orders"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"order\": {\n    \"transaction_id\": \"<string>\",\n    \"user_id\": \"<integer>\",\n    \"transaction_date\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_zip\": \"<string>\",\n    \"from_state\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_street\": \"<string>\",\n    \"to_country\": \"<string>\",\n    \"to_zip\": \"<string>\",\n    \"to_state\": \"<string>\",\n    \"to_city\": \"<string>\",\n    \"to_street\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"shipping\": \"<float>\",\n    \"sales_tax\": \"<float>\",\n    \"line_items\": [\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T03:08:11.000Z",
+                  "updatedAt": "2026-07-28T03:08:11.000Z",
+                  "uid": "35240-66cb9aca-e2eb-46f4-9b55-e8021d858f47"
+                },
+                {
+                  "id": "9e803a87-2f71-4f92-b439-1adb9be90f74",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "orders"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:11.000Z",
+                  "updatedAt": "2026-07-28T03:08:11.000Z",
+                  "uid": "35240-9e803a87-2f71-4f92-b439-1adb9be90f74"
+                },
+                {
+                  "id": "2466ed82-0ef8-463b-95d9-b4d0617902e3",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "orders"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:11.000Z",
+                  "updatedAt": "2026-07-28T03:08:11.000Z",
+                  "uid": "35240-2466ed82-0ef8-463b-95d9-b4d0617902e3"
+                },
+                {
+                  "id": "1b8dea51-ce98-4fc9-b177-a0f80dc034d3",
+                  "name": "Unprocessable entity - validation error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ],\n  \"customer_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "orders"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:11.000Z",
+                  "updatedAt": "2026-07-28T03:08:11.000Z",
+                  "uid": "35240-1b8dea51-ce98-4fc9-b177-a0f80dc034d3"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:11.000Z",
+              "updatedAt": "2026-07-28T03:08:11.000Z",
+              "uid": "35240-e1ea3089-8629-41cb-a6d9-098b9308d3b3"
+            }
+          ],
+          "id": "f3ee2145-081e-4a78-b16f-8a966448c9d8",
+          "createdAt": "2026-07-28T03:08:11.000Z",
+          "updatedAt": "2026-07-28T03:08:11.000Z",
+          "uid": "35240-f3ee2145-081e-4a78-b16f-8a966448c9d8"
+        }
+      ],
+      "id": "2e15751a-cac8-4641-bdbe-4e1d2a7fa2cf",
+      "createdAt": "2026-07-28T03:08:11.000Z",
+      "updatedAt": "2026-07-28T03:08:11.000Z",
+      "uid": "35240-2e15751a-cac8-4641-bdbe-4e1d2a7fa2cf"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.taxjar.com/v2"
+    }
+  ]
+}

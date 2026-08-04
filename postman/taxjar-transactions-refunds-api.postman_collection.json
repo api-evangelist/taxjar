@@ -1,0 +1,1254 @@
+{
+  "info": {
+    "_postman_id": "77505f82-1084-4ec4-8236-c8afc718fc9c",
+    "name": "TaxJar Sales Tax Categories Transactions - Refunds API",
+    "description": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:12.000Z",
+    "updatedAt": "2026-07-28T03:08:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-77505f82-1084-4ec4-8236-c8afc718fc9c"
+  },
+  "item": [
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "refunds",
+          "item": [
+            {
+              "name": "{transaction_id}",
+              "item": [
+                {
+                  "name": "Show a refund transaction",
+                  "id": "42ed534c-f03d-457c-9d8f-ee212306a2b6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/refunds/:transaction_id?provider=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "refunds",
+                        ":transaction_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Provider for the transaction",
+                          "key": "provider",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c9735535-c933-4198-a48d-78b8e4486858",
+                          "key": "transaction_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the refund transaction"
+                        }
+                      ]
+                    },
+                    "description": "Returns a single refund transaction by transaction ID."
+                  },
+                  "response": [
+                    {
+                      "id": "99811237-5a5b-4b38-9f38-1b4679f22909",
+                      "name": "Refund transaction details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"refund\": {\n    \"transaction_id\": \"<string>\",\n    \"user_id\": \"<integer>\",\n    \"transaction_date\": \"<string>\",\n    \"transaction_reference_id\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_zip\": \"<string>\",\n    \"from_state\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_street\": \"<string>\",\n    \"to_country\": \"<string>\",\n    \"to_zip\": \"<string>\",\n    \"to_state\": \"<string>\",\n    \"to_city\": \"<string>\",\n    \"to_street\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"shipping\": \"<float>\",\n    \"sales_tax\": \"<float>\",\n    \"line_items\": [\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-99811237-5a5b-4b38-9f38-1b4679f22909"
+                    },
+                    {
+                      "id": "febcf217-eb9a-49ae-8120-2c16560873c2",
+                      "name": "Unauthorized - invalid or missing API token",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-febcf217-eb9a-49ae-8120-2c16560873c2"
+                    },
+                    {
+                      "id": "b1840936-f977-4ae9-a71f-5da7ea029233",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-b1840936-f977-4ae9-a71f-5da7ea029233"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:12.000Z",
+                  "updatedAt": "2026-07-28T03:08:12.000Z",
+                  "uid": "35240-42ed534c-f03d-457c-9d8f-ee212306a2b6"
+                },
+                {
+                  "name": "Update a refund transaction",
+                  "id": "eb7cfc9d-5314-40d4-ae53-14041c86ef31",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/refunds/:transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "refunds",
+                        ":transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "061e02eb-7b70-40f9-a03f-502790f70a32",
+                          "key": "transaction_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the refund transaction"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing refund transaction by transaction ID."
+                  },
+                  "response": [
+                    {
+                      "id": "2ed5f1aa-ce97-4ffa-8785-cc6158423688",
+                      "name": "Updated refund transaction",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"refund\": {\n    \"transaction_id\": \"<string>\",\n    \"user_id\": \"<integer>\",\n    \"transaction_date\": \"<string>\",\n    \"transaction_reference_id\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_zip\": \"<string>\",\n    \"from_state\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_street\": \"<string>\",\n    \"to_country\": \"<string>\",\n    \"to_zip\": \"<string>\",\n    \"to_state\": \"<string>\",\n    \"to_city\": \"<string>\",\n    \"to_street\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"shipping\": \"<float>\",\n    \"sales_tax\": \"<float>\",\n    \"line_items\": [\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-2ed5f1aa-ce97-4ffa-8785-cc6158423688"
+                    },
+                    {
+                      "id": "3829bbd7-7557-4cea-a734-dc4da58d78c4",
+                      "name": "Bad request - invalid parameters",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-3829bbd7-7557-4cea-a734-dc4da58d78c4"
+                    },
+                    {
+                      "id": "4a9c91e6-623d-44ae-b6bb-ac7720fafc41",
+                      "name": "Unauthorized - invalid or missing API token",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-4a9c91e6-623d-44ae-b6bb-ac7720fafc41"
+                    },
+                    {
+                      "id": "31a4a173-f6e2-4f2d-a5ff-40694c1ce15f",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-31a4a173-f6e2-4f2d-a5ff-40694c1ce15f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:12.000Z",
+                  "updatedAt": "2026-07-28T03:08:12.000Z",
+                  "uid": "35240-eb7cfc9d-5314-40d4-ae53-14041c86ef31"
+                },
+                {
+                  "name": "Delete a refund transaction",
+                  "id": "f386285a-67c8-4af8-b5e7-3776fdc69985",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/refunds/:transaction_id?provider=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "refunds",
+                        ":transaction_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Provider for the transaction",
+                          "key": "provider",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "629ef9c3-e4d1-4c56-bc89-dba65847a12a",
+                          "key": "transaction_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the refund transaction"
+                        }
+                      ]
+                    },
+                    "description": "Deletes an existing refund transaction by transaction ID."
+                  },
+                  "response": [
+                    {
+                      "id": "137d3fee-3de1-4d4b-9b99-fabb5c954eef",
+                      "name": "Deleted refund transaction",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"refund\": {\n    \"transaction_id\": \"<string>\",\n    \"user_id\": \"<integer>\",\n    \"transaction_date\": \"<string>\",\n    \"transaction_reference_id\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_zip\": \"<string>\",\n    \"from_state\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_street\": \"<string>\",\n    \"to_country\": \"<string>\",\n    \"to_zip\": \"<string>\",\n    \"to_state\": \"<string>\",\n    \"to_city\": \"<string>\",\n    \"to_street\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"shipping\": \"<float>\",\n    \"sales_tax\": \"<float>\",\n    \"line_items\": [\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-137d3fee-3de1-4d4b-9b99-fabb5c954eef"
+                    },
+                    {
+                      "id": "3ca91dc9-6486-4a55-878a-14dae063b59b",
+                      "name": "Unauthorized - invalid or missing API token",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-3ca91dc9-6486-4a55-878a-14dae063b59b"
+                    },
+                    {
+                      "id": "6c15883b-3964-4ed6-91eb-1b2cc4b9bc49",
+                      "name": "Not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/refunds/:transaction_id?provider=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            "refunds",
+                            ":transaction_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Provider for the transaction",
+                              "key": "provider",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:08:12.000Z",
+                      "updatedAt": "2026-07-28T03:08:12.000Z",
+                      "uid": "35240-6c15883b-3964-4ed6-91eb-1b2cc4b9bc49"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:12.000Z",
+                  "updatedAt": "2026-07-28T03:08:12.000Z",
+                  "uid": "35240-f386285a-67c8-4af8-b5e7-3776fdc69985"
+                }
+              ],
+              "id": "7ac4847f-0060-445d-bcdc-431b71b64d0b",
+              "createdAt": "2026-07-28T03:08:12.000Z",
+              "updatedAt": "2026-07-28T03:08:12.000Z",
+              "uid": "35240-7ac4847f-0060-445d-bcdc-431b71b64d0b"
+            },
+            {
+              "name": "List refund transactions",
+              "id": "263a1ab1-a41d-448c-90aa-20cff8a832cc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/refunds?transaction_date=<date>&from_transaction_date=<date>&to_transaction_date=<date>&provider=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    "refunds"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter refunds by exact transaction date (YYYY-MM-DD)",
+                      "key": "transaction_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Start date filter (YYYY-MM-DD)",
+                      "key": "from_transaction_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "End date filter (YYYY-MM-DD)",
+                      "key": "to_transaction_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filter by provider",
+                      "key": "provider",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of refund transaction IDs for the authenticated account. Supports filtering by date range and provider."
+              },
+              "response": [
+                {
+                  "id": "8de255ea-61b0-43b5-8ed0-d808c005f93f",
+                  "name": "List of refund transaction IDs",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/refunds?transaction_date=<date>&from_transaction_date=<date>&to_transaction_date=<date>&provider=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "refunds"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter refunds by exact transaction date (YYYY-MM-DD)",
+                          "key": "transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Start date filter (YYYY-MM-DD)",
+                          "key": "from_transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "End date filter (YYYY-MM-DD)",
+                          "key": "to_transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter by provider",
+                          "key": "provider",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"refunds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T03:08:12.000Z",
+                  "updatedAt": "2026-07-28T03:08:12.000Z",
+                  "uid": "35240-8de255ea-61b0-43b5-8ed0-d808c005f93f"
+                },
+                {
+                  "id": "5c3e6558-7da0-49fe-996d-6898d67b2c68",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/refunds?transaction_date=<date>&from_transaction_date=<date>&to_transaction_date=<date>&provider=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "refunds"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter refunds by exact transaction date (YYYY-MM-DD)",
+                          "key": "transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Start date filter (YYYY-MM-DD)",
+                          "key": "from_transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "End date filter (YYYY-MM-DD)",
+                          "key": "to_transaction_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Filter by provider",
+                          "key": "provider",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:12.000Z",
+                  "updatedAt": "2026-07-28T03:08:12.000Z",
+                  "uid": "35240-5c3e6558-7da0-49fe-996d-6898d67b2c68"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:12.000Z",
+              "updatedAt": "2026-07-28T03:08:12.000Z",
+              "uid": "35240-263a1ab1-a41d-448c-90aa-20cff8a832cc"
+            },
+            {
+              "name": "Create a refund transaction",
+              "id": "1da45a44-0773-4258-9960-db119b94ca45",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/refunds",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    "refunds"
+                  ]
+                },
+                "description": "Creates a new refund transaction linked to an order transaction."
+              },
+              "response": [
+                {
+                  "id": "7ad89c7d-0d0c-43bf-a276-722d076d385c",
+                  "name": "Refund transaction created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/refunds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "refunds"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"refund\": {\n    \"transaction_id\": \"<string>\",\n    \"user_id\": \"<integer>\",\n    \"transaction_date\": \"<string>\",\n    \"transaction_reference_id\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"exemption_type\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_zip\": \"<string>\",\n    \"from_state\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_street\": \"<string>\",\n    \"to_country\": \"<string>\",\n    \"to_zip\": \"<string>\",\n    \"to_state\": \"<string>\",\n    \"to_city\": \"<string>\",\n    \"to_street\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"shipping\": \"<float>\",\n    \"sales_tax\": \"<float>\",\n    \"line_items\": [\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"product_identifier\": \"<string>\",\n        \"description\": \"<string>\",\n        \"product_tax_code\": \"<string>\",\n        \"unit_price\": \"<float>\",\n        \"discount\": \"<float>\",\n        \"sales_tax\": \"<float>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T03:08:12.000Z",
+                  "updatedAt": "2026-07-28T03:08:12.000Z",
+                  "uid": "35240-7ad89c7d-0d0c-43bf-a276-722d076d385c"
+                },
+                {
+                  "id": "c918d3cf-d20d-471e-92d9-4beee9ced962",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/refunds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "refunds"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:12.000Z",
+                  "updatedAt": "2026-07-28T03:08:12.000Z",
+                  "uid": "35240-c918d3cf-d20d-471e-92d9-4beee9ced962"
+                },
+                {
+                  "id": "08086373-ecdc-4a6f-ad78-b2d421c285e5",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/refunds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "refunds"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:12.000Z",
+                  "updatedAt": "2026-07-28T03:08:12.000Z",
+                  "uid": "35240-08086373-ecdc-4a6f-ad78-b2d421c285e5"
+                },
+                {
+                  "id": "ed70af73-b48c-4121-9695-eae15742b097",
+                  "name": "Unprocessable entity - validation error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"transaction_id\": \"<string>\",\n  \"transaction_date\": \"<string>\",\n  \"transaction_reference_id\": \"<string>\",\n  \"to_country\": \"<string>\",\n  \"to_zip\": \"<string>\",\n  \"to_state\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"shipping\": \"<float>\",\n  \"sales_tax\": \"<float>\",\n  \"provider\": \"<string>\",\n  \"exemption_type\": \"other\",\n  \"from_country\": \"<string>\",\n  \"from_zip\": \"<string>\",\n  \"from_state\": \"<string>\",\n  \"from_city\": \"<string>\",\n  \"from_street\": \"<string>\",\n  \"to_city\": \"<string>\",\n  \"to_street\": \"<string>\",\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"product_identifier\": \"<string>\",\n      \"description\": \"<string>\",\n      \"product_tax_code\": \"<string>\",\n      \"unit_price\": \"<float>\",\n      \"discount\": \"<float>\",\n      \"sales_tax\": \"<float>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/refunds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        "refunds"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:12.000Z",
+                  "updatedAt": "2026-07-28T03:08:12.000Z",
+                  "uid": "35240-ed70af73-b48c-4121-9695-eae15742b097"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:12.000Z",
+              "updatedAt": "2026-07-28T03:08:12.000Z",
+              "uid": "35240-1da45a44-0773-4258-9960-db119b94ca45"
+            }
+          ],
+          "id": "0327e68a-ad8d-4081-9d2e-1cfb2c49ff4d",
+          "createdAt": "2026-07-28T03:08:12.000Z",
+          "updatedAt": "2026-07-28T03:08:12.000Z",
+          "uid": "35240-0327e68a-ad8d-4081-9d2e-1cfb2c49ff4d"
+        }
+      ],
+      "id": "3e4c5a75-f239-4705-b05d-369b882d08ec",
+      "createdAt": "2026-07-28T03:08:12.000Z",
+      "updatedAt": "2026-07-28T03:08:12.000Z",
+      "uid": "35240-3e4c5a75-f239-4705-b05d-369b882d08ec"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.taxjar.com/v2"
+    }
+  ]
+}

@@ -1,0 +1,459 @@
+{
+  "info": {
+    "_postman_id": "6145f4d8-16fa-49a0-bf1e-3223dd188ed0",
+    "name": "TaxJar Sales Tax Categories Validations API",
+    "description": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:13.000Z",
+    "updatedAt": "2026-07-28T03:08:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6145f4d8-16fa-49a0-bf1e-3223dd188ed0"
+  },
+  "item": [
+    {
+      "name": "addresses",
+      "item": [
+        {
+          "name": "validate",
+          "item": [
+            {
+              "name": "Validate an address",
+              "id": "f55aae39-87fb-40ba-b351-027a7e80c02d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"state\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/addresses/validate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "addresses",
+                    "validate"
+                  ]
+                },
+                "description": "Validates a US address and returns standardized address components. Returns up to 4 suggestions for an incomplete address."
+              },
+              "response": [
+                {
+                  "id": "c6b3d03c-2b28-4d65-9d66-6761a16371af",
+                  "name": "Validated address suggestions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"country\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"state\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/addresses/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "addresses",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"addresses\": [\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"street\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"street\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:08:13.000Z",
+                  "updatedAt": "2026-07-28T03:08:13.000Z",
+                  "uid": "35240-c6b3d03c-2b28-4d65-9d66-6761a16371af"
+                },
+                {
+                  "id": "ede233c0-6ca8-49c5-bceb-4ce4b084099b",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"country\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"state\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/addresses/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "addresses",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:13.000Z",
+                  "updatedAt": "2026-07-28T03:08:13.000Z",
+                  "uid": "35240-ede233c0-6ca8-49c5-bceb-4ce4b084099b"
+                },
+                {
+                  "id": "6306c592-5754-4930-bbcf-b830741ae05f",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"country\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"state\": \"<string>\",\n  \"city\": \"<string>\",\n  \"street\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/addresses/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "addresses",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:13.000Z",
+                  "updatedAt": "2026-07-28T03:08:13.000Z",
+                  "uid": "35240-6306c592-5754-4930-bbcf-b830741ae05f"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:13.000Z",
+              "updatedAt": "2026-07-28T03:08:13.000Z",
+              "uid": "35240-f55aae39-87fb-40ba-b351-027a7e80c02d"
+            }
+          ],
+          "id": "9ce28f76-6a14-4666-a393-0a14c9d94b50",
+          "createdAt": "2026-07-28T03:08:13.000Z",
+          "updatedAt": "2026-07-28T03:08:13.000Z",
+          "uid": "35240-9ce28f76-6a14-4666-a393-0a14c9d94b50"
+        }
+      ],
+      "id": "caed0551-05bd-473a-9aec-896bc1d91a80",
+      "createdAt": "2026-07-28T03:08:13.000Z",
+      "updatedAt": "2026-07-28T03:08:13.000Z",
+      "uid": "35240-caed0551-05bd-473a-9aec-896bc1d91a80"
+    },
+    {
+      "name": "validation",
+      "item": [
+        {
+          "name": "Validate a VAT number",
+          "id": "7fdcf3bd-fcb2-4f88-be82-3de98e410520",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/validation?vat=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "validation"
+              ],
+              "query": [
+                {
+                  "description": "(Required) VAT number to validate (e.g. FR40303265045)",
+                  "key": "vat",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Validates a VAT identification number using the VIES service and returns validity status along with registered business information."
+          },
+          "response": [
+            {
+              "id": "d0c5af89-7a44-4cfa-9974-6e51df057610",
+              "name": "VAT validation result",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/validation?vat=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "validation"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) VAT number to validate (e.g. FR40303265045)",
+                      "key": "vat",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"validation\": {\n    \"valid\": \"<boolean>\",\n    \"exists\": \"<boolean>\",\n    \"vies_available\": \"<boolean>\",\n    \"vies_response\": {\n      \"vat_number\": \"<string>\",\n      \"request_date\": \"<string>\",\n      \"valid\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T03:08:13.000Z",
+              "updatedAt": "2026-07-28T03:08:13.000Z",
+              "uid": "35240-d0c5af89-7a44-4cfa-9974-6e51df057610"
+            },
+            {
+              "id": "ce32cd36-2dbf-49cf-9536-3a942a6a1483",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/validation?vat=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "validation"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) VAT number to validate (e.g. FR40303265045)",
+                      "key": "vat",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:08:13.000Z",
+              "updatedAt": "2026-07-28T03:08:13.000Z",
+              "uid": "35240-ce32cd36-2dbf-49cf-9536-3a942a6a1483"
+            },
+            {
+              "id": "016a3b11-2de5-4217-9a84-c3b50ebda8a3",
+              "name": "Unauthorized - invalid or missing API token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/validation?vat=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "validation"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) VAT number to validate (e.g. FR40303265045)",
+                      "key": "vat",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:08:13.000Z",
+              "updatedAt": "2026-07-28T03:08:13.000Z",
+              "uid": "35240-016a3b11-2de5-4217-9a84-c3b50ebda8a3"
+            }
+          ],
+          "createdAt": "2026-07-28T03:08:13.000Z",
+          "updatedAt": "2026-07-28T03:08:13.000Z",
+          "uid": "35240-7fdcf3bd-fcb2-4f88-be82-3de98e410520"
+        }
+      ],
+      "id": "2ed5ea01-ec17-4eae-88f9-86d345593d1a",
+      "createdAt": "2026-07-28T03:08:13.000Z",
+      "updatedAt": "2026-07-28T03:08:13.000Z",
+      "uid": "35240-2ed5ea01-ec17-4eae-88f9-86d345593d1a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.taxjar.com/v2"
+    }
+  ]
+}

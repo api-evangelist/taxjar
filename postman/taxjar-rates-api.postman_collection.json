@@ -1,0 +1,320 @@
+{
+  "info": {
+    "_postman_id": "b5adf8b9-4fa8-4689-8ef0-7074b1a0ebb7",
+    "name": "TaxJar Sales Tax Categories Rates API",
+    "description": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:08.000Z",
+    "updatedAt": "2026-07-28T03:08:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b5adf8b9-4fa8-4689-8ef0-7074b1a0ebb7"
+  },
+  "item": [
+    {
+      "name": "rates",
+      "item": [
+        {
+          "name": "{zip}",
+          "item": [
+            {
+              "name": "Show tax rates for a location",
+              "id": "014dcfbf-42fb-4714-9333-956de2e5193d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/rates/:zip?country=<string>&state=<string>&city=<string>&street=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "rates",
+                    ":zip"
+                  ],
+                  "query": [
+                    {
+                      "description": "Two-letter ISO country code",
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Two-letter state/province code",
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "City name",
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Street address",
+                      "key": "street",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "521ed797-689a-4e7e-a046-c487cc423f70",
+                      "key": "zip",
+                      "value": "<string>",
+                      "description": "(Required) Postal code for the location"
+                    }
+                  ]
+                },
+                "description": "Returns the sales tax rates for a given location by postal code. Supports US and international locations. For US lookups, returns state, county, city, and special district rates."
+              },
+              "response": [
+                {
+                  "id": "c6c43a46-0951-42f7-b431-7f3979c470a6",
+                  "name": "Tax rates for the location",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rates/:zip?country=<string>&state=<string>&city=<string>&street=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rates",
+                        ":zip"
+                      ],
+                      "query": [
+                        {
+                          "description": "Two-letter ISO country code",
+                          "key": "country",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Two-letter state/province code",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "City name",
+                          "key": "city",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Street address",
+                          "key": "street",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "zip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"rate\": {\n    \"zip\": \"<string>\",\n    \"state\": \"<string>\",\n    \"state_rate\": \"<float>\",\n    \"county\": \"<string>\",\n    \"county_rate\": \"<float>\",\n    \"city\": \"<string>\",\n    \"city_rate\": \"<float>\",\n    \"combined_district_rate\": \"<float>\",\n    \"combined_rate\": \"<float>\",\n    \"freight_taxable\": \"<boolean>\",\n    \"country\": \"<string>\",\n    \"name\": \"<string>\",\n    \"country_rate\": \"<float>\",\n    \"standard_rate\": \"<float>\",\n    \"reduced_rate\": \"<float>\",\n    \"super_reduced_rate\": \"<float>\",\n    \"parking_rate\": \"<float>\",\n    \"distance_sale_threshold\": \"<float>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:08:08.000Z",
+                  "updatedAt": "2026-07-28T03:08:08.000Z",
+                  "uid": "35240-c6c43a46-0951-42f7-b431-7f3979c470a6"
+                },
+                {
+                  "id": "ed88b366-274f-4f56-80a4-e90656d9b363",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rates/:zip?country=<string>&state=<string>&city=<string>&street=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rates",
+                        ":zip"
+                      ],
+                      "query": [
+                        {
+                          "description": "Two-letter ISO country code",
+                          "key": "country",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Two-letter state/province code",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "City name",
+                          "key": "city",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Street address",
+                          "key": "street",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "zip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:08.000Z",
+                  "updatedAt": "2026-07-28T03:08:08.000Z",
+                  "uid": "35240-ed88b366-274f-4f56-80a4-e90656d9b363"
+                },
+                {
+                  "id": "24adf2b0-8353-4026-bcaa-87a5315a63fa",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/rates/:zip?country=<string>&state=<string>&city=<string>&street=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "rates",
+                        ":zip"
+                      ],
+                      "query": [
+                        {
+                          "description": "Two-letter ISO country code",
+                          "key": "country",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Two-letter state/province code",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "City name",
+                          "key": "city",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Street address",
+                          "key": "street",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "zip"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:08:08.000Z",
+                  "updatedAt": "2026-07-28T03:08:08.000Z",
+                  "uid": "35240-24adf2b0-8353-4026-bcaa-87a5315a63fa"
+                }
+              ],
+              "createdAt": "2026-07-28T03:08:08.000Z",
+              "updatedAt": "2026-07-28T03:08:08.000Z",
+              "uid": "35240-014dcfbf-42fb-4714-9333-956de2e5193d"
+            }
+          ],
+          "id": "f4c847dd-b0e4-4696-b2fc-90b3c17aff02",
+          "createdAt": "2026-07-28T03:08:08.000Z",
+          "updatedAt": "2026-07-28T03:08:08.000Z",
+          "uid": "35240-f4c847dd-b0e4-4696-b2fc-90b3c17aff02"
+        }
+      ],
+      "id": "3c6be17b-cffc-4100-8fb3-78c28f0c821f",
+      "createdAt": "2026-07-28T03:08:08.000Z",
+      "updatedAt": "2026-07-28T03:08:08.000Z",
+      "uid": "35240-3c6be17b-cffc-4100-8fb3-78c28f0c821f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.taxjar.com/v2"
+    }
+  ]
+}
