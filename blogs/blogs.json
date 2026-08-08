@@ -54,12 +54,9 @@
     },
     {
       "source": "https://www.linkedin.com/company/taxjar",
-      "feed_url": "https://www.linkedin.com/company/taxjar",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "error": "HTTPError"
     }
   ],
   "post_count": 6,
-  "fetched": "2026-08-01T15:49:00Z"
+  "fetched": "2026-08-06T14:08:46Z"
 }
