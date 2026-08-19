@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "71aba6de-5f82-4aea-97f6-f2dc26087f37",
+      "name": "Summary Rates",
+      "description": {
+        "content": "Summarized sales tax rates by region",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9620e4db-b541-47f0-ba0e-ab610f255a9a",
+          "name": "Summarize tax rates for all regions",
+          "request": {
+            "name": "Summarize tax rates for all regions",
+            "description": {
+              "content": "Returns a summarized list of expected sales tax rates for a given region. This is useful for showing customers an estimated tax rate before checkout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "summary_rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16d9267c-03a2-4a31-adfb-b3803e3636f6",
+              "name": "Summary rates by region",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "summary_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"summary_rates\": [\n    {\n      \"country_code\": \"US\",\n      \"country\": \"United States\",\n      \"region_code\": \"CA\",\n      \"region\": \"California\",\n      \"minimum_rate\": {\n        \"label\": \"State Tax\",\n        \"rate\": 0.065\n      },\n      \"average_rate\": {\n        \"label\": \"Tax\",\n        \"rate\": 0.0827\n      }\n    },\n    {\n      \"country_code\": \"US\",\n      \"country\": \"United States\",\n      \"region_code\": \"CA\",\n      \"region\": \"California\",\n      \"minimum_rate\": {\n        \"label\": \"State Tax\",\n        \"rate\": 0.065\n      },\n      \"average_rate\": {\n        \"label\": \"Tax\",\n        \"rate\": 0.0827\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0896fd04-41f0-4de7-886f-ea4a04f6f1eb",
+              "name": "Unauthorized - invalid or missing API token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "summary_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"status\": 4529\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.taxjar.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f8b3aab9-7216-4b37-8aa4-08380768769e",
+    "name": "TaxJar Sales Tax Categories Summary Rates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.\n\nContact Support:\n Name: TaxJar Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

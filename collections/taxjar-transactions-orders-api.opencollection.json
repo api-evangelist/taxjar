@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TaxJar Sales Tax Categories Transactions - Orders API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions - Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List order transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.taxjar.com/v2/transactions/orders",
+            "params": [
+              {
+                "name": "transaction_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders by exact transaction date (YYYY-MM-DD)"
+              },
+              {
+                "name": "from_transaction_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date filter (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_transaction_date",
+                "value": "",
+                "type": "query",
+                "description": "End date filter (YYYY-MM-DD)"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Filter by provider (e.g. api, shopify, woocommerce)"
+              }
+            ]
+          },
+          "docs": "Returns a list of order transaction IDs for the authenticated account. Supports filtering by date range and provider."
+        },
+        {
+          "info": {
+            "name": "Create an order transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.taxjar.com/v2/transactions/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new order transaction for sales tax reporting and AutoFile purposes. Use this to record completed sales."
+        },
+        {
+          "info": {
+            "name": "Show an order transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.taxjar.com/v2/transactions/orders/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the order transaction"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Provider for the transaction (e.g. api, shopify)"
+              }
+            ]
+          },
+          "docs": "Returns a single order transaction by transaction ID."
+        },
+        {
+          "info": {
+            "name": "Update an order transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.taxjar.com/v2/transactions/orders/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the order transaction"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing order transaction by transaction ID."
+        },
+        {
+          "info": {
+            "name": "Delete an order transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.taxjar.com/v2/transactions/orders/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the order transaction"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Provider for the transaction"
+              }
+            ]
+          },
+          "docs": "Deletes an existing order transaction by transaction ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

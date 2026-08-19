@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TaxJar Sales Tax Categories Validations API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Validations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate an address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.taxjar.com/v2/addresses/validate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validates a US address and returns standardized address components. Returns up to 4 suggestions for an incomplete address."
+        },
+        {
+          "info": {
+            "name": "Validate a VAT number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.taxjar.com/v2/validation",
+            "params": [
+              {
+                "name": "vat",
+                "value": "FR40303265045",
+                "type": "query",
+                "description": "VAT number to validate (e.g. FR40303265045)"
+              }
+            ]
+          },
+          "docs": "Validates a VAT identification number using the VIES service and returns validity status along with registered business information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

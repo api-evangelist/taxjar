@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TaxJar Sales Tax Categories API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tax categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.taxjar.com/v2/categories"
+          },
+          "docs": "Returns all available product tax categories with associated product tax codes that can be used to identify products subject to special tax rates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

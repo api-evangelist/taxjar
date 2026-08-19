@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TaxJar Sales Tax Categories Taxes API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Taxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate sales tax for an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.taxjar.com/v2/taxes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculates the sales tax for a given order based on origin and destination addresses, line items, and other order attributes. Returns the amount of sales tax to collect along with a breakdown by jurisdiction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

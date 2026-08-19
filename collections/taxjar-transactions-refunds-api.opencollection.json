@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TaxJar Sales Tax Categories Transactions - Refunds API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions - Refunds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List refund transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.taxjar.com/v2/transactions/refunds",
+            "params": [
+              {
+                "name": "transaction_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter refunds by exact transaction date (YYYY-MM-DD)"
+              },
+              {
+                "name": "from_transaction_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date filter (YYYY-MM-DD)"
+              },
+              {
+                "name": "to_transaction_date",
+                "value": "",
+                "type": "query",
+                "description": "End date filter (YYYY-MM-DD)"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Filter by provider"
+              }
+            ]
+          },
+          "docs": "Returns a list of refund transaction IDs for the authenticated account. Supports filtering by date range and provider."
+        },
+        {
+          "info": {
+            "name": "Create a refund transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.taxjar.com/v2/transactions/refunds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new refund transaction linked to an order transaction."
+        },
+        {
+          "info": {
+            "name": "Show a refund transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.taxjar.com/v2/transactions/refunds/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the refund transaction"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Provider for the transaction"
+              }
+            ]
+          },
+          "docs": "Returns a single refund transaction by transaction ID."
+        },
+        {
+          "info": {
+            "name": "Update a refund transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.taxjar.com/v2/transactions/refunds/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the refund transaction"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing refund transaction by transaction ID."
+        },
+        {
+          "info": {
+            "name": "Delete a refund transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.taxjar.com/v2/transactions/refunds/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the refund transaction"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Provider for the transaction"
+              }
+            ]
+          },
+          "docs": "Deletes an existing refund transaction by transaction ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

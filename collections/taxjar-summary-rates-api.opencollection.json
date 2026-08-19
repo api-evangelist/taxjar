@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TaxJar Sales Tax Categories Summary Rates API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Summary Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Summarize tax rates for all regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.taxjar.com/v2/summary_rates"
+          },
+          "docs": "Returns a summarized list of expected sales tax rates for a given region. This is useful for showing customers an estimated tax rate before checkout."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TaxJar Sales Tax Categories Rates API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show tax rates for a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.taxjar.com/v2/rates/:zip",
+            "params": [
+              {
+                "name": "zip",
+                "value": "90002",
+                "type": "path",
+                "description": "Postal code for the location"
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "Two-letter ISO country code"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter state/province code"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "City name"
+              },
+              {
+                "name": "street",
+                "value": "",
+                "type": "query",
+                "description": "Street address"
+              }
+            ]
+          },
+          "docs": "Returns the sales tax rates for a given location by postal code. Supports US and international locations. For US lookups, returns state, county, city, and special district rates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
