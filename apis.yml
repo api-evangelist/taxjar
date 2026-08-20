@@ -32,6 +32,14 @@ tags:
   - Tax Calculation
   - Tax Automation
   - Stripe
+  - Fintech
+tags_raw:
+  - Sales Tax
+  - Tax Compliance
+  - E-Commerce
+  - Tax Calculation
+  - Tax Automation
+  - Stripe
   - FinTech
 url: https://raw.githubusercontent.com/api-evangelist/taxjar/refs/heads/main/apis.yml
 created: '2026-06-12'
