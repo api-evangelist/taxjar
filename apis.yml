@@ -11,6 +11,18 @@ description: >-
   manual effort. Official client libraries are available for Ruby, Python, PHP,
   Node.js, C#/.NET, Java, and Go.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
