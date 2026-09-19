@@ -165,6 +165,8 @@ apis:
   humanURL: https://developers.taxjar.com/api/reference/
   baseURL: https://api.taxjar.com/v2/
   tags:
+  - Tax
+  tags_raw:
   - Taxes
   properties:
   - type: OpenAPI
