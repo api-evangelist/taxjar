@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TaxJar Sales Tax Categories Validations API
+  title: TaxJar Sales Tax Validations API
   description: REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.
   version: '2.0'
   contact:
@@ -79,24 +79,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Address:
+    Error:
       type: object
       properties:
-        country:
+        error:
           type: string
-          example: US
-        state:
+          description: Error type
+        detail:
           type: string
-          example: CA
-        zip:
-          type: string
-          example: 92093-0002
-        city:
-          type: string
-          example: La Jolla
-        street:
-          type: string
-          example: 9500 Gilman Dr
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
     AddressRequest:
       type: object
       required:
@@ -123,6 +117,24 @@ components:
           type: string
           description: Street address
           example: 9500 Gilman Drive
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+          example: US
+        state:
+          type: string
+          example: CA
+        zip:
+          type: string
+          example: 92093-0002
+        city:
+          type: string
+          example: La Jolla
+        street:
+          type: string
+          example: 9500 Gilman Dr
     Validation:
       type: object
       properties:
@@ -158,27 +170,15 @@ components:
               example: '11 RUE AMPERE
 
                 26600 PONT DE L ISERE'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
   responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
+    BadRequest:
+      description: Bad request - invalid parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
       content:
         application/json:
           schema:

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TaxJar Sales Tax Categories Transactions - Refunds API
+  title: TaxJar Sales Tax Transactions - Refunds API
   description: REST API for real-time sales tax calculation, rooftop-level rate lookups, tax category listing, transaction management (orders and refunds), customer exemption management, nexus region tracking, address validation, and VAT validation. Supports token-based authentication via Authorization header. TaxJar is a Stripe company providing sub-20ms response times and 99.999% historical uptime.
   version: '2.0'
   contact:
@@ -194,28 +194,18 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    LineItem:
+    Error:
       type: object
       properties:
-        id:
+        error:
           type: string
-        quantity:
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
           type: integer
-        product_identifier:
-          type: string
-        description:
-          type: string
-        product_tax_code:
-          type: string
-        unit_price:
-          type: number
-          format: float
-        discount:
-          type: number
-          format: float
-        sales_tax:
-          type: number
-          format: float
+          description: HTTP status code
     LineItemRequest:
       type: object
       properties:
@@ -248,6 +238,80 @@ components:
           type: number
           format: float
           description: Sales tax collected for this line item
+    Refund:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          example: '321'
+        user_id:
+          type: integer
+        transaction_date:
+          type: string
+          example: '2015-05-14T00:00:00Z'
+        transaction_reference_id:
+          type: string
+          example: '123'
+        provider:
+          type: string
+          example: api
+        exemption_type:
+          type: string
+        from_country:
+          type: string
+        from_zip:
+          type: string
+        from_state:
+          type: string
+        from_city:
+          type: string
+        from_street:
+          type: string
+        to_country:
+          type: string
+        to_zip:
+          type: string
+        to_state:
+          type: string
+        to_city:
+          type: string
+        to_street:
+          type: string
+        amount:
+          type: number
+          format: float
+        shipping:
+          type: number
+          format: float
+        sales_tax:
+          type: number
+          format: float
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+    LineItem:
+      type: object
+      properties:
+        id:
+          type: string
+        quantity:
+          type: integer
+        product_identifier:
+          type: string
+        description:
+          type: string
+        product_tax_code:
+          type: string
+        unit_price:
+          type: number
+          format: float
+        discount:
+          type: number
+          format: float
+        sales_tax:
+          type: number
+          format: float
     RefundRequest:
       type: object
       required:
@@ -325,79 +389,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItemRequest'
-    Refund:
-      type: object
-      properties:
-        transaction_id:
-          type: string
-          example: '321'
-        user_id:
-          type: integer
-        transaction_date:
-          type: string
-          example: '2015-05-14T00:00:00Z'
-        transaction_reference_id:
-          type: string
-          example: '123'
-        provider:
-          type: string
-          example: api
-        exemption_type:
-          type: string
-        from_country:
-          type: string
-        from_zip:
-          type: string
-        from_state:
-          type: string
-        from_city:
-          type: string
-        from_street:
-          type: string
-        to_country:
-          type: string
-        to_zip:
-          type: string
-        to_state:
-          type: string
-        to_city:
-          type: string
-        to_street:
-          type: string
-        amount:
-          type: number
-          format: float
-        shipping:
-          type: number
-          format: float
-        sales_tax:
-          type: number
-          format: float
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
   responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
+    UnprocessableEntity:
+      description: Unprocessable entity - validation error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: Unprocessable entity - validation error
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:
@@ -408,8 +408,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
       content:
         application/json:
           schema:
