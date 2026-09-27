@@ -160,29 +160,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
-    ExemptRegion:
-      type: object
-      properties:
-        country:
-          type: string
-          description: Two-letter ISO country code
-          example: US
-        state:
-          type: string
-          description: Two-letter state code
-          example: TX
     Customer:
       type: object
       properties:
@@ -263,7 +240,36 @@ components:
           description: Regions where the customer is exempt
           items:
             $ref: '#/components/schemas/ExemptRegion'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
+    ExemptRegion:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        state:
+          type: string
+          description: Two-letter state code
+          example: TX
   responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     UnprocessableEntity:
       description: Unprocessable entity - validation error
       content:
@@ -272,12 +278,6 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters
       content:
         application/json:
           schema:

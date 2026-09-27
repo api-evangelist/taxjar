@@ -79,18 +79,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
     AddressRequest:
       type: object
       required:
@@ -117,6 +105,18 @@ components:
           type: string
           description: Street address
           example: 9500 Gilman Drive
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
     Address:
       type: object
       properties:

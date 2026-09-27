@@ -194,6 +194,60 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    LineItemRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item
+        quantity:
+          type: integer
+          description: Quantity of the item
+          example: 1
+        product_identifier:
+          type: string
+          description: Product SKU or identifier
+        description:
+          type: string
+          description: Description of the product
+        product_tax_code:
+          type: string
+          description: Product tax code for category-specific rates
+        unit_price:
+          type: number
+          format: float
+          description: Unit price of the item
+          example: 15.0
+        discount:
+          type: number
+          format: float
+          description: Discount amount for this line item
+        sales_tax:
+          type: number
+          format: float
+          description: Sales tax collected for this line item
+    LineItem:
+      type: object
+      properties:
+        id:
+          type: string
+        quantity:
+          type: integer
+        product_identifier:
+          type: string
+        description:
+          type: string
+        product_tax_code:
+          type: string
+        unit_price:
+          type: number
+          format: float
+        discount:
+          type: number
+          format: float
+        sales_tax:
+          type: number
+          format: float
     Error:
       type: object
       properties:
@@ -294,38 +348,6 @@ components:
         customer_id:
           type: string
           description: Unique identifier of the customer
-    LineItemRequest:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the line item
-        quantity:
-          type: integer
-          description: Quantity of the item
-          example: 1
-        product_identifier:
-          type: string
-          description: Product SKU or identifier
-        description:
-          type: string
-          description: Description of the product
-        product_tax_code:
-          type: string
-          description: Product tax code for category-specific rates
-        unit_price:
-          type: number
-          format: float
-          description: Unit price of the item
-          example: 15.0
-        discount:
-          type: number
-          format: float
-          description: Discount amount for this line item
-        sales_tax:
-          type: number
-          format: float
-          description: Sales tax collected for this line item
     Order:
       type: object
       properties:
@@ -389,37 +411,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-    LineItem:
-      type: object
-      properties:
-        id:
-          type: string
-        quantity:
-          type: integer
-        product_identifier:
-          type: string
-        description:
-          type: string
-        product_tax_code:
-          type: string
-        unit_price:
-          type: number
-          format: float
-        discount:
-          type: number
-          format: float
-        sales_tax:
-          type: number
-          format: float
   responses:
-    UnprocessableEntity:
-      description: Unprocessable entity - validation error
+    BadRequest:
+      description: Bad request - invalid parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters
+    UnprocessableEntity:
+      description: Unprocessable entity - validation error
       content:
         application/json:
           schema:
