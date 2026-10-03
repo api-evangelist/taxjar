@@ -47,7 +47,140 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Tax:
+      type: object
+      properties:
+        order_total_amount:
+          type: number
+          format: float
+          description: Total order amount
+          example: 16.5
+        shipping:
+          type: number
+          format: float
+          description: Shipping amount
+          example: 1.5
+        taxable_amount:
+          type: number
+          format: float
+          description: Amount subject to tax
+          example: 15.0
+        amount_to_collect:
+          type: number
+          format: float
+          description: Total tax amount to collect
+          example: 1.35
+        rate:
+          type: number
+          format: float
+          description: Overall tax rate
+          example: 0.09
+        has_nexus:
+          type: boolean
+          description: Whether seller has nexus in the destination
+          example: true
+        freight_taxable:
+          type: boolean
+          description: Whether shipping is taxable
+          example: false
+        tax_source:
+          type: string
+          description: Tax sourcing rule applied (origin or destination)
+          example: destination
+        exemption_type:
+          type: string
+          description: Exemption type applied
+        jurisdictions:
+          $ref: '#/components/schemas/Jurisdictions'
+        breakdown:
+          $ref: '#/components/schemas/Breakdown'
+    TaxRequest:
+      type: object
+      required:
+      - to_country
+      - to_zip
+      - to_state
+      - amount
+      - shipping
+      properties:
+        from_country:
+          type: string
+          description: Two-letter ISO country code of origin
+          example: US
+        from_zip:
+          type: string
+          description: Postal code of origin
+          example: '94025'
+        from_state:
+          type: string
+          description: Two-letter state code of origin
+          example: CA
+        from_city:
+          type: string
+          description: City of origin
+          example: Menlo Park
+        from_street:
+          type: string
+          description: Street address of origin
+        to_country:
+          type: string
+          description: Two-letter ISO country code of destination
+          example: US
+        to_zip:
+          type: string
+          description: Postal code of destination
+          example: '90002'
+        to_state:
+          type: string
+          description: Two-letter state code of destination
+          example: CA
+        to_city:
+          type: string
+          description: City of destination
+          example: Los Angeles
+        to_street:
+          type: string
+          description: Street address of destination
+        amount:
+          type: number
+          format: float
+          description: Total amount of the order (excluding shipping)
+          example: 15.0
+        shipping:
+          type: number
+          format: float
+          description: Total shipping cost
+          example: 1.5
+        customer_id:
+          type: string
+          description: Unique identifier of the customer for exemption lookup
+        exemption_type:
+          type: string
+          description: Type of exemption (wholesale, government, other, non_exempt)
+          enum:
+          - wholesale
+          - government
+          - other
+          - non_exempt
+        line_items:
+          type: array
+          description: List of line items in the order
+          items:
+            $ref: '#/components/schemas/LineItemRequest'
     LineItemRequest:
       type: object
       properties:
@@ -213,139 +346,6 @@ components:
           type: string
           description: City name
           example: LOS ANGELES
-    Tax:
-      type: object
-      properties:
-        order_total_amount:
-          type: number
-          format: float
-          description: Total order amount
-          example: 16.5
-        shipping:
-          type: number
-          format: float
-          description: Shipping amount
-          example: 1.5
-        taxable_amount:
-          type: number
-          format: float
-          description: Amount subject to tax
-          example: 15.0
-        amount_to_collect:
-          type: number
-          format: float
-          description: Total tax amount to collect
-          example: 1.35
-        rate:
-          type: number
-          format: float
-          description: Overall tax rate
-          example: 0.09
-        has_nexus:
-          type: boolean
-          description: Whether seller has nexus in the destination
-          example: true
-        freight_taxable:
-          type: boolean
-          description: Whether shipping is taxable
-          example: false
-        tax_source:
-          type: string
-          description: Tax sourcing rule applied (origin or destination)
-          example: destination
-        exemption_type:
-          type: string
-          description: Exemption type applied
-        jurisdictions:
-          $ref: '#/components/schemas/Jurisdictions'
-        breakdown:
-          $ref: '#/components/schemas/Breakdown'
-    TaxRequest:
-      type: object
-      required:
-      - to_country
-      - to_zip
-      - to_state
-      - amount
-      - shipping
-      properties:
-        from_country:
-          type: string
-          description: Two-letter ISO country code of origin
-          example: US
-        from_zip:
-          type: string
-          description: Postal code of origin
-          example: '94025'
-        from_state:
-          type: string
-          description: Two-letter state code of origin
-          example: CA
-        from_city:
-          type: string
-          description: City of origin
-          example: Menlo Park
-        from_street:
-          type: string
-          description: Street address of origin
-        to_country:
-          type: string
-          description: Two-letter ISO country code of destination
-          example: US
-        to_zip:
-          type: string
-          description: Postal code of destination
-          example: '90002'
-        to_state:
-          type: string
-          description: Two-letter state code of destination
-          example: CA
-        to_city:
-          type: string
-          description: City of destination
-          example: Los Angeles
-        to_street:
-          type: string
-          description: Street address of destination
-        amount:
-          type: number
-          format: float
-          description: Total amount of the order (excluding shipping)
-          example: 15.0
-        shipping:
-          type: number
-          format: float
-          description: Total shipping cost
-          example: 1.5
-        customer_id:
-          type: string
-          description: Unique identifier of the customer for exemption lookup
-        exemption_type:
-          type: string
-          description: Type of exemption (wholesale, government, other, non_exempt)
-          enum:
-          - wholesale
-          - government
-          - other
-          - non_exempt
-        line_items:
-          type: array
-          description: List of line items in the order
-          items:
-            $ref: '#/components/schemas/LineItemRequest'
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

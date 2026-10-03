@@ -84,18 +84,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
     Rate:
       type: object
       properties:
@@ -174,6 +162,18 @@ components:
           type: number
           format: float
           description: Distance sale threshold (EU)
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
   securitySchemes:
     bearerAuth:
       type: http

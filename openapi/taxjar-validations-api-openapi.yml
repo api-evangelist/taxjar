@@ -78,63 +78,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    AddressRequest:
-      type: object
-      required:
-      - country
-      - zip
-      properties:
-        country:
-          type: string
-          description: Two-letter ISO country code
-          example: US
-        state:
-          type: string
-          description: Two-letter state code
-          example: CA
-        zip:
-          type: string
-          description: Postal code
-          example: '92093'
-        city:
-          type: string
-          description: City name
-          example: San Diego
-        street:
-          type: string
-          description: Street address
-          example: 9500 Gilman Drive
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
-    Address:
-      type: object
-      properties:
-        country:
-          type: string
-          example: US
-        state:
-          type: string
-          example: CA
-        zip:
-          type: string
-          example: 92093-0002
-        city:
-          type: string
-          example: La Jolla
-        street:
-          type: string
-          example: 9500 Gilman Dr
     Validation:
       type: object
       properties:
@@ -170,19 +127,62 @@ components:
               example: '11 RUE AMPERE
 
                 26600 PONT DE L ISERE'
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
+    AddressRequest:
+      type: object
+      required:
+      - country
+      - zip
+      properties:
+        country:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        state:
+          type: string
+          description: Two-letter state code
+          example: CA
+        zip:
+          type: string
+          description: Postal code
+          example: '92093'
+        city:
+          type: string
+          description: City name
+          example: San Diego
+        street:
+          type: string
+          description: Street address
+          example: 9500 Gilman Drive
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+          example: US
+        state:
+          type: string
+          example: CA
+        zip:
+          type: string
+          example: 92093-0002
+        city:
+          type: string
+          example: La Jolla
+        street:
+          type: string
+          example: 9500 Gilman Dr
   securitySchemes:
     bearerAuth:
       type: http

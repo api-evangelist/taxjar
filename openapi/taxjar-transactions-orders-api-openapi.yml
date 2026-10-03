@@ -193,6 +193,31 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Unprocessable entity - validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     LineItemRequest:
       type: object
@@ -226,40 +251,6 @@ components:
           type: number
           format: float
           description: Sales tax collected for this line item
-    LineItem:
-      type: object
-      properties:
-        id:
-          type: string
-        quantity:
-          type: integer
-        product_identifier:
-          type: string
-        description:
-          type: string
-        product_tax_code:
-          type: string
-        unit_price:
-          type: number
-          format: float
-        discount:
-          type: number
-          format: float
-        sales_tax:
-          type: number
-          format: float
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
     OrderRequest:
       type: object
       required:
@@ -348,6 +339,18 @@ components:
         customer_id:
           type: string
           description: Unique identifier of the customer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
     Order:
       type: object
       properties:
@@ -411,31 +414,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: Unprocessable entity - validation error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    LineItem:
+      type: object
+      properties:
+        id:
+          type: string
+        quantity:
+          type: integer
+        product_identifier:
+          type: string
+        description:
+          type: string
+        product_tax_code:
+          type: string
+        unit_price:
+          type: number
+          format: float
+        discount:
+          type: number
+          format: float
+        sales_tax:
+          type: number
+          format: float
   securitySchemes:
     bearerAuth:
       type: http
