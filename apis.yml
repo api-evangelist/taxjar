@@ -46,6 +46,7 @@ tags:
   - Tax Automation
   - Stripe
   - Fintech
+  - Tax
 tags_raw:
   - Sales Tax
   - Tax Compliance
@@ -54,6 +55,7 @@ tags_raw:
   - Tax Automation
   - Stripe
   - FinTech
+  - Tax
 url: https://raw.githubusercontent.com/api-evangelist/taxjar/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
@@ -242,6 +244,9 @@ apis:
   - type: JSONSchema
     url: json-schema/taxjar-tax-calculation-schema.json
 common:
+  - type: CapabilityMap
+    url: capabilities/taxjar-capability-edges.yml
+    name: TaxJar Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/taxjar/overview
   - type: AgenticAccess
@@ -289,3 +294,9 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-status: acquired
+x-acquired-by: stripe
+x-parent: stripe
+x-acquired-date: '2021-04'
+x-status-source: "https://www.taxjar.com/blog/taxjar-will-be-joining-stripe-to-help-build-the-worlds-tax-compliance-infrastructure"
+x-status-evidence: "Stripe acquired TaxJar in April 2021; TaxJar runs as a Stripe company and its API is live (roadmap#816)"
