@@ -78,20 +78,19 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
     Validation:
       type: object
       properties:
@@ -127,18 +126,24 @@ components:
               example: '11 RUE AMPERE
 
                 26600 PONT DE L ISERE'
-    Error:
+    Address:
       type: object
       properties:
-        error:
+        country:
           type: string
-          description: Error type
-        detail:
+          example: US
+        state:
           type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
+          example: CA
+        zip:
+          type: string
+          example: 92093-0002
+        city:
+          type: string
+          example: La Jolla
+        street:
+          type: string
+          example: 9500 Gilman Dr
     AddressRequest:
       type: object
       required:
@@ -165,24 +170,19 @@ components:
           type: string
           description: Street address
           example: 9500 Gilman Drive
-    Address:
-      type: object
-      properties:
-        country:
-          type: string
-          example: US
-        state:
-          type: string
-          example: CA
-        zip:
-          type: string
-          example: 92093-0002
-        city:
-          type: string
-          example: La Jolla
-        street:
-          type: string
-          example: 9500 Gilman Dr
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

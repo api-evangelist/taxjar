@@ -193,152 +193,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: Unprocessable entity - validation error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    LineItemRequest:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the line item
-        quantity:
-          type: integer
-          description: Quantity of the item
-          example: 1
-        product_identifier:
-          type: string
-          description: Product SKU or identifier
-        description:
-          type: string
-          description: Description of the product
-        product_tax_code:
-          type: string
-          description: Product tax code for category-specific rates
-        unit_price:
-          type: number
-          format: float
-          description: Unit price of the item
-          example: 15.0
-        discount:
-          type: number
-          format: float
-          description: Discount amount for this line item
-        sales_tax:
-          type: number
-          format: float
-          description: Sales tax collected for this line item
-    OrderRequest:
-      type: object
-      required:
-      - transaction_id
-      - transaction_date
-      - to_country
-      - to_zip
-      - to_state
-      - amount
-      - shipping
-      - sales_tax
-      properties:
-        transaction_id:
-          type: string
-          description: Unique identifier for this order transaction
-          example: '123'
-        transaction_date:
-          type: string
-          description: Date of the transaction (YYYY-MM-DD or ISO 8601)
-          example: 2015/05/14
-        provider:
-          type: string
-          description: Source of the transaction (api, shopify, woocommerce, etc.)
-          example: shopify
-        exemption_type:
-          type: string
-          description: Exemption type for this order
-          enum:
-          - wholesale
-          - government
-          - other
-          - non_exempt
-        from_country:
-          type: string
-          description: Two-letter ISO country code of origin
-          example: US
-        from_zip:
-          type: string
-          description: Postal code of origin
-        from_state:
-          type: string
-          description: Two-letter state code of origin
-        from_city:
-          type: string
-          description: City of origin
-        from_street:
-          type: string
-          description: Street address of origin
-        to_country:
-          type: string
-          description: Two-letter ISO country code of destination
-          example: US
-        to_zip:
-          type: string
-          description: Postal code of destination
-          example: '90002'
-        to_state:
-          type: string
-          description: Two-letter state code of destination
-          example: CA
-        to_city:
-          type: string
-          description: City of destination
-        to_street:
-          type: string
-          description: Street address of destination
-        amount:
-          type: number
-          format: float
-          description: Total amount of order (excluding shipping)
-          example: 16.5
-        shipping:
-          type: number
-          format: float
-          description: Total shipping cost
-          example: 1.5
-        sales_tax:
-          type: number
-          format: float
-          description: Total sales tax collected
-          example: 0.95
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItemRequest'
-        customer_id:
-          type: string
-          description: Unique identifier of the customer
     Error:
       type: object
       properties:
@@ -436,6 +291,151 @@ components:
         sales_tax:
           type: number
           format: float
+    OrderRequest:
+      type: object
+      required:
+      - transaction_id
+      - transaction_date
+      - to_country
+      - to_zip
+      - to_state
+      - amount
+      - shipping
+      - sales_tax
+      properties:
+        transaction_id:
+          type: string
+          description: Unique identifier for this order transaction
+          example: '123'
+        transaction_date:
+          type: string
+          description: Date of the transaction (YYYY-MM-DD or ISO 8601)
+          example: 2015/05/14
+        provider:
+          type: string
+          description: Source of the transaction (api, shopify, woocommerce, etc.)
+          example: shopify
+        exemption_type:
+          type: string
+          description: Exemption type for this order
+          enum:
+          - wholesale
+          - government
+          - other
+          - non_exempt
+        from_country:
+          type: string
+          description: Two-letter ISO country code of origin
+          example: US
+        from_zip:
+          type: string
+          description: Postal code of origin
+        from_state:
+          type: string
+          description: Two-letter state code of origin
+        from_city:
+          type: string
+          description: City of origin
+        from_street:
+          type: string
+          description: Street address of origin
+        to_country:
+          type: string
+          description: Two-letter ISO country code of destination
+          example: US
+        to_zip:
+          type: string
+          description: Postal code of destination
+          example: '90002'
+        to_state:
+          type: string
+          description: Two-letter state code of destination
+          example: CA
+        to_city:
+          type: string
+          description: City of destination
+        to_street:
+          type: string
+          description: Street address of destination
+        amount:
+          type: number
+          format: float
+          description: Total amount of order (excluding shipping)
+          example: 16.5
+        shipping:
+          type: number
+          format: float
+          description: Total shipping cost
+          example: 1.5
+        sales_tax:
+          type: number
+          format: float
+          description: Total sales tax collected
+          example: 0.95
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemRequest'
+        customer_id:
+          type: string
+          description: Unique identifier of the customer
+    LineItemRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item
+        quantity:
+          type: integer
+          description: Quantity of the item
+          example: 1
+        product_identifier:
+          type: string
+          description: Product SKU or identifier
+        description:
+          type: string
+          description: Description of the product
+        product_tax_code:
+          type: string
+          description: Product tax code for category-specific rates
+        unit_price:
+          type: number
+          format: float
+          description: Unit price of the item
+          example: 15.0
+        discount:
+          type: number
+          format: float
+          description: Discount amount for this line item
+        sales_tax:
+          type: number
+          format: float
+          description: Sales tax collected for this line item
+  responses:
+    UnprocessableEntity:
+      description: Unprocessable entity - validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

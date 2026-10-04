@@ -47,67 +47,121 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Tax:
+    Error:
       type: object
       properties:
-        order_total_amount:
-          type: number
-          format: float
-          description: Total order amount
-          example: 16.5
-        shipping:
-          type: number
-          format: float
-          description: Shipping amount
-          example: 1.5
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
+    Breakdown:
+      type: object
+      properties:
         taxable_amount:
           type: number
           format: float
-          description: Amount subject to tax
-          example: 15.0
-        amount_to_collect:
+        tax_collectable:
           type: number
           format: float
-          description: Total tax amount to collect
-          example: 1.35
-        rate:
+        combined_tax_rate:
           type: number
           format: float
-          description: Overall tax rate
-          example: 0.09
-        has_nexus:
-          type: boolean
-          description: Whether seller has nexus in the destination
-          example: true
-        freight_taxable:
-          type: boolean
-          description: Whether shipping is taxable
-          example: false
-        tax_source:
+        state_taxable_amount:
+          type: number
+          format: float
+        state_tax_rate:
+          type: number
+          format: float
+        state_tax_collectable:
+          type: number
+          format: float
+        county_taxable_amount:
+          type: number
+          format: float
+        county_tax_rate:
+          type: number
+          format: float
+        county_tax_collectable:
+          type: number
+          format: float
+        city_taxable_amount:
+          type: number
+          format: float
+        city_tax_rate:
+          type: number
+          format: float
+        city_tax_collectable:
+          type: number
+          format: float
+        special_district_taxable_amount:
+          type: number
+          format: float
+        special_tax_rate:
+          type: number
+          format: float
+        special_district_tax_collectable:
+          type: number
+          format: float
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BreakdownLineItem'
+    BreakdownLineItem:
+      type: object
+      properties:
+        id:
           type: string
-          description: Tax sourcing rule applied (origin or destination)
-          example: destination
-        exemption_type:
-          type: string
-          description: Exemption type applied
-        jurisdictions:
-          $ref: '#/components/schemas/Jurisdictions'
-        breakdown:
-          $ref: '#/components/schemas/Breakdown'
+        taxable_amount:
+          type: number
+          format: float
+        tax_collectable:
+          type: number
+          format: float
+        combined_tax_rate:
+          type: number
+          format: float
+        state_taxable_amount:
+          type: number
+          format: float
+        state_sales_tax_rate:
+          type: number
+          format: float
+        state_amount:
+          type: number
+          format: float
+        county_taxable_amount:
+          type: number
+          format: float
+        county_tax_rate:
+          type: number
+          format: float
+        county_amount:
+          type: number
+          format: float
+        city_taxable_amount:
+          type: number
+          format: float
+        city_tax_rate:
+          type: number
+          format: float
+        city_amount:
+          type: number
+          format: float
+        special_district_taxable_amount:
+          type: number
+          format: float
+        special_tax_rate:
+          type: number
+          format: float
+        special_district_amount:
+          type: number
+          format: float
     TaxRequest:
       type: object
       required:
@@ -213,120 +267,6 @@ components:
           type: number
           format: float
           description: Sales tax collected for this line item
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
-    BreakdownLineItem:
-      type: object
-      properties:
-        id:
-          type: string
-        taxable_amount:
-          type: number
-          format: float
-        tax_collectable:
-          type: number
-          format: float
-        combined_tax_rate:
-          type: number
-          format: float
-        state_taxable_amount:
-          type: number
-          format: float
-        state_sales_tax_rate:
-          type: number
-          format: float
-        state_amount:
-          type: number
-          format: float
-        county_taxable_amount:
-          type: number
-          format: float
-        county_tax_rate:
-          type: number
-          format: float
-        county_amount:
-          type: number
-          format: float
-        city_taxable_amount:
-          type: number
-          format: float
-        city_tax_rate:
-          type: number
-          format: float
-        city_amount:
-          type: number
-          format: float
-        special_district_taxable_amount:
-          type: number
-          format: float
-        special_tax_rate:
-          type: number
-          format: float
-        special_district_amount:
-          type: number
-          format: float
-    Breakdown:
-      type: object
-      properties:
-        taxable_amount:
-          type: number
-          format: float
-        tax_collectable:
-          type: number
-          format: float
-        combined_tax_rate:
-          type: number
-          format: float
-        state_taxable_amount:
-          type: number
-          format: float
-        state_tax_rate:
-          type: number
-          format: float
-        state_tax_collectable:
-          type: number
-          format: float
-        county_taxable_amount:
-          type: number
-          format: float
-        county_tax_rate:
-          type: number
-          format: float
-        county_tax_collectable:
-          type: number
-          format: float
-        city_taxable_amount:
-          type: number
-          format: float
-        city_tax_rate:
-          type: number
-          format: float
-        city_tax_collectable:
-          type: number
-          format: float
-        special_district_taxable_amount:
-          type: number
-          format: float
-        special_tax_rate:
-          type: number
-          format: float
-        special_district_tax_collectable:
-          type: number
-          format: float
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/BreakdownLineItem'
     Jurisdictions:
       type: object
       properties:
@@ -346,6 +286,66 @@ components:
           type: string
           description: City name
           example: LOS ANGELES
+    Tax:
+      type: object
+      properties:
+        order_total_amount:
+          type: number
+          format: float
+          description: Total order amount
+          example: 16.5
+        shipping:
+          type: number
+          format: float
+          description: Shipping amount
+          example: 1.5
+        taxable_amount:
+          type: number
+          format: float
+          description: Amount subject to tax
+          example: 15.0
+        amount_to_collect:
+          type: number
+          format: float
+          description: Total tax amount to collect
+          example: 1.35
+        rate:
+          type: number
+          format: float
+          description: Overall tax rate
+          example: 0.09
+        has_nexus:
+          type: boolean
+          description: Whether seller has nexus in the destination
+          example: true
+        freight_taxable:
+          type: boolean
+          description: Whether shipping is taxable
+          example: false
+        tax_source:
+          type: string
+          description: Tax sourcing rule applied (origin or destination)
+          example: destination
+        exemption_type:
+          type: string
+          description: Exemption type applied
+        jurisdictions:
+          $ref: '#/components/schemas/Jurisdictions'
+        breakdown:
+          $ref: '#/components/schemas/Breakdown'
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

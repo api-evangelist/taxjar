@@ -193,64 +193,71 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: Unprocessable entity - validation error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    LineItemRequest:
+    Error:
       type: object
       properties:
-        id:
+        error:
           type: string
-          description: Unique identifier for the line item
-        quantity:
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
           type: integer
-          description: Quantity of the item
-          example: 1
-        product_identifier:
+          description: HTTP status code
+    Refund:
+      type: object
+      properties:
+        transaction_id:
           type: string
-          description: Product SKU or identifier
-        description:
+          example: '321'
+        user_id:
+          type: integer
+        transaction_date:
           type: string
-          description: Description of the product
-        product_tax_code:
+          example: '2015-05-14T00:00:00Z'
+        transaction_reference_id:
           type: string
-          description: Product tax code for category-specific rates
-        unit_price:
+          example: '123'
+        provider:
+          type: string
+          example: api
+        exemption_type:
+          type: string
+        from_country:
+          type: string
+        from_zip:
+          type: string
+        from_state:
+          type: string
+        from_city:
+          type: string
+        from_street:
+          type: string
+        to_country:
+          type: string
+        to_zip:
+          type: string
+        to_state:
+          type: string
+        to_city:
+          type: string
+        to_street:
+          type: string
+        amount:
           type: number
           format: float
-          description: Unit price of the item
-          example: 15.0
-        discount:
+        shipping:
           type: number
           format: float
-          description: Discount amount for this line item
         sales_tax:
           type: number
           format: float
-          description: Sales tax collected for this line item
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
     RefundRequest:
       type: object
       required:
@@ -328,18 +335,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItemRequest'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
     LineItem:
       type: object
       properties:
@@ -362,58 +357,63 @@ components:
         sales_tax:
           type: number
           format: float
-    Refund:
+    LineItemRequest:
       type: object
       properties:
-        transaction_id:
+        id:
           type: string
-          example: '321'
-        user_id:
+          description: Unique identifier for the line item
+        quantity:
           type: integer
-        transaction_date:
+          description: Quantity of the item
+          example: 1
+        product_identifier:
           type: string
-          example: '2015-05-14T00:00:00Z'
-        transaction_reference_id:
+          description: Product SKU or identifier
+        description:
           type: string
-          example: '123'
-        provider:
+          description: Description of the product
+        product_tax_code:
           type: string
-          example: api
-        exemption_type:
-          type: string
-        from_country:
-          type: string
-        from_zip:
-          type: string
-        from_state:
-          type: string
-        from_city:
-          type: string
-        from_street:
-          type: string
-        to_country:
-          type: string
-        to_zip:
-          type: string
-        to_state:
-          type: string
-        to_city:
-          type: string
-        to_street:
-          type: string
-        amount:
+          description: Product tax code for category-specific rates
+        unit_price:
           type: number
           format: float
-        shipping:
+          description: Unit price of the item
+          example: 15.0
+        discount:
           type: number
           format: float
+          description: Discount amount for this line item
         sales_tax:
           type: number
           format: float
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
+          description: Sales tax collected for this line item
+  responses:
+    UnprocessableEntity:
+      description: Unprocessable entity - validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
