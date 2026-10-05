@@ -1,0 +1,82 @@
+slug: taxjar
+provider: TaxJar
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Taxes
+  spec_file: taxjar-taxes-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.88
+  evidence: POST /taxes  calculateTaxForOrder  Calculate sales tax for an order; schemas Tax, TaxRequest,
+    Breakdown, Jurisdictions
+  reason: Order-level sales tax calculation with jurisdiction breakdown is unambiguously indirect tax
+    (sales/VAT) management.
+- tag: Rates
+  spec_file: taxjar-rates-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.8
+  evidence: GET /rates/{zip}  getRatesForLocation  Show tax rates for a location
+  reason: Jurisdictional sales-tax rate lookup is indirect tax determination.
+- tag: Transactions - Orders
+  spec_file: taxjar-transactions-orders-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.78
+  evidence: POST /transactions/orders createOrder 'Create an order transaction'; spec covers 'transaction
+    management (orders and refunds)' for a 'sales tax automation platform ... automated filing across
+    US states'
+  reason: Recording order transactions into TaxJar exists to support sales-tax calculation and automated
+    filing, i.e. indirect tax (sales tax/VAT) management rather than order fulfilment. The Order/LineItem
+    schemas carry tax amounts for filing purposes.
+- tag: Nexus
+  spec_file: taxjar-nexus-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.75
+  evidence: GET /nexus/regions  listNexusRegions  List nexus regions — "nexus region tracking"
+  reason: Nexus regions define where sales-tax collection obligations exist, a core indirect-tax compliance
+    concept.
+- tag: Summary Rates
+  spec_file: taxjar-summary-rates-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.75
+  evidence: GET /summary_rates  listSummaryRates  Summarize tax rates for all regions
+  reason: Regional sales-tax rate summaries serve indirect tax calculation and compliance.
+- tag: Transactions - Refunds
+  spec_file: taxjar-transactions-refunds-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.75
+  evidence: POST /transactions/refunds createRefund 'Create a refund transaction'; 'transaction management
+    (orders and refunds)' within 'real-time sales tax calculation ... automated filing'
+  reason: Refund transactions are recorded to adjust sales-tax liability for filing; this is indirect
+    tax management, not a payments/returns capability.
+- tag: Categories
+  spec_file: taxjar-categories-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.72
+  evidence: GET /categories  listCategories  List tax categories — "tax category listing" and "AI-powered
+    product tax classification"
+  reason: Product tax category lookup supports sales-tax (indirect tax) determination; narrow read-only
+    surface so moderate confidence.
