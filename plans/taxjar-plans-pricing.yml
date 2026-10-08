@@ -142,3 +142,21 @@ plans:
         currency: USD
         unit: per state
         description: One-time fee for state sales tax registration
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Starter
+    access: paid
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Professional
+    access: paid
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
