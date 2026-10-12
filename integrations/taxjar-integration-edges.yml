@@ -1,0 +1,445 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/taxjar/integrations
+- https://composio.dev/toolkits/taxjar
+checked:
+- https://composio.dev/toolkits/taxjar
+- https://monid.ai/tools/taxjar
+- https://n8n.io/integrations/taxjar/
+- https://zapier.com/apps/taxjar/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: taxjar
+  url: https://zapier.com/apps/taxjar/integrations
+  external_url: https://taxjar.com/
+  partner_tier: BRONZE
+  triggers: []
+  actions:
+  - key: categories
+    label: List Categories
+  - key: codeForRegion
+    label: Get Two-Letter ISO Code for Region
+  - key: createCustomer
+    label: Create a Customer
+  - key: createOrder
+    label: Create an Order Transaction
+  - key: createRefund
+    label: Create a Refund Transaction
+  - key: listCustomers
+    label: List Customers
+  - key: listOrders
+    label: List Orders
+  - key: listRefunds
+    label: List Refunds
+  - key: nexusRegions
+    label: List Nexus Regions
+  - key: ratesForLocation
+    label: Rates for Location
+  - key: showCustomer
+    label: Show a Customer
+  - key: showOrder
+    label: Show Order
+  - key: showRefund
+    label: Show Refund
+  - key: summaryRates
+    label: Summarize Tax Rates for All Regions
+  - key: taxForOrder
+    label: Calculate Sales Tax for an Order
+  - key: updateCustomer
+    label: Update a Customer
+  - key: updateOrder
+    label: Update an Order Transaction
+  - key: updateRefund
+    label: Update a Refund Transaction
+  - key: validateAddress
+    label: Validate an Address
+  - key: validateVat
+    label: Validate a VAT Number
+  searches: []
+- marketplace: composio
+  channel: agent-gateway
+  app: taxjar
+  url: https://composio.dev/toolkits/taxjar
+  identity: action-prefix
+  actions:
+  - key: TAXJAR_CALCULATE_SALES_TAX_FOR_AN_ORDER
+  - key: TAXJAR_CREATE_CUSTOMER
+  - key: TAXJAR_CREATE_ORDER_TRANSACTION
+  - key: TAXJAR_CREATE_REFUND_TRANSACTION
+  - key: TAXJAR_DELETE_CUSTOMER
+  - key: TAXJAR_DELETE_ORDER_TRANSACTION
+  - key: TAXJAR_DELETE_REFUND_TRANSACTION
+  - key: TAXJAR_LIST_CUSTOMERS
+  - key: TAXJAR_LIST_NEXUS_REGIONS
+  - key: TAXJAR_LIST_ORDER_TRANSACTIONS
+  - key: TAXJAR_LIST_REFUND_TRANSACTIONS
+  - key: TAXJAR_LIST_TAX_CATEGORIES
+  - key: TAXJAR_SHOW_CUSTOMER
+  - key: TAXJAR_SHOW_ORDER_TRANSACTION
+  - key: TAXJAR_SHOW_REFUND_TRANSACTION
+  - key: TAXJAR_SHOW_TAX_RATES_FOR_A_LOCATION
+  - key: TAXJAR_SUMMARIZE_TAX_RATES_FOR_ALL_REGIONS
+  - key: TAXJAR_UPDATE_CUSTOMER
+  - key: TAXJAR_UPDATE_ORDER_TRANSACTION
+  - key: TAXJAR_UPDATE_REFUND_TRANSACTION
+  - key: TAXJAR_VALIDATE_VAT_NUMBER
+edges:
+- partner_name: Wix
+  partner: wix
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Service Fusion
+  partner: servicefusion
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/service-fusion
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.servicefusion.com/
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: Jobber
+  partner: jobber
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/jobber
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://www.getjobber.com/plp/zapier?utm_source=Zapier&utm_medium=PLP
+- partner_name: FareHarbor
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/fareharbor
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://fareharbor.com/
+- partner_name: Square
+  partner: square
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/square
+  direction: third-party
+  category: eCommerce
+  partner_url: https://squareup.com/t/cmtp_performance/pr_developers/d_partnerships/p_zapier/?route=
+- partner_name: Xero
+  partner: xero
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/xero
+  direction: third-party
+  category: Accounting
+  partner_url: https://xero5440.partnerlinks.io/uvwuuwrxyoi8
+- partner_name: Zoho Books
+  partner: zoho-books
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/zoho-books
+  direction: third-party
+  category: Accounting
+  partner_url: https://go.zoho.com/3Al
+- partner_name: YouCanBookMe
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/youcanbookme
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://youcanbook.me/?yst=ptnr?ysi=zapier
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Sprout Studio
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/sprout-studio
+  direction: third-party
+  category: Images & Design
+  partner_url: https://sproutstudio.com/
+- partner_name: ServiceTrade
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/servicetrade
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://www.servicetrade.com/
+- partner_name: Stripe
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/stripe
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: LeadConnector
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/leadconnector
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.leadconnectorhq.com/
+- partner_name: Google Docs
+  partner: google-docs
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/google-docs
+  direction: third-party
+  category: Documents
+  partner_url: http://google.com/
+- partner_name: Salesforce
+  partner: salesforce
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/salesforce
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.salesforce.com/
+- partner_name: ChatGPT (OpenAI)
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/chatgpt
+  direction: third-party
+  category: AI Assistants
+  partner_url: https://chat.openai.com/chat
+- partner_name: HoneyBook
+  partner: honeybook
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/honeybook
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.honeybook.com/
+- partner_name: LinkedIn
+  partner: linkedin
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/linkedin
+  direction: third-party
+  category: Microsoft
+  partner_url: http://www.linkedin.com/
+- partner_name: Podio
+  partner: podio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/podio
+  direction: third-party
+  category: Project Management
+  partner_url: https://podio.com/
+- partner_name: Formstack
+  partner: formstack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/formstack
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://zpr.io/62HTX
+- partner_name: SQL Server
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/sql-server
+  direction: third-party
+  category: Databases
+  partner_url: https://www.microsoft.com/sql-server
+- partner_name: Cin7 Core Inventory
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/cin7-core
+  direction: third-party
+  category: Accounting
+  partner_url: https://dearsystems.com/
+- partner_name: AppSheet
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/appsheet
+  direction: third-party
+  category: App Builder
+  partner_url: https://www.appsheet.com/
+- partner_name: AdvicePay
+  partner: advicepay
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/advicepay
+  direction: third-party
+  category: Commerce
+  partner_url: https://advicepay.com/
+- partner_name: Xledger
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/xledger
+  direction: third-party
+  category: Accounting
+  partner_url: https://zapier.com/www.xledger.co.uk
+- partner_name: ProductPlan
+  partner: productplan
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/productplan
+  direction: third-party
+  category: Product Management
+  partner_url: https://www.productplan.com/
+templates:
+- title: Create TaxJar order transactions for new Wave invoices
+  url: https://zapier.com/apps/taxjar/integrations/wave/1266764/create-taxjar-order-transactions-for-new-wave-invoices
+  apps:
+  - wave
+  - taxjar
+- title: Calculate sales tax for orders in TaxJar when new estimates come in FreshBooks
+  url: https://zapier.com/apps/freshbooks/integrations/taxjar/1610229/calculate-sales-tax-for-orders-in-taxjar-when-new-estimates-come-in-freshbooks
+  apps:
+  - freshbooks
+  - taxjar
+- title: Create TaxJar order transactions from new Zapier Forms form submissions
+  url: https://zapier.com/apps/taxjar/integrations/zapier-forms/1733571/create-taxjar-order-transactions-from-new-zapier-forms-form-submissions
+  apps:
+  - zapier-forms
+  - taxjar
+- title: Track new HoneyBook payments by creating order transactions in TaxJar
+  url: https://zapier.com/apps/honeybook/integrations/taxjar/1755142/track-new-honeybook-payments-by-creating-order-transactions-in-taxjar
+  apps:
+  - honeybook
+  - taxjar
+- title: Create order transactions in TaxJar for new invoices in Sage Intacct
+  url: https://zapier.com/apps/sage-intacct/integrations/taxjar/1777407/create-order-transactions-in-taxjar-for-new-invoices-in-sage-intacct
+  apps:
+  - sage-intacct
+  - taxjar
+- title: Calculate sales tax for new Wix ecommerce transactions using TaxJar
+  url: https://zapier.com/apps/taxjar/integrations/wix/255596584/calculate-sales-tax-for-new-wix-ecommerce-transactions-using-taxjar
+  apps:
+  - wix
+  - taxjar
+- title: Calculate sales tax for orders in TaxJar when new or updated spreadsheet rows occur in Google Sheets
+  url: https://zapier.com/apps/google-sheets/integrations/taxjar/255597415/calculate-sales-tax-for-orders-in-taxjar-when-new-or-updated-spreadsheet-rows-occur-in-google-sheets
+  apps:
+  - google-sheets
+  - taxjar
+template_total: 7
