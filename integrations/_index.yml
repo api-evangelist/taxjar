@@ -347,3 +347,28 @@
   source: edge
   status: pending-generation
   arazzo: null
+- slug: taxjar-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/taxjar
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: taxjar-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/taxjar/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

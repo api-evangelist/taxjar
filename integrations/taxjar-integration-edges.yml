@@ -8,6 +8,8 @@ checked:
 - https://monid.ai/tools/taxjar
 - https://n8n.io/integrations/taxjar/
 - https://zapier.com/apps/taxjar/integrations
+- shopify/integrations/shopify-integration-edges.yml
+- woocommerce/integrations/woocommerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -406,6 +408,41 @@ edges:
   direction: third-party
   category: Product Management
   partner_url: https://www.productplan.com/
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/taxjar
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - TaxJar Sales Tax Automation
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/taxjar/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - TaxJar
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
 templates:
 - title: Create TaxJar order transactions for new Wave invoices
   url: https://zapier.com/apps/taxjar/integrations/wave/1266764/create-taxjar-order-transactions-for-new-wave-invoices
