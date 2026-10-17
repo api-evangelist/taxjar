@@ -159,7 +159,43 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Unprocessable entity - validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    ExemptRegion:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Two-letter ISO country code
+          example: US
+        state:
+          type: string
+          description: Two-letter state code
+          example: TX
     Error:
       type: object
       properties:
@@ -172,6 +208,37 @@ components:
         status:
           type: integer
           description: HTTP status code
+    Customer:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          example: '123'
+        exemption_type:
+          type: string
+          example: wholesale
+        name:
+          type: string
+          example: Initech
+        country:
+          type: string
+          example: US
+        state:
+          type: string
+          example: TX
+        zip:
+          type: string
+          example: '78744'
+        city:
+          type: string
+          example: Austin
+        street:
+          type: string
+          example: 4120 Freidrich Ln
+        exempt_regions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExemptRegion'
     CustomerRequest:
       type: object
       required:
@@ -221,73 +288,6 @@ components:
           description: Regions where the customer is exempt
           items:
             $ref: '#/components/schemas/ExemptRegion'
-    ExemptRegion:
-      type: object
-      properties:
-        country:
-          type: string
-          description: Two-letter ISO country code
-          example: US
-        state:
-          type: string
-          description: Two-letter state code
-          example: TX
-    Customer:
-      type: object
-      properties:
-        customer_id:
-          type: string
-          example: '123'
-        exemption_type:
-          type: string
-          example: wholesale
-        name:
-          type: string
-          example: Initech
-        country:
-          type: string
-          example: US
-        state:
-          type: string
-          example: TX
-        zip:
-          type: string
-          example: '78744'
-        city:
-          type: string
-          example: Austin
-        street:
-          type: string
-          example: 4120 Freidrich Ln
-        exempt_regions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExemptRegion'
-  responses:
-    UnprocessableEntity:
-      description: Unprocessable entity - validation error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

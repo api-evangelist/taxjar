@@ -193,6 +193,31 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - invalid or missing API token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Unprocessable entity - validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -206,58 +231,6 @@ components:
         status:
           type: integer
           description: HTTP status code
-    Refund:
-      type: object
-      properties:
-        transaction_id:
-          type: string
-          example: '321'
-        user_id:
-          type: integer
-        transaction_date:
-          type: string
-          example: '2015-05-14T00:00:00Z'
-        transaction_reference_id:
-          type: string
-          example: '123'
-        provider:
-          type: string
-          example: api
-        exemption_type:
-          type: string
-        from_country:
-          type: string
-        from_zip:
-          type: string
-        from_state:
-          type: string
-        from_city:
-          type: string
-        from_street:
-          type: string
-        to_country:
-          type: string
-        to_zip:
-          type: string
-        to_state:
-          type: string
-        to_city:
-          type: string
-        to_street:
-          type: string
-        amount:
-          type: number
-          format: float
-        shipping:
-          type: number
-          format: float
-        sales_tax:
-          type: number
-          format: float
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
     RefundRequest:
       type: object
       required:
@@ -389,31 +362,58 @@ components:
           type: number
           format: float
           description: Sales tax collected for this line item
-  responses:
-    UnprocessableEntity:
-      description: Unprocessable entity - validation error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Refund:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          example: '321'
+        user_id:
+          type: integer
+        transaction_date:
+          type: string
+          example: '2015-05-14T00:00:00Z'
+        transaction_reference_id:
+          type: string
+          example: '123'
+        provider:
+          type: string
+          example: api
+        exemption_type:
+          type: string
+        from_country:
+          type: string
+        from_zip:
+          type: string
+        from_state:
+          type: string
+        from_city:
+          type: string
+        from_street:
+          type: string
+        to_country:
+          type: string
+        to_zip:
+          type: string
+        to_state:
+          type: string
+        to_city:
+          type: string
+        to_street:
+          type: string
+        amount:
+          type: number
+          format: float
+        shipping:
+          type: number
+          format: float
+        sales_tax:
+          type: number
+          format: float
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
   securitySchemes:
     bearerAuth:
       type: http

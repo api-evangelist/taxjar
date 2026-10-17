@@ -42,6 +42,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        detail:
+          type: string
+          description: Human-readable error detail
+        status:
+          type: integer
+          description: HTTP status code
     NexusRegion:
       type: object
       properties:
@@ -61,18 +73,6 @@ components:
           type: string
           description: State/region name
           example: California
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        detail:
-          type: string
-          description: Human-readable error detail
-        status:
-          type: integer
-          description: HTTP status code
   responses:
     Unauthorized:
       description: Unauthorized - invalid or missing API token
