@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/honeybook/integrations/taxjar/1755142/track-new-honeybook-payments-by-creating-order-transactions-in-taxjar
   template: https://zapier.com/apps/honeybook/integrations/taxjar/1755142/track-new-honeybook-payments-by-creating-order-transactions-in-taxjar
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: taxjar-calculate-sales-tax-for-new-wix-ecommerce-transactions-using-taxjar
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/taxjar/integrations/wix/255596584/calculate-sales-tax-for-new-wix-ecommerce-transactions-using-taxjar
   template: https://zapier.com/apps/taxjar/integrations/wix/255596584/calculate-sales-tax-for-new-wix-ecommerce-transactions-using-taxjar
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: taxjar-calculate-sales-tax-for-orders-in-taxjar-when-new-or-updated-spreadsheet-rows-occur
@@ -43,308 +45,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/taxjar/255597415/calculate-sales-tax-for-orders-in-taxjar-when-new-or-updated-spreadsheet-rows-occur-in-google-sheets
   template: https://zapier.com/apps/google-sheets/integrations/taxjar/255597415/calculate-sales-tax-for-orders-in-taxjar-when-new-or-updated-spreadsheet-rows-occur-in-google-sheets
   source: template
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/hubspot
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-service-fusion
-  label: Service Fusion
-  partner: servicefusion
-  partner_name: Service Fusion
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/service-fusion
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-typeform
-  label: Typeform
-  partner: typeform
-  partner_name: Typeform
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/typeform
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-jobber
-  label: Jobber
-  partner: jobber
-  partner_name: Jobber
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/jobber
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-fareharbor
-  label: FareHarbor
-  partner_name: FareHarbor
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/fareharbor
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-square
-  label: Square
-  partner: square
-  partner_name: Square
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/square
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-xero
-  label: Xero
-  partner: xero
-  partner_name: Xero
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/xero
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-zoho-books
-  label: Zoho Books
-  partner: zoho-books
-  partner_name: Zoho Books
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/zoho-books
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-youcanbookme
-  label: YouCanBookMe
-  partner_name: YouCanBookMe
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/youcanbookme
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-airtable
-  label: Airtable
-  partner: airtable
-  partner_name: Airtable
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/airtable
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-sprout-studio
-  label: Sprout Studio
-  partner_name: Sprout Studio
-  category: Images & Design
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/sprout-studio
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-servicetrade
-  label: ServiceTrade
-  partner_name: ServiceTrade
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/servicetrade
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-stripe
-  label: Stripe
-  partner: stripe
-  partner_name: Stripe
-  category: Payment Processing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/stripe
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-leadconnector
-  label: LeadConnector
-  partner_name: LeadConnector
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/leadconnector
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-google-docs
-  label: Google Docs
-  partner: google-docs
-  partner_name: Google Docs
-  category: Documents
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/google-docs
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-salesforce
-  label: Salesforce
-  partner: salesforce
-  partner_name: Salesforce
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/salesforce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-chatgpt-openai
-  label: ChatGPT (OpenAI)
-  partner_name: ChatGPT (OpenAI)
-  category: AI Assistants
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/chatgpt
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-linkedin
-  label: LinkedIn
-  partner: linkedin
-  partner_name: LinkedIn
-  category: Microsoft
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/linkedin
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-podio
-  label: Podio
-  partner: podio
-  partner_name: Podio
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/podio
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-formstack
-  label: Formstack
-  partner: formstack
-  partner_name: Formstack
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/formstack
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: taxjar-sql-server
-  label: SQL Server
-  partner_name: SQL Server
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/sql-server
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-cin7-core-inventory
-  label: Cin7 Core Inventory
-  partner_name: Cin7 Core Inventory
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/cin7-core
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-appsheet
-  label: AppSheet
-  partner_name: AppSheet
-  category: App Builder
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/appsheet
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-advicepay
-  label: AdvicePay
-  partner: advicepay
-  partner_name: AdvicePay
-  category: Commerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/advicepay
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-xledger
-  label: Xledger
-  partner_name: Xledger
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/xledger
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: taxjar-productplan
-  label: ProductPlan
-  partner: productplan
-  partner_name: ProductPlan
-  category: Product Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/taxjar/integrations/productplan
-  source: edge
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: taxjar-shopify-own
@@ -452,4 +153,334 @@
     detected_by: sweep-compliance-assurance.py
     detected: '2026-10-20'
   status: not-a-workflow
+  arazzo: null
+- slug: taxjar-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-service-fusion
+  label: Service Fusion
+  partner: servicefusion
+  partner_name: Service Fusion
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/service-fusion
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-typeform
+  label: Typeform
+  partner: typeform
+  partner_name: Typeform
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/typeform
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-jobber
+  label: Jobber
+  partner: jobber
+  partner_name: Jobber
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/jobber
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-fareharbor
+  label: FareHarbor
+  partner_name: FareHarbor
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/fareharbor
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: taxjar-square
+  label: Square
+  partner: square
+  partner_name: Square
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/square
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-xero
+  label: Xero
+  partner: xero
+  partner_name: Xero
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/xero
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-zoho-books
+  label: Zoho Books
+  partner: zoho-books
+  partner_name: Zoho Books
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/zoho-books
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-youcanbookme
+  label: YouCanBookMe
+  partner_name: YouCanBookMe
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/youcanbookme
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: taxjar-airtable
+  label: Airtable
+  partner: airtable
+  partner_name: Airtable
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/airtable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-sprout-studio
+  label: Sprout Studio
+  partner_name: Sprout Studio
+  category: Images & Design
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/sprout-studio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: taxjar-servicetrade
+  label: ServiceTrade
+  partner_name: ServiceTrade
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/servicetrade
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: taxjar-stripe
+  label: Stripe
+  partner: stripe
+  partner_name: Stripe
+  category: Payment Processing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/stripe
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-leadconnector
+  label: LeadConnector
+  partner_name: LeadConnector
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/leadconnector
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: taxjar-google-docs
+  label: Google Docs
+  partner: google-docs
+  partner_name: Google Docs
+  category: Documents
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/google-docs
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-salesforce
+  label: Salesforce
+  partner: salesforce
+  partner_name: Salesforce
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/salesforce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-chatgpt-openai
+  label: ChatGPT (OpenAI)
+  partner: openai
+  partner_name: ChatGPT (OpenAI)
+  category: AI Assistants
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/chatgpt
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-linkedin
+  label: LinkedIn
+  partner: linkedin-ads
+  partner_name: LinkedIn
+  category: Microsoft
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/linkedin
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-podio
+  label: Podio
+  partner: podio
+  partner_name: Podio
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/podio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-formstack
+  label: Formstack
+  partner: formstack
+  partner_name: Formstack
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/formstack
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-sql-server
+  label: SQL Server
+  partner: microsoft-sql-server
+  partner_name: SQL Server
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/sql-server
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: taxjar-cin7-core-inventory
+  label: Cin7 Core Inventory
+  partner_name: Cin7 Core Inventory
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/cin7-core
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: taxjar-appsheet
+  label: AppSheet
+  partner_name: AppSheet
+  category: App Builder
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/appsheet
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: taxjar-advicepay
+  label: AdvicePay
+  partner: advicepay
+  partner_name: AdvicePay
+  category: Commerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/advicepay
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: taxjar-xledger
+  label: Xledger
+  partner_name: Xledger
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/xledger
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: taxjar-productplan
+  label: ProductPlan
+  partner: productplan
+  partner_name: ProductPlan
+  category: Product Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/taxjar/integrations/productplan
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null
