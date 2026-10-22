@@ -18,6 +18,7 @@ checked:
 - https://advertising.amazon.com/partners/directory
 - https://sellercentral.amazon.com/gspn
 - https://sellercentral.amazon.com/selling-partner-appstore
+- adobe-commerce/integrations/adobe-commerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -97,41 +98,6 @@ marketplace_apps:
   - key: TAXJAR_UPDATE_REFUND_TRANSACTION
   - key: TAXJAR_VALIDATE_VAT_NUMBER
 edges:
-- partner_name: Shopify (own)
-  partner: shopify
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.shopify.com/taxjar
-  mirror_of: shopify/integrations/shopify-integration-edges.yml
-  apps:
-  - TaxJar Sales Tax Automation
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  publisher_verified:
-  - Built for Shopify
-- partner_name: WooCommerce (own)
-  partner: woocommerce
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://woocommerce.com/products/taxjar/
-  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
-  apps:
-  - TaxJar
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: extension
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -576,6 +542,58 @@ edges:
   - TaxJar Sales Tax Automation
   detected: '2026-10-21'
   detected_by: sweep-amazon-sp-api-appstore.py
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/taxjar
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - TaxJar Sales Tax Automation
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/taxjar/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - TaxJar
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
+- partner_name: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://commercemarketplace.adobe.com/taxjar-module-taxjar.html
+  mirror_of: adobe-commerce/integrations/adobe-commerce-integration-edges.yml
+  apps:
+  - TaxJar Sales Tax Automation
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Commerce Marketplace extension
 templates:
 - title: Create TaxJar order transactions for new Wave invoices
   url: https://zapier.com/apps/taxjar/integrations/wave/1266764/create-taxjar-order-transactions-for-new-wave-invoices
