@@ -1,4 +1,4 @@
-# TaxJar (taxjar)
+# TaxJar
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,68 +64,145 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-TaxJar is a sales tax automation platform, now a Stripe company, that provides APIs for real-time sales tax calculations, rooftop-level rate lookups, transaction recording, and automated filing across US states and international jurisdictions. The platform serves e-commerce businesses of all sizes with sub-20ms response times, 99.999% historical uptime, and AI-powered product tax classification. Official client libraries are available for Ruby, Python, PHP, Node.js, C#/.NET, Java, and Go.
+> **Acquired or rebranded.** This company was acquired, merged or renamed. Its API, if it still exists, is offered under another name. This profile is kept as a historical record and is not maintained or rated.
 
-APIs.json: [https://raw.githubusercontent.com/api-evangelist/taxjar/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/taxjar/refs/heads/main/apis.yml)
+TaxJar is a sales tax automation platform, now a Stripe company, providing APIs for real-time sales tax calculations, rooftop-level rate lookups, transaction recording, and automated filing across US states and international jurisdictions. The platform supports e-commerce businesses of all sizes with sub-20ms response times, 99.999% historical uptime, and AI-powered product tax classification. TaxJar handles nexus tracking, exemption certificate management, and AutoFile returns so merchants can stay compliant without manual effort. Official client libraries are available for Ruby, Python, PHP, Node.js, C#/.NET, Java, and Go.
 
-Naftiko: [https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=taxjar-api-evangelist&utm_content=repo](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=taxjar-api-evangelist&utm_content=repo)
+**Areas:** Sales Tax · Tax Compliance · E-Commerce · Tax Calculation · Tax Automation · Stripe · Fintech · Tax
 
-## Tags
+## TaxJar on APIs.io (historical record)
 
-- Sales Tax
-- Tax Compliance
-- E-Commerce
-- Tax Calculation
-- Tax Automation
-- Stripe
-- FinTech
+Everything profiled for TaxJar is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/taxjar/](https://apis.io/providers/taxjar/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (9)
 
-### TaxJar Sales Tax API
+- [TaxJar Categories API](https://apis.io/apis/taxjar/taxjar-categories-api/) — Product tax categories
+- [TaxJar Customers API](https://apis.io/apis/taxjar/taxjar-customers-api/) — Customer exemption management
+- [TaxJar Nexus API](https://apis.io/apis/taxjar/taxjar-nexus-api/) — Nexus region tracking
+- [TaxJar Rates API](https://apis.io/apis/taxjar/taxjar-rates-api/) — Sales tax rate lookups
+- [TaxJar Summary Rates API](https://apis.io/apis/taxjar/taxjar-summary-rates-api/) — Summarized sales tax rates by region
+- [TaxJar Taxes API](https://apis.io/apis/taxjar/taxjar-taxes-api/) — Sales tax calculation
+- [TaxJar Transactions - Orders API](https://apis.io/apis/taxjar/taxjar-transactions-orders-api/) — Order transaction management
+- [TaxJar Transactions - Refunds API](https://apis.io/apis/taxjar/taxjar-transactions-refunds-api/) — Refund transaction management
+- [TaxJar Validations API](https://apis.io/apis/taxjar/taxjar-validations-api/) — Address and VAT validation
 
-REST API for real-time sales tax calculation, rate lookups, tax category listing, transaction management (create, update, delete, list), customer exemption management, nexus region tracking, and address validation. Supports token-based authentication via Authorization header.
+### Published properties
 
-- Human URL: [https://developers.taxjar.com/api/reference/](https://developers.taxjar.com/api/reference/)
-- Base URL: [https://api.taxjar.com/v2/](https://api.taxjar.com/v2/)
-- Sandbox URL: [https://api.sandbox.taxjar.com/v2/](https://api.sandbox.taxjar.com/v2/)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Plans / Rate Limits / FinOps
+#### Agentic access (1)
 
-- Plans: [plans/taxjar-plans-pricing.yml](plans/taxjar-plans-pricing.yml)
-- Rate Limits: [rate-limits/taxjar-rate-limits.yml](rate-limits/taxjar-rate-limits.yml)
-- FinOps: [finops/taxjar-finops.yml](finops/taxjar-finops.yml)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Pricing Summary
+- [Taxjar Agentic Access](https://apis.io/agentic-access/taxjar/taxjar-agentic-access/)
 
-| Plan | Starting Price | Orders/Month | API Access | API Rate Limit |
-|------|---------------|--------------|------------|----------------|
-| Starter | $39/mo | 200 | No | N/A |
-| Professional | $99/mo | 200 | Yes | 10,000 calls/min |
+#### JSON Schema (2)
 
-API calls count as 1/10th of an order toward the monthly tier limit. Flex fees allow temporary overage without a permanent plan upgrade. Annual billing saves 10% or more.
+The data models the API reads and writes.
 
-## Timestamps
+- [TaxJar Order Transaction](https://apis.io/schemas/taxjar/taxjar-order/)
+- [TaxJar Tax Calculation Response](https://apis.io/schemas/taxjar/taxjar-tax-calculation/)
 
-- Created: 2026-06-12
-- Modified: 2026-06-12
+#### JSON-LD (1)
 
-## Common Properties
+Linked-data contexts for the provider's vocabulary.
 
-| Type | URL |
-|------|-----|
-| Website | [https://www.taxjar.com](https://www.taxjar.com) |
-| Documentation | [https://developers.taxjar.com/](https://developers.taxjar.com/) |
-| API Reference | [https://developers.taxjar.com/api/reference/](https://developers.taxjar.com/api/reference/) |
-| GitHub Organization | [https://github.com/taxjar](https://github.com/taxjar) |
-| LinkedIn | [https://www.linkedin.com/company/taxjar](https://www.linkedin.com/company/taxjar) |
-| Blog | [https://developers.taxjar.com/blog/](https://developers.taxjar.com/blog/) |
-| Pricing | [https://www.taxjar.com/pricing/](https://www.taxjar.com/pricing/) |
-| Status Page | [https://status.taxjar.com](https://status.taxjar.com) |
-| X / Twitter | [https://x.com/taxjardev](https://x.com/taxjardev) |
-| Support | [https://support.taxjar.com/category/233-taxjar-api](https://support.taxjar.com/category/233-taxjar-api) |
-| Signup | [https://app.taxjar.com/api_sign_up/](https://app.taxjar.com/api_sign_up/) |
+- [Taxjar Context](https://apis.io/jsonld/taxjar/taxjar-context/)
 
-## Maintainers
+#### Vocabulary (1)
 
-- Kin Lane / kin@apievangelist.com
+The provider's domain terms, defined.
+
+- [Taxjar Vocabulary](https://apis.io/vocabularies/taxjar/taxjar-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Calculate Tax Request](https://apis.io/examples/taxjar/calculate-tax-request/)
+- [Calculate Tax Response](https://apis.io/examples/taxjar/calculate-tax-response/)
+- [Create Order Request](https://apis.io/examples/taxjar/create-order-request/)
+
+#### Collections (18)
+
+Postman and Open Collection request collections.
+
+- [TaxJar Sales Tax Categories API](https://apis.io/collections/taxjar/open-taxjar-categories-api/)
+- [TaxJar Sales Tax Categories Customers API](https://apis.io/collections/taxjar/open-taxjar-customers-api/)
+- [TaxJar Sales Tax Categories Nexus API](https://apis.io/collections/taxjar/open-taxjar-nexus-api/)
+- [TaxJar Sales Tax Categories Rates API](https://apis.io/collections/taxjar/open-taxjar-rates-api/)
+- [TaxJar Sales Tax Categories Summary Rates API](https://apis.io/collections/taxjar/open-taxjar-summary-rates-api/)
+- [TaxJar Sales Tax Categories Taxes API](https://apis.io/collections/taxjar/open-taxjar-taxes-api/)
+- [TaxJar Sales Tax Categories Transactions - Orders API](https://apis.io/collections/taxjar/open-taxjar-transactions-orders-api/)
+- [TaxJar Sales Tax Categories Transactions - Refunds API](https://apis.io/collections/taxjar/open-taxjar-transactions-refunds-api/)
+- [TaxJar Sales Tax Categories Validations API](https://apis.io/collections/taxjar/open-taxjar-validations-api/)
+- [TaxJar Sales Tax Categories API](https://apis.io/collections/taxjar/postman-taxjar-categories-api/)
+- [TaxJar Sales Tax Categories Customers API](https://apis.io/collections/taxjar/postman-taxjar-customers-api/)
+- [TaxJar Sales Tax Categories Nexus API](https://apis.io/collections/taxjar/postman-taxjar-nexus-api/)
+- [TaxJar Sales Tax Categories Rates API](https://apis.io/collections/taxjar/postman-taxjar-rates-api/)
+- [TaxJar Sales Tax Categories Summary Rates API](https://apis.io/collections/taxjar/postman-taxjar-summary-rates-api/)
+- [TaxJar Sales Tax Categories Taxes API](https://apis.io/collections/taxjar/postman-taxjar-taxes-api/)
+- [TaxJar Sales Tax Categories Transactions - Orders API](https://apis.io/collections/taxjar/postman-taxjar-transactions-orders-api/)
+- [TaxJar Sales Tax Categories Transactions - Refunds API](https://apis.io/collections/taxjar/postman-taxjar-transactions-refunds-api/)
+- [TaxJar Sales Tax Categories Validations API](https://apis.io/collections/taxjar/postman-taxjar-validations-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [TaxJar — jsonschema rules](https://apis.io/rules/taxjar/taxjar-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Taxjar Authentication](https://apis.io/security/taxjar/taxjar-authentication/)
+- [Taxjar Domain Security](https://apis.io/security/taxjar/taxjar-domain-security/)
+- [Taxjar Trust Center](https://apis.io/security/taxjar/taxjar-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Taxjar Plans Pricing](https://apis.io/plans/taxjar/taxjar-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Taxjar Rate Limits](https://apis.io/rate-limits/taxjar/taxjar-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Taxjar Finops](https://apis.io/finops/taxjar/taxjar-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.taxjar.com)
+- [Documentation](https://developers.taxjar.com/)
+- [API reference](https://developers.taxjar.com/api/reference/)
+- [Pricing](https://www.taxjar.com/pricing/)
+- [Support](https://support.taxjar.com/category/233-taxjar-api)
+- [Blog](https://developers.taxjar.com/blog/)
+- [GitHub](https://github.com/taxjar)
+- [Status](https://status.taxjar.com)
+
+## API Evangelist rating
+
+**Not rated** — this company is recorded as acquired or rebranded, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TaxJar: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/taxjar/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
